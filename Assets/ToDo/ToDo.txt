@@ -1,60 +1,66 @@
 ¿En qué consiste el juego?
-El jugador maneja una barra horizontal que se mueve lateralmente por la parte baja de la pantalla.
-En la parte superior hay ladrillos de diferentes colores, y también enemigos.
-Hay una pelota que rebota por toda la pantalla.
-Cuando la pelota pega en un enemigo, lo destruye. Si la barra pega a un enemigo, lo destruye.
-Cuanto la pelota pega en un ladrillo un número determinado de veces, dependiendo del tipo de ladrillo, el ladrillo se destruye.
-El objetivo del juego es utilzar la barra horizontal para impedir que la pelota caiga por la parte inferior, y al mismo tiempo
-conseguir que vaya destruyendo todos los ladrillos de la parte superior.
-Cuando todos los ladrillos son detruídos, el jugador pasa al siguiente Round.
-
-Condición de perder: Si la bola cae por la parte inferior, el jugador pierde una vida. Si pierde todas las vidas, el juego termina.
-
-¿Cuántos objetos identificas?
+    Debemos destruir bloques con una bola que rebota sin dejarla caer
+    Interacción: teclas
+    Condición de perder: al caer la bola
+¿Cuántos objetos identificas? (Sólo identificar)
     InGame
-        - barra (Vaus)
-        - pelota
-        - ladrillos (diferentes tipos)
-        - enemigos alienígenas
-        - píldoras powerups
-        - límite superior y límites laterales
-    - puntuación actual
-    - máxima puntuación
-    - vidas
-    - puerta lateral para pasar de pantalla (si cojo un power up)
+        Paleta (Vaus)
+        Bloques: diferentes tipos y comportamientos (Brick)
+        Márgenes (Límites)
+        Enemigos: diferentes tipos y ¿comportamientos?
+        Bola
+        Power Ups: diferentes tipos y comportamientos
+        Fondo
+        Rayo Láser (Bala)
+        Spawn Point: Generación de enemigo
+    HUD:
+        Score
+            Texto
+            Número
+        Highscore: HUD, Menú, Victory, Game over
+            Texto
+            Número
+        Contador de vidas
+        Número de Round
 
-¿Qué elementos son puramente estéticos?
-- el fondo
+    Audio:
+        Choque paleta con bola
+        Choque bola con ladrillo (Brick)
+            Destruir ladrillo que requiere más de un golpe
+        Choque bola/láser con enemigo
+            Destruir enemigo
+        Coger Power Up
+        Terminar nivel
+        Inicio nivel (Round)
+        Perder vida
+        Ganar vida: o bien Power up o score
+        Estirar
+        Disparo láser: 
+            al disparar
+            Choque Láser con ladrillo
+        Música de cinemática (cutscene)
 
-¿Qué elementos tiene el HUD?
-- Cartel fijo centrado: HIGH SCORE
-- Puntuación actual
-- Puntuación máxima
-- Vidas (copias en miniatura de la barra situadas abajo del todo)
-- Round actual
+    Game Flow:
+        Menú -> cutscene (Intro)
+        Intro -> InGame
+        InGame -> InGame (pasar nivel)
+            Destruir todos los ladrillos o Power up de Break
+        InGame -> Victory (cutscene) 
+            Hemos pasado todos los niveles
+        InGame -> Game Over (cutscene)
+            Hemos perdido todas las vidas
+        Victory -> Menú
+        Game Over -> Menú
 
-¿Qué animaciones encuentras?
-- Alienígenas: hacen una especia de rotación sobre sí mismos
-- Powerups: gira sobre sí mismos en sentido vertical
 
-¿Qué sonidos encuentras?
-    - Sonido inicio Round
-    - Sonido de rebote de la pelota contra las paredes
-    - Sonido de rebote de la pelota contra la barra
-    - Sonido de rebote de la pelota contra los ladrillos
-    - Sonido de destrucción de un ladrillo (es diferente del sonido cuando rebota pero no destruye)
-    - Sonido de destrucción de un alienígena
-    - Música cinemática (cutscene)
-    - Perder vida
-    - Powerups:
-        - disparos de láser
-        - estiramiento de la barra
-        - atravesar puerta a pantalla siguiente
-        - ganar vida
-
+    ¿Qué objetos son puramente estéticos?
+    ¿Qué objetos tienen comportamiento? ¿Qué comportamientos identificas?
+        Power up: 
+            Estirar
+            Ganar vida
+        Score:
+            Ganar vida a los 20.000 y 60.000 
+            A partir de 60.000 cada 60.000 adicionales
+            
+    ¿Qué elementos tiene el HUD?
 ¿Quién tiene la responsabilidad de esos comportamientos?
-- barra: el input del jugador
-- pelota: físicas 2D, rebota contra los elementos
-- ladrillos: no se mueven. Pueden destruirse. Al ser destruídos puedes soltar power ups >> relacionado con pelota
-- enemigos alienígenas: movimientos aleatorios, rebotan contra los elementos >> relacionado con pelota y con barra
-- píldoras powerups: caen de forma completamente vertical
