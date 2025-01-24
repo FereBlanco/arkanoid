@@ -6,21 +6,22 @@ Cuando la pelota pega en un enemigo, lo destruye. Si la barra pega a un enemigo,
 Cuanto la pelota pega en un ladrillo un número determinado de veces, dependiendo del tipo de ladrillo, el ladrillo se destruye.
 El objetivo del juego es utilzar la barra horizontal para impedir que la pelota caiga por la parte inferior, y al mismo tiempo
 conseguir que vaya destruyendo todos los ladrillos de la parte superior.
-Cuando todos los ladrillos son detruídos, el jugador para a la siguiente pantalla.
+Cuando todos los ladrillos son detruídos, el jugador pasa al siguiente Round.
 
 Condición de perder: Si la bola cae por la parte inferior, el jugador pierde una vida. Si pierde todas las vidas, el juego termina.
 
 ¿Cuántos objetos identificas?
-- barra
-- pelota
-- ladrillos (diferentes tipos)
-- enemigos alienígenas
-- píldoras powerups
-- límite superior y límites laterales
-- puntuación actual
-- máxima puntuación
-- vidas
-- puerta lateral para pasar de pantalla (si cojo un power up)
+    InGame
+        - barra (Vaus)
+        - pelota
+        - ladrillos (diferentes tipos)
+        - enemigos alienígenas
+        - píldoras powerups
+        - límite superior y límites laterales
+    - puntuación actual
+    - máxima puntuación
+    - vidas
+    - puerta lateral para pasar de pantalla (si cojo un power up)
 
 ¿Qué elementos son puramente estéticos?
 - el fondo
@@ -30,22 +31,26 @@ Condición de perder: Si la bola cae por la parte inferior, el jugador pierde un
 - Puntuación actual
 - Puntuación máxima
 - Vidas (copias en miniatura de la barra situadas abajo del todo)
+- Round actual
 
 ¿Qué animaciones encuentras?
 - Alienígenas: hacen una especia de rotación sobre sí mismos
 - Powerups: gira sobre sí mismos en sentido vertical
 
 ¿Qué sonidos encuentras?
-- Sonido inicial cuando la pelota se pone en marcha
-- Sonido de rebote de la pelota contra las paredes
-- Sonido de rebote de la pelota contra la barra
-- Sonido de rebote de la pelota contra los ladrillos
-- Sonido de destrucción de un ladrillo (es diferente del sonido cuando rebota pero no destruye)
-- Sonido de destrucción de un alienígena
-- Powerups:
-    - disparos de láser
-    - estiramiento de la barra
-    - atravesar puerta a pantalla siguiente
+    - Sonido inicio Round
+    - Sonido de rebote de la pelota contra las paredes
+    - Sonido de rebote de la pelota contra la barra
+    - Sonido de rebote de la pelota contra los ladrillos
+    - Sonido de destrucción de un ladrillo (es diferente del sonido cuando rebota pero no destruye)
+    - Sonido de destrucción de un alienígena
+    - Música cinemática (cutscene)
+    - Perder vida
+    - Powerups:
+        - disparos de láser
+        - estiramiento de la barra
+        - atravesar puerta a pantalla siguiente
+        - ganar vida
 
 ¿Quién tiene la responsabilidad de esos comportamientos?
 - barra: el input del jugador
