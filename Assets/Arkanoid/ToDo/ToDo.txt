@@ -1,0 +1,54 @@
+¿En qué consiste el juego?
+El jugador maneja una barra horizontal que se mueve lateralmente por la parte baja de la pantalla.
+En la parte superior hay ladrillos de diferentes colores, y también enemigos.
+Hay una pelota que rebota por toda la pantalla.
+Cuando la pelota pega en un enemigo, lo destruye. Si la barra pega a un enemigo, lo destruye.
+Cuanto la pelota pega en un ladrillo un número determinado de veces, dependiendo del tipo de ladrillo, el ladrillo se destruye.
+Si la bola cae por la parte inferior, el jugador pierde una vida.
+El objetivo del juego es utilzar la barra horizontal para impedir que la pelota caiga por la parte inferior, y al mismo tiempo
+conseguir que vaya destruyendo todos los ladrillos de la parte superior.
+Cuando todos los ladrillos son detruídos, el jugador para a la siguiente pantalla.
+
+¿Cuántos objetos identificas?
+- barra
+- pelota
+- ladrillos (diferentes tipos)
+- enemigos alienígenas
+- píldoras powerups
+- límite superior y límites laterales
+- puntuación actual
+- máxima puntuación
+- vidas
+- puerta lateral para pasar de pantalla (si cojo un power up)
+
+¿Qué elementos son puramente estéticos?
+- el fondo
+
+¿Qué elementos tiene el HUD?
+- Cartel fijo centrado: HIGH SCORE
+- Puntuación actual
+- Puntuación máxima
+- Vidas (copias en miniatura de la barra situadas abajo del todo)
+
+¿Qué animaciones encuentras?
+- Alienígenas: hacen una especia de rotación sobre sí mismos
+- Powerups: gira sobre sí mismos en sentido vertical
+
+¿Qué sonidos encuentras?
+- Sonido inicial cuando la pelota se pone en marcha
+- Sonido de rebote de la pelota contra las paredes
+- Sonido de rebote de la pelota contra la barra
+- Sonido de rebote de la pelota contra los ladrillos
+- Sonido de destrucción de un ladrillo (es diferente del sonido cuando rebota pero no destruye)
+- Sonido de destrucción de un alienígena
+- Powerups:
+    - disparos de láser
+    - estiramiento de la barra
+    - atravesar puerta a pantalla siguiente
+
+¿Quién tiene la responsabilidad de esos comportamientos?
+- barra: el input del jugador
+- pelota: físicas 2D, rebota contra los elementos
+- ladrillos: no se mueven. Pueden destruirse. Al ser destruídos puedes soltar power ups >> relacionado con pelota
+- enemigos alienígenas: movimientos aleatorios, rebotan contra los elementos >> relacionado con pelota y con barra
+- píldoras powerups: caen de forma completamente vertical
