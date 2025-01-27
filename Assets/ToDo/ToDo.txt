@@ -13,6 +13,7 @@
         Fondo
         Rayo Láser (Bala)
         Spawn Point: Generación de enemigo
+        Trampilla del Power Up Break
     HUD:
         Score
             Texto
@@ -54,8 +55,70 @@
 
 
     ¿Qué objetos son puramente estéticos?
+        Fondo
+        Márgenes (Límites)
     ¿Qué objetos tienen comportamiento? ¿Qué comportamientos identificas?
+        Paleta (Vaus)
+            Se mueve horizontalmente 
+            Choca con los Límites
+            Tiene físicas pues la pelota rebota con ella
+                Modifica la dirección de la pelota
+                Emite un Audio
+            Recoge los Power Ups
+            Estados:
+                Normal
+                Pegajoso
+                Alargado
+                Disparar
+                    ¿Cuántas balas? ¿Cada cuánto? ¿Tope de tiempo?
+                Destruir
+                Crear
+            Al inicio la pelota está unida a la Vaus
+                La pelota es lanzada por la Vaus
+        Bloques: diferentes tipos y comportamientos (Brick)
+            Tienen diferentes número de golpes (resistencia)
+            Algunos contienen un power up
+                ¿Cómo se asignan los power ups?
+                    1a opción)
+                        Algunos se asignan manualmente
+                        Otros se asignan aleatoriamente
+                    2a opción)
+                        Después de destruir un número determinado se crea un power up
+            Cuando su resistencia es 0 se destruye
+                puede soltar el power up si lo contiene
+                Si es el último se pasa de nivel
+                Se obtienen puntos
+        Pelota
+            Choca contra la Vaus
+                emite sonido
+            Choca con los ladrillos
+                emite sonido
+                Disminuye la resistencia en 1
+            Pasa la línea de muerte (Dead Zone)
+                Si es la última pelota
+                    Se pierde una vida
+                    Se destruye la Vaus
+            Se puede subdividir en 3
+                Cuando la Vaus obtiene el Power Up (Disruption)
+            Choca con los enemigos
+                Los destruye
+                Se genera un Audio
+            No choca con otras pelotas
+        Spawn Point: Generación de enemigo
+            ¿Dónde?
+                Parte superior
+            ¿Cuántos? 
+                Hay 2
+            ¿Cada cuánto salen enemigos? ¿Cuántos enemigos salen?
+        La Trampilla del Power Up Break
+            permite pasar de nivel cuando se acerca la Vaus
+            Al pasar dará 10.000 puntos
         Power up: 
+            Break:
+                Activa la Trampilla
+
+
+            
             Estirar
             Ganar vida
         Score:
