@@ -1,4 +1,16 @@
 
+[CAMERA]
+- Ortographic, Size: 20
+
+[CANVAS]
+- 3 paneles: Left (MinX: 0, MaxX: 0.13) / Center (MinX: 0.17, MaxX: 0.7) / Right (MinX: 0.7, MaxX: 1), todos MinY: 0, MaxY: 1
+- Paneles Left y Right con un componente Image color negro y transparencia 80% (o la que queramos) para oscurecer las zonas de UI
+
+[TEXTOS EN RIGHT PANEL]
+- Arkanoid, Highscore y Score, con TextMeshPro >> lo tuneamos nosotros como queramos
+- Creamos un preset (Botón Derecho > Crear > TextMeshPro > Color Gradient) y se lo asignamos a todos los textos (campo Color preset)
+  De esta forma podemos cambiar el color de todos los textos al mismo tiempo
+
 [IMPORTAR SPRITES]
 - Vaus.png > Pixels per unit: 8 / Sprite mode: Multiple / Filter mode: Point (no filter)
 - Walls.png > Pixels per unit: 8 / Sprite mode: Multiple / Filter mode: Point (no filter)
@@ -7,9 +19,13 @@ ATENCIÓN: DUPLICAMOS EL DE Walls.png y lo llamamos Backgrounds.png
 - Backgrounds.png > Pixels per unit: 4 / Sprite mode: Multiple / Filter mode: Point (no filter)
 
 Los recortamos a mano con el Sprite Editor
+En el backgorund recortamos solo los claros porque el efecto oscuro ya lo hicimos nosotros en el Canvas, paneles Left y Right
 
 Arriba a la derecha hay un botón parecido a un arco iris. Si lo pulsas pasa todo a blanco y negro,
 y es más fácil ver los bordes de los sprites para recortar
+
+[BACKGROUND]
+- Gameobject con componente Sprite Renderer, Draw Mode: Tiled, Order in layer: -1 (debajo de todos), Width: 71 y Height: 40 (para que ocupe todo)
 
 [CREAR WALLS]
 - Creamos 3 walls: Top, Left y Right.
@@ -86,4 +102,32 @@ y es más fácil ver los bordes de los sprites para recortar
 
 [SCORE]
 - Creamos el Gameobject Score y el script Score para llevar el control de la puntuación
-- Lo ponemos como hijo de WorldManager (todos los managers van a ser hijos de WorldManager)
+- Lo ponemos como hijo de WorldManager
+  (todos los managers van a ser hijos de WorldManager, aunque Score será más un "colaborador" de WorldManager que un manager en sí mismo)
+- Creamos la función AddScore
+
+[HUD MANAGER]
+- HUD, Head-Up Display
+- WorldManager tendrá accesor a HUD Manager (los managers hablan entre ellos)
+- A1cabará siendo un Singleton porque habrá uno y solo uno, y siempre será el mismo (veremos el patrón Singleton más adelante)
+- Gestiona la info que se ve en pantalla durante el juego, por eso tiene acceso al texto de Score y de Highscore
+
+De esta forma al romper un ladrillo:
+- WorldManager avisará a Score y le pasará la puntuación del ladrillo que acabamos de romper
+- Score añadirá esos puntos a la puntuación total
+- WorldManager le preguntará a Score la puntuación actual (es su responsabilidad)
+- WorldManager le pasará esa puntuación actual a HUDManager para que la muestre por pantalla (es su responsabilidad)
+>> cada elemento tiene un única responsabilidad, y será WorldManager quien los coordine a todos
+>> de esa forma cumplimos el SRP, Single Responsibility Principle (la "S" de los principios SOLID)
+
+[PLAYER MANAGER]
+- Ahora cogemos el GameObject llamado "Score", lo renombramos como "PlayerManager" y lo ponemos por separado >> ya no es hijo de WorldManager
+- Renombramos el script Score.cs como PlayerManager.cs
+  ATENCIÓN: Siempre que hagamos esto renombramos PRIMERO en el código y luego en Unity, para que nos mantenga las referencias
+- La razón de hacer esto es que WorldManager controlará cada uno de los niveles, PERO DESAPARECERÁ CUANDO PASEMOS A OTRO niveles
+  Sin embargo, la puntuación y las vidas SÍ SE MANTIENEN DE UN NIVEL A OTRO
+  Por necesito manejarlas con otro manager diferente que sí permanezca de un nivel a otro
+- ahora desde WorldManager localizo a PlayerManager de la siquiente manera:
+  playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
+  No lo hago por [SerializeField] porque acabaré convirtiéndolo en Singleton, que es una clase static y por lo tanto no puede trabajar con [SerializeField]
+  
