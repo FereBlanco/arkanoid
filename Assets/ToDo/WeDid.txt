@@ -53,5 +53,17 @@ y es más fácil ver los bordes de los sprites para recortar
     vaus.OnBallReleaseEvent += OnBallReleaseCallback;
     private void OnBallReleaseCallback() { ball.Release(); }
 
+[CONSTANTS]
+- Creamos el típico archivo de constantes
+        public static string HORIZONTAL_AXIS = "Horizontal"; >> moviento
+        public static string FIRE_AXIS = "Jump";
 
+[UPDATE vs FIXED UPDATE]
+- Unity RECOMIENDA manejar todos los inputs en la función Update, que se ejecuta una vez por frame
+  Por esa razón ponemos ahí nuestras entradas:
+    horizontalInput = Input.GetAxis(Constants.HORIZONTAL_AXIS);
+    isFiredPressed = Input.GetAxis(Constants.FIRE_AXIS) != 0;
+- Pero, por otro lado, Unity NO RECOMIENDA utilizar Update and FixedUpdate en el mismo script
+- Posible solución: manejar todas las entradas en un script específico, y ese solo tendrá Update
+  De momento nosotros lo dejamos así, con Update y FixedUpdate en el mismo frame
 
