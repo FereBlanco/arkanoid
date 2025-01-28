@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Scripting;
 
 namespace Scripts.Game
 {

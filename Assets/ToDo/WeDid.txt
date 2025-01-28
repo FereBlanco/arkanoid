@@ -52,6 +52,7 @@ y es más fácil ver los bordes de los sprites para recortar
 - Creamos en el WorldManager la gestión de ese evento >> escucha a la Vaus pidiendo soltar la Ball y entonces llama a la función Relese() de la Ball:
     vaus.OnBallReleaseEvent += OnBallReleaseCallback;
     private void OnBallReleaseCallback() { ball.Release(); }
+- Creamos la etiqueta (tag) "Ball" y se la asignamos. La usaremos más adelante.
 
 [CONSTANTS]
 - Creamos el típico archivo de constantes
@@ -67,3 +68,22 @@ y es más fácil ver los bordes de los sprites para recortar
 - Posible solución: manejar todas las entradas en un script específico, y ese solo tendrá Update
   De momento nosotros lo dejamos así, con Update y FixedUpdate en el mismo frame
 
+[BRICK]
+- Creamos el script Brick.cs
+- Cada ladrillo tendrá una variable que indique la puntuación, score, y otra que indique los golpes que le quedan para destruirse, resistance
+- Cada vez que reciba un golpe (OnCollision) restaremos una unidad a la resistencia (de momento solo controlamos el choque contra la Ball)
+- Si la resistencia llega a cero enviamos un Evento indicando que el ladrillo tiene que ser destruido
+- Creamos un prefab con un Brick
+- Le ponemos el tag "Brick"
+
+[SETUP BRICKS]
+- En el WorldManager creamos una lista de ladrillos: List<Brick> bricks = new List<Brick>();
+- Inicializamos esa lista con todos los ladrillos de la escena, buscando por el tag "Brick"
+    GameObject[] brickGOs = GameObject.FindGameObjectsWithTag("Brick");
+    Como la FindGameObjectsWithTag me devuelve GameObjects y no Bricks, recorro todo el array y añado cada brick a mi lista
+    Aprovecho y ahí mismo le pongo el manejador del evento a cada uno de los ladrillos: brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
+- Como ya estoy haciendo muchas cosas con ladrillos separo todo ese código en una función específica: SetupBricks()
+
+[SCORE]
+- Creamos el Gameobject Score y el script Score para llevar el control de la puntuación
+- Lo ponemos como hijo de WorldManager (todos los managers van a ser hijos de WorldManager)
