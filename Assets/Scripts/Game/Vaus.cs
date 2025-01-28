@@ -11,32 +11,31 @@ namespace Scripts.Game
         public event Action OnBallReleaseEvent;
         public float horizontalInput;
         new Rigidbody2D rigidbody;
-        private bool isBallReleased;
+        private bool isFiredPressed = false;
+        private bool isBallReleased = false;
 
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody2D>();
-            isBallReleased = false;
         }
 
         private void Update()
         {
-            if (Input.GetAxis(Constants.FIRE_AXIS) != 0)
-            {
-                OnBallReleaseEvent?.Invoke();
-            }
+            // Unity recommends taking all inputs into the Update function, BUT also recommends NOT MIXING Update and FixedUpdate in the same script
+            // Possible solution: manage all entries in a specific script, not here in the Vaus script
+            horizontalInput = Input.GetAxis(Constants.HORIZONTAL_AXIS);
+            isFiredPressed = Input.GetAxis(Constants.FIRE_AXIS) != 0;
         }
 
         private void FixedUpdate()
         {
-            horizontalInput = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             rigidbody.velocity = horizontalInput * speed * Vector2.right;
 
-            // if ((Input.GetAxis(Constants.FIRE_AXIS) != 0) && !isBallReleased)
-            // {
-            //     OnBallReleaseEvent?.Invoke();
-            //     isBallReleased = true;
-            // }
+            if (isFiredPressed && !isBallReleased)
+            {
+                OnBallReleaseEvent?.Invoke();
+                isBallReleased = true;
+            }
         }
     }
 }
