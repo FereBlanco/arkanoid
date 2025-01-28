@@ -11,15 +11,17 @@ namespace Scripts.Game
         public event Action OnBallReleaseEvent;
         public float horizontalInput;
         new Rigidbody2D rigidbody;
+        private bool isBallReleased;
 
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody2D>();
+            isBallReleased = false;
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetAxis(Constants.FIRE_AXIS) != 0)
             {
                 OnBallReleaseEvent?.Invoke();
             }
@@ -29,6 +31,12 @@ namespace Scripts.Game
         {
             horizontalInput = Input.GetAxis(Constants.HORIZONTAL_AXIS);
             rigidbody.velocity = horizontalInput * speed * Vector2.right;
+
+            // if ((Input.GetAxis(Constants.FIRE_AXIS) != 0) && !isBallReleased)
+            // {
+            //     OnBallReleaseEvent?.Invoke();
+            //     isBallReleased = true;
+            // }
         }
     }
 }

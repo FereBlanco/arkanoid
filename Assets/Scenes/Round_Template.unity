@@ -524,7 +524,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 247587560}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 841b85030c1318245a740d2cae512ee8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac3bbf7cd3e5f84b9be6b3a5ab0d057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 25
   ball: {fileID: 804237633}
   horizontalInput: 0
 --- !u!50 &466415336
@@ -865,7 +865,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 482905923}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 841b85030c1318245a740d2cae512ee8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1764,7 +1764,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1611648599}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 841b85030c1318245a740d2cae512ee8, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2207,7 +2207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.45
+  m_fontSize: 38.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
