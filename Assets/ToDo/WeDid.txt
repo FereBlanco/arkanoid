@@ -130,4 +130,6 @@ De esta forma al romper un ladrillo:
 - ahora desde WorldManager localizo a PlayerManager de la siquiente manera:
   playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
   No lo hago por [SerializeField] porque acabaré convirtiéndolo en Singleton, que es una clase static y por lo tanto no puede trabajar con [SerializeField]
-  
+
+- Le añadimos a PlayerManager el control del número de vidas que tenemos
+- Si pasamos de unas puntuaciones determinadas aumentamos en uno el número de vidas
