@@ -1,0 +1,57 @@
+
+[IMPORTAR SPRITES]
+- Vaus.png > Pixels per unit: 8 / Sprite mode: Multiple / Filter mode: Point (no filter)
+- Walls.png > Pixels per unit: 8 / Sprite mode: Multiple / Filter mode: Point (no filter)
+- Blocks.png > Pixels per unit: 8 / Sprite mode: Multiple / Filter mode: Point (no filter)
+ATENCIÓN: DUPLICAMOS EL DE Walls.png y lo llamamos Backgrounds.png
+- Backgrounds.png > Pixels per unit: 4 / Sprite mode: Multiple / Filter mode: Point (no filter)
+
+Los recortamos a mano con el Sprite Editor
+
+Arriba a la derecha hay un botón parecido a un arco iris. Si lo pulsas pasa todo a blanco y negro,
+y es más fácil ver los bordes de los sprites para recortar
+
+[CREAR WALLS]
+- Creamos 3 walls: Top, Left y Right.
+- Les ponemos un Collider2D y marcamos Auto Tiling.
+- Aumentamos su tamaño hasta ocupar todos los oborder
+    Top: width 39
+    Left: Height 40
+    Right: Height 40
+
+[MOVIMIENTO VAUS]
+- Creamos el script Vaus.cs
+- Movemos el vaus con Input.GetAxis > horizontalmente
+- Le ponemos un Capsule Collider2D (o un Box Collider2D)
+- Le ponemos un Rigibody. Le quitamos la gravedad. Ahora ya choca contra los límites.
+- Bloqueamos el movimiento en eje Y y la rotación en el eje Z.
+
+[MOVIMIENTO BALL]
+- Creamos el script Ball.cs
+- Le ponemos un Rigibody. Le quitamos la gravedad.
+- Le ponemos un Circle Collider2D.
+- En los colliders del Ball y de los Walls asigamos el Physic Material: Bouncy (Friction: 0, Bounciness: 1), el que creamos en el Pong.
+  Con esto la Ball ya va a rebotar contra los Walls y contra la Vaus.
+  (NOTA: Creo que sirve con que la Ball tenga ese material, me parece que a los muros no les hace falta)
+- Creamos una función Release() que le asigne una velocidad inicial: rigidbody.velocity = initialVelocity;
+- IMPORTANTE:
+  Ponemos la Ball como hija de la Vaus para que al principio se mueva con ella
+  La Ball empieza con isKinematic = true. Por eso se mueve con la Vaus
+  En el momento en que llamemos a la función Release() ponemos isKinematic = false >> ahora se aplican las físicas, ya no sigue a la Vaus
+  Cuando necesitemos que la bola se vuelva a pegar a la Vaus volveremos a poner isKinematic = true, y como es hija de la Vaus volverá a moverse con ella
+
+[WORLD MANAGER]
+- Creamos el Gameobject y el script WorldManager.cs
+- Creamos [SerializeField] Vaus vaus; y [SerializeField] Ball ball; y les ponemos los Asserts correspondientes.
+  Ahora ya tenemos un WorlManger que está acoplado con los demás y se puede comunicar con ellos.
+  De esta forma nuestros gameobjects estarán desacoplados entre ellos. Se comunicarán a través de Eventos que, en general, serán manejados por el WorldManager
+
+[RELEASE BALL]
+- Creamos en la Vaus el evento para soltar la Ball:
+    if (Input.GetKeyDown(KeyCode.Space)) { OnBallReleaseEvent?.Invoke(); }
+- Creamos en el WorldManager la gestión de ese evento >> escucha a la Vaus pidiendo soltar la Ball y entonces llama a la función Relese() de la Ball:
+    vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+    private void OnBallReleaseCallback() { ball.Release(); }
+
+
+
