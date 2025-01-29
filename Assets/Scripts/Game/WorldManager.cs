@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Script.Game
     {
         [SerializeField] Vaus vaus;
         [SerializeField] Ball ball;
+        [SerializeField] PowerUp powerUp;
         List<Brick> bricks = new List<Brick>();
         PlayerManager playerManager;
 
@@ -18,6 +20,7 @@ namespace Script.Game
             Assert.IsNotNull(ball, "ERROR: ball is empty");
 
             vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+            powerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             SetupBricks();
         }
 
@@ -59,6 +62,11 @@ namespace Script.Game
         private void OnBallReleaseCallback()
         {
             ball.Release();
+        }
+        private void OnPowerUpActivateCallBack(PowerUp powerUp)
+        {
+            playerManager.AddLife();
+            Destroy(powerUp.gameObject);
         }
     }
 }

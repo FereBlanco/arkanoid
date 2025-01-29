@@ -187,3 +187,19 @@ Como el patrón Singleton se resuelve en el Awake: ahí es donde se crea la prim
 Eso implica que para acceder a esa clase deberemos hacerlo SIEMPRE desde Start, que se ejecuta después de Awake.
 De esta forma garantizamos que se han ejecutado TODOS los Awake y que la clase Singleton ya está correctamente creada con UNA ÚNICA instancia.
 
+[POWER UPS]
+Importamos Powerups.png y troceamos
+Creamos una primera animación y un primer controller (que será el controller padre que usarán todos los demás)
+Ahora para cada PowerUp crearemos:
+  - Una animación
+  - Un controlador override (MLC > Create > Animator Override Controller)
+  - A este controlador override le asignamos el controller padre
+Con esto tengo todas las animaciones dependientes de una única máquina de estados: la genérica que he creado al principio
+
+Creamos un Prefab padre, y un Prefab variant por cada PowerUp
+
+Añadimos un CapsuleCollider2D y un Rigibody2D al Prefab padre (es decir, a todos)
+
+Creamos el script PowerUp.cs
+Distinguiremos entre los diferentes PowerUps mediante un enum. Cada uno generará su propio evento, que escuchará el WorldManager y lo gestionará
+Si trabajáramos con Interfaces sería mejor separar el código de cada PowerUp en su propio archivo

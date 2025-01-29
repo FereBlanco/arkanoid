@@ -79,12 +79,17 @@ namespace Scripts.Game
             Score += scoreToAdd;            
         }
 
+        public void AddLife()
+        {
+            Lives++;                    
+        }
+
         private void CalculateExtraLifeByPoints()
         {
             if (Score >= nextExtraLifeScore)
             {
-                Lives++;                    
-
+                AddLife();
+                
                 // Next extra life score is based on the constant extra life cost array
                 extraLifeScoresIndex = Math.Min(extraLifeScoresIndex + 1, Constants.EXTRA_LIFE_COSTS.Length - 1);
                 nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];

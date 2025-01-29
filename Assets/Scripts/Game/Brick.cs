@@ -1,4 +1,5 @@
 using System;
+using Scripts.Game;
 using UnityEngine;
 
 namespace Script.Game
@@ -17,7 +18,7 @@ namespace Script.Game
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ball"))
+            if (other.gameObject.CompareTag(Constants.TAG_BALL))
             {
                 resistance--;
                 if (resistance == 0)
