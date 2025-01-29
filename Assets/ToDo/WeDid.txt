@@ -140,7 +140,7 @@ Yo lo hago con una matriz que guardo en el archivo de constantes:
     public static int[] EXTRA_LIFE_COSTS = {20000, 40000, 60000};
 Manejo un índice que indica qué valor del array he de añadir.
 Empieza en 0, se incrementa cuando gano una via extra y cuando llegue al último (60.000) se quedará siempre ahí:
-    extraLifeScoresIndex = ((extraLifeScoresIndex < Constants.EXTRA_LIFE_COSTS.Length-1) ? extraLifeScoresIndex + 1 : Constants.EXTRA_LIFE_COSTS.Length-1);
+    extraLifeScoresIndex = Math.Min(extraLifeScoresIndex + 1, Constants.EXTRA_LIFE_COSTS.Length - 1);
     nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
 
 [COMUNICACIÓN PLAYER MANAGER CON HUD MANAGER]
@@ -150,4 +150,24 @@ Ahora mismo:
   - WorldManager le comunica a PlayerManager que actualice la puntuación, y le pasa la puntuación del ladrillo destruido
   - PlayerManager actualiza puntuación, se la pasa a HUD Manager para que la muestres y calcula si ganamos una nueva vida o no
 
-
+[PROPIEDADES]
+Encapsulo la variable con los típicos get & set. Puedo hacer público o privado el get y/o el set.
+Puedo hacer las comprobaciones que quiera.
+También puedo añadir comportamientos. En nuestro caso mostraremos por pantalla el nuevo valor de Score cada vez que cambie su valor.
+    int Score
+    {
+        get
+        {
+            return score; >> por ejemplo podría hacer "return Format(value);" para devolver siempre el valor formateado
+        }
+        set
+        {
+            score = value;
+            ShowOnScreen(value); >> puedo enseñar por pantalla el valor CADA VEZ que cambie
+        }
+    }
+Si no hago ningún tratamiento puedo utilizar la forma resumida
+    int Lives
+    {
+      get; set;
+    }

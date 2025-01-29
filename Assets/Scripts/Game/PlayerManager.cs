@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -9,7 +10,32 @@ namespace Scripts.Game
         [SerializeField] HUDManager hUDManager;
 
         private int score;
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                score = value;
+                hUDManager.UpdateScore(score);
+            }
+        }
+
         private int lives;
+        public int Lives
+        {
+            get
+            {
+                return lives;
+            }
+            set
+            {
+                lives = Math.Min(value, Constants.MAX_LIVES);
+                Debug.Log($"Lives: {lives}");
+            }
+        }
         private int extraLifeScoresIndex;
         private int nextExtraLifeScore;
 
@@ -17,8 +43,8 @@ namespace Scripts.Game
         {
             Assert.IsNotNull(hUDManager, "ERROR: hUDManager is empty");
 
-            score = 0;
-            lives = 3;
+            Score = 0;
+            Lives = 3;
 
             extraLifeScoresIndex = 0;
             nextExtraLifeScore = Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
@@ -26,23 +52,18 @@ namespace Scripts.Game
 
         internal void AddScore(int scoreToAdd)
         {
-            score += scoreToAdd;
-            hUDManager.UpdateScore(scoreToAdd);
+            Score += scoreToAdd;            
             CalculateExtraLifeByPoints();
         }
 
         private void CalculateExtraLifeByPoints()
         {
-            if (score >= nextExtraLifeScore)
+            if (Score >= nextExtraLifeScore)
             {
-                if (lives < Constants.MAX_LIVES)
-                {
-                    lives++;
-                    Debug.Log($"Lives: {lives}");
-                }
+                Lives++;                    
 
                 // Next extra life score is based on the constant extra life cost array
-                extraLifeScoresIndex = ((extraLifeScoresIndex < Constants.EXTRA_LIFE_COSTS.Length-1) ? extraLifeScoresIndex + 1 : Constants.EXTRA_LIFE_COSTS.Length-1);
+                extraLifeScoresIndex = Math.Min(extraLifeScoresIndex + 1, Constants.EXTRA_LIFE_COSTS.Length - 1);
                 nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
             }
         }

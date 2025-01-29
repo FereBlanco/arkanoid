@@ -27,7 +27,7 @@ namespace Script.Game
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                ball.transform.position = new Vector2(6.0f, 5.0f);
+                ball.transform.position = new Vector2(-14.0f, 7.0f);
                 ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
             }
         }
