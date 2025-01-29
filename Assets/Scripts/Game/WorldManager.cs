@@ -18,9 +18,13 @@ namespace Script.Game
             Assert.IsNotNull(ball, "ERROR: ball is empty");
 
             SetupBricks();
-            playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
 
             vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+        }
+
+        public void Start()
+        {
+            playerManager = PlayerManager.GetInstance().GetComponent<PlayerManager>();
         }
 
         private void Update()

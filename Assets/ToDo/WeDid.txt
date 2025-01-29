@@ -171,3 +171,19 @@ Si no hago ningún tratamiento puedo utilizar la forma resumida
     {
       get; set;
     }
+
+[PATRÓN SINGLETON]
+Una clase que cumple el patrón Singleton garantiza que solo existirá una única instancia de esa clase.
+Siempre que se llame a esa clase:
+  - Si no existía una instancia: se crea una nueva
+  - Si existía una instancia: se devuelve la instancia que ya existe
+  - JAMÁS se creará una segunda instancia
+Es útil para tener un objeto persistente a lo largo de todo el juego, que conserve todos sus datos y que sea accesible por todo el mundo
+
+Cada clase Singleton tendrá siempre una variable static "instance" y un método static "GetInstance()" que nos permitirá acceder a esa variable.
+Recordemos que esa variable será siempre única. Y como es una clase estática puedo acceder desde donde quiera.
+
+Como el patrón Singleton se resuelve en el Awake: ahí es donde se crea la primera instancia y también donde se destruyen las demás instancias si existieran
+Eso implica que para acceder a esa clase deberemos hacerlo SIEMPRE desde Start, que se ejecuta después de Awake.
+De esta forma garantizamos que se han ejecutado TODOS los Awake y que la clase Singleton ya está correctamente creada con UNA ÚNICA instancia.
+

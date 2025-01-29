@@ -1,5 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,7 +9,8 @@ namespace Scripts.Game
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] HUDManager hUDManager;
+
+        private HUDManager hUDManager;
 
         private int score;
         public int Score
@@ -40,15 +43,34 @@ namespace Scripts.Game
         private int extraLifeScoresIndex;
         private int nextExtraLifeScore;
 
+        private static PlayerManager instance;
+        public static PlayerManager GetInstance()
+        {
+            return instance;
+        }
+
         private void Awake()
         {
-            Assert.IsNotNull(hUDManager, "ERROR: hUDManager is empty");
-
-            Score = 0;
-            Lives = 3;
+            // Singleton pattern
+            if (null == instance)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
 
             extraLifeScoresIndex = 0;
             nextExtraLifeScore = Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
+        }
+
+        private void Start()
+        {
+            hUDManager = HUDManager.GetInstance();
+
+            Score = 0;
+            Lives = 3;
         }
 
         internal void AddScore(int scoreToAdd)
