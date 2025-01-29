@@ -46,7 +46,7 @@ y es más fácil ver los bordes de los sprites para recortar
 - Creamos el script Ball.cs
 - Le ponemos un Rigibody. Le quitamos la gravedad.
 - Le ponemos un Circle Collider2D.
-- En los colliders del Ball y de los Walls asigamos el Physic Material: Bouncy (Friction: 0, Bounciness: 1), el que creamos en el Pong.
+- En los colliders del Ball, los Walls, los Bricks y la Vaus asignamos el Physic Material: Bouncy (Friction: 0, Bounciness: 1), el que creamos en el Pong.
   Con esto la Ball ya va a rebotar contra los Walls y contra la Vaus.
   (NOTA: Creo que sirve con que la Ball tenga ese material, me parece que a los muros no les hace falta)
 - Creamos una función Release() que le asigne una velocidad inicial: rigidbody.velocity = initialVelocity;

@@ -17,9 +17,8 @@ namespace Script.Game
             Assert.IsNotNull(vaus, "ERROR: vaus is empty");
             Assert.IsNotNull(ball, "ERROR: ball is empty");
 
-            SetupBricks();
-
             vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+            SetupBricks();
         }
 
         public void Start()
@@ -50,9 +49,10 @@ namespace Script.Game
 
         private void OnBrickDestroyedCallback(Brick brick)
         {
-            bricks.Remove(brick);
-            Destroy(brick.gameObject);
             playerManager.AddScore(brick.GetScore());
+            bricks.Remove(brick);
+            brick.OnBrickDestroyedEvent -= OnBrickDestroyedCallback;
+            Destroy(brick.gameObject);
             // if (bricks.Count == 0) we reach next level
         }
 
