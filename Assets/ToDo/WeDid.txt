@@ -143,4 +143,11 @@ Empieza en 0, se incrementa cuando gano una via extra y cuando llegue al último
     extraLifeScoresIndex = ((extraLifeScoresIndex < Constants.EXTRA_LIFE_COSTS.Length-1) ? extraLifeScoresIndex + 1 : Constants.EXTRA_LIFE_COSTS.Length-1);
     nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
 
+[COMUNICACIÓN PLAYER MANAGER CON HUD MANAGER]
+Para actualizar la puntuación el PlayerManager se comunicará directamente con el HUDManager (recuerda: los managers se hablan entre ellos)
+Elimino del WorldManager la referencia a HUDManager y se la pongo a PlayerManager
+Ahora mismo:
+  - WorldManager le comunica a PlayerManager que actualice la puntuación, y le pasa la puntuación del ladrillo destruido
+  - PlayerManager actualiza puntuación, se la pasa a HUD Manager para que la muestres y calcula si ganamos una nueva vida o no
+
 

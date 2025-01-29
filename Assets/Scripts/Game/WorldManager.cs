@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Scripts.Game;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -10,7 +9,6 @@ namespace Script.Game
     {
         [SerializeField] Vaus vaus;
         [SerializeField] Ball ball;
-        [SerializeField] HUDManager hUDManager;
         List<Brick> bricks = new List<Brick>();
         PlayerManager playerManager;
 
@@ -18,7 +16,6 @@ namespace Script.Game
         {
             Assert.IsNotNull(vaus, "ERROR: vaus is empty");
             Assert.IsNotNull(ball, "ERROR: ball is empty");
-            Assert.IsNotNull(hUDManager, "ERROR: hUDManager is empty");
 
             SetupBricks();
             playerManager = GameObject.Find("PlayerManager").GetComponent<PlayerManager>();
@@ -51,8 +48,7 @@ namespace Script.Game
         {
             bricks.Remove(brick);
             Destroy(brick.gameObject);
-            var currentScore = playerManager.AddScore(brick.GetScore());
-            hUDManager.UpdateScore(currentScore);
+            playerManager.AddScore(brick.GetScore());
             // if (bricks.Count == 0) we reach next level
         }
 
