@@ -8,15 +8,16 @@ namespace Scripts.Game
         private int score;
         private int lives;
         private int maxLives = 10;
-        private int[] extraLifeScores = new int[] {200, 400, 600};
-        private int extraLifeScoresIndex = 0;
+        private int extraLifeScoresIndex;
         private int nextExtraLifeScore;
 
         private void Awake()
         {
             score = 0;
             lives = 3;
-            nextExtraLifeScore = extraLifeScores[0];
+
+            extraLifeScoresIndex = 0;
+            nextExtraLifeScore = Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
         }
 
         internal int AddScore(int scoreToAdd)
@@ -30,16 +31,9 @@ namespace Scripts.Game
                     Debug.Log($"Lives: {lives}");
                 }
 
-                if (extraLifeScoresIndex < extraLifeScores.Length)
-                {
-                    nextExtraLifeScore = extraLifeScores[extraLifeScoresIndex];
-                }
-                else
-                {
-                    nextExtraLifeScore += extraLifeScores[extraLifeScores.Length-1];
-                }
-                extraLifeScoresIndex++;
-                Debug.Log($"Next level points: " + nextExtraLifeScore);
+                // Calculation of the next extra life score based on the constant extra life cost array
+                extraLifeScoresIndex = ((extraLifeScoresIndex < Constants.EXTRA_LIFE_COSTS.Length-1) ? extraLifeScoresIndex + 1 : Constants.EXTRA_LIFE_COSTS.Length-1);
+                nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
             }
             return score;
         }

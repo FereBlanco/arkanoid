@@ -4,5 +4,7 @@ namespace Scripts.Game
     {
         public static string HORIZONTAL_AXIS = "Horizontal";
         public static string FIRE_AXIS = "Jump";
+
+        public static int[] EXTRA_LIFE_COSTS = {200, 400, 600};
     }
 }

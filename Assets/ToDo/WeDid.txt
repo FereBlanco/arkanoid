@@ -133,3 +133,14 @@ De esta forma al romper un ladrillo:
 
 - Le añadimos a PlayerManager el control del número de vidas que tenemos
 - Si pasamos de unas puntuaciones determinadas aumentamos en uno el número de vidas
+
+[COSTE VIDA EXTRA]
+1a vida a los 20.000 puntos (+20.000) / 2a vida a los 60.000 puntos (+40.000) / 3a vida a los 120.000 puntos (+60.000) / el resto cada 60.000
+Yo lo hago con una matriz que guardo en el archivo de constantes:
+    public static int[] EXTRA_LIFE_COSTS = {20000, 40000, 60000};
+Manejo un índice que indica qué valor del array he de añadir.
+Empieza en 0, se incrementa cuando gano una via extra y cuando llegue al último (60.000) se quedará siempre ahí:
+    extraLifeScoresIndex = ((extraLifeScoresIndex < Constants.EXTRA_LIFE_COSTS.Length-1) ? extraLifeScoresIndex + 1 : Constants.EXTRA_LIFE_COSTS.Length-1);
+    nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
+
+
