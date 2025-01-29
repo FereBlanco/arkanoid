@@ -20,6 +20,7 @@ namespace Scripts.Game
             {
                 score = value;
                 hUDManager.UpdateScore(score);
+                CalculateExtraLifeByPoints();
             }
         }
 
@@ -53,7 +54,6 @@ namespace Scripts.Game
         internal void AddScore(int scoreToAdd)
         {
             Score += scoreToAdd;            
-            CalculateExtraLifeByPoints();
         }
 
         private void CalculateExtraLifeByPoints()
