@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vaus_0
+      name: Vaus_Create_01
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_1
+      name: Vaus_Create_02
       rect:
         serializedVersion: 2
         x: 0
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_2
+      name: Vaus_Create_03
       rect:
         serializedVersion: 2
         x: 0
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_3
+      name: Vaus_Create_04
       rect:
         serializedVersion: 2
         x: 0
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_4
+      name: Vaus_Create_05
       rect:
         serializedVersion: 2
         x: 0
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_normal_0
+      name: Vaus_normal_04
       rect:
         serializedVersion: 2
         x: 32
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_normal_04
+      name: Vaus_normal_05
       rect:
         serializedVersion: 2
         x: 32
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_normal_05
+      name: Vaus_normal_06
       rect:
         serializedVersion: 2
         x: 32
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_01
+      name: Vaus_large_01
       rect:
         serializedVersion: 2
         x: 64
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_02
+      name: Vaus_large_02
       rect:
         serializedVersion: 2
         x: 64
@@ -509,7 +509,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_03
+      name: Vaus_large_03
       rect:
         serializedVersion: 2
         x: 64
@@ -530,7 +530,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_04
+      name: Vaus_large_04
       rect:
         serializedVersion: 2
         x: 64
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_05
+      name: Vaus_large_05
       rect:
         serializedVersion: 2
         x: 64
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vaus_largel_06
+      name: Vaus_large_06
       rect:
         serializedVersion: 2
         x: 64
@@ -853,7 +853,7 @@ TextureImporter:
         width: 5
         height: 4
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -877,32 +877,32 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Ball: 1331869025
-      Vaus_0: -1972561803
-      Vaus_1: 590220078
-      Vaus_2: 936824413
-      Vaus_3: -164943072
-      Vaus_4: 331643023
+      Vaus_Create_01: -1972561803
+      Vaus_Create_02: 590220078
+      Vaus_Create_03: 936824413
+      Vaus_Create_04: -164943072
+      Vaus_Create_05: 331643023
       Vaus_destroy_01: -269580767
       Vaus_destroy_02: -1696369356
       Vaus_destroy_03: -914948106
-      Vaus_largel_01: -1529667787
-      Vaus_largel_02: -601639304
-      Vaus_largel_03: 112455515
-      Vaus_largel_04: 1848216090
-      Vaus_largel_05: -541710283
-      Vaus_largel_06: -290682776
+      Vaus_large_01: -1529667787
+      Vaus_large_02: -601639304
+      Vaus_large_03: 112455515
+      Vaus_large_04: 1848216090
+      Vaus_large_05: -541710283
+      Vaus_large_06: -290682776
       Vaus_laser_01: 723979757
       Vaus_laser_02: 1835783204
       Vaus_laser_03: -312430059
       Vaus_laser_04: -2111063735
       Vaus_laser_05: 1260358459
       Vaus_laser_06: -496524832
-      Vaus_normal_0: 1075972812
       Vaus_normal_01: -151801678
       Vaus_normal_02: -1174479649
       Vaus_normal_03: -1643407643
-      Vaus_normal_04: -1267711737
-      Vaus_normal_05: -1637060198
+      Vaus_normal_04: 1075972812
+      Vaus_normal_05: -1267711737
+      Vaus_normal_06: -1637060198
       Vaus_trans_laser_01: -1467523514
       Vaus_trans_laser_02: 2000126367
       Vaus_trans_laser_03: 1326603323
