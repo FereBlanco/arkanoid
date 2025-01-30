@@ -11,7 +11,16 @@ namespace Scripts.Game
         private Rigidbody2D rg;
 
         [SerializeField] private PowerUpType powerUpType;
-        public PowerUpType PowerUpType { get; set; }
+        public PowerUpType PowerUpType {
+            get
+            {
+                return powerUpType;
+            }
+            set
+            {
+                powerUpType = value;
+            }
+        }
 
         public event Action<PowerUp> OnPowerUpActivateEvent;
 

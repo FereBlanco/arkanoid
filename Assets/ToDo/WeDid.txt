@@ -218,7 +218,6 @@ Cuando la Ball impacta con un Brick, el WorldManager le pregunta si tiene un Pow
       newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
 Después destruimos el Brick
 
-Como ahora necesitamos establecer y recuperar el PowerUpType, lo convertimos en una propiedad (simple, porque no hacemos ningún tratamiento):
-   public PowerUpType PowerUpType { get; set; }
+Como ahora necesitamos establecer y recuperar el PowerUpType, lo convertimos en una propiedad (simple, no hacemos ningún tratamiento)
 
 
