@@ -8,6 +8,7 @@ namespace Script.Game
     {
         [SerializeField, Min(50)] private int score = 50;
         [SerializeField, Min(1)] private int resistance = 1;
+        [SerializeField] private PowerUpType powerType;
 
         public event Action<Brick> OnBrickDestroyedEvent;
 
@@ -22,7 +23,7 @@ namespace Script.Game
                 }
             }
         }
-        
+
         internal int GetScore()
         {
             return score;
