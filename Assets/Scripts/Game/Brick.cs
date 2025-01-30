@@ -11,11 +11,6 @@ namespace Script.Game
 
         public event Action<Brick> OnBrickDestroyedEvent;
 
-        internal int GetScore()
-        {
-            return score;
-        }
-
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag(Constants.TAG_BALL))
@@ -26,6 +21,11 @@ namespace Script.Game
                     OnBrickDestroyedEvent?.Invoke(this);
                 }
             }
+        }
+        
+        internal int GetScore()
+        {
+            return score;
         }
     }
 }

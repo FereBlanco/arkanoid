@@ -6,14 +6,20 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Vaus : MonoBehaviour
     {
-        [SerializeField, Range(10.0f, 30.0f)] float speed = 20.0f;
-        [SerializeField] Ball ball;
-        public event Action OnBallReleaseEvent;
+        // Public Fields
         public float horizontalInput;
-        new Rigidbody2D rigidbody;
+
+        // Private Fields
+        [SerializeField, Range(10.0f, 30.0f)] private float speed = 20.0f;
+        [SerializeField] private Ball ball;
+        new private Rigidbody2D rigidbody;
         private bool isFiredPressed = false;
         private bool isBallReleased = false;
 
+        // Events / Delegates
+        public event Action OnBallReleaseEvent;
+
+        // Monobehaviour Methods
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody2D>();
@@ -37,5 +43,9 @@ namespace Scripts.Game
                 isBallReleased = true;
             }
         }
+
+        // Public Methods
+
+        // Private Methods
     }
 }

@@ -7,8 +7,8 @@ namespace Scripts.Game
     public class HUDManager : MonoBehaviour
     {
 
-        [SerializeField] TMP_Text scoreTMP;
-        [SerializeField] TMP_Text highscoreTMP;
+        [SerializeField] private TMP_Text scoreTMP;
+        [SerializeField] private TMP_Text highscoreTMP;
 
         private static HUDManager instance;
         public static HUDManager GetInstance()
@@ -32,7 +32,6 @@ namespace Scripts.Game
             Assert.IsNotNull(scoreTMP, "ERROR: scoreTMP is empty");
             Assert.IsNotNull(highscoreTMP, "ERROR: highscoreTMP is empty");
         }
-
 
         internal void UpdateScore(int currentScore)
         {

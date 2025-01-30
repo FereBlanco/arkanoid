@@ -11,6 +11,8 @@ namespace Scripts.Game
     {
 
         private HUDManager hUDManager;
+        private int extraLifeScoresIndex;
+        private int nextExtraLifeScore;
 
         private int score;
         public int Score
@@ -40,8 +42,6 @@ namespace Scripts.Game
                 Debug.Log($"Lives: {lives}");
             }
         }
-        private int extraLifeScoresIndex;
-        private int nextExtraLifeScore;
 
         private static PlayerManager instance;
         public static PlayerManager GetInstance()

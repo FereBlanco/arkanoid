@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
@@ -8,11 +7,11 @@ namespace Script.Game
 {
     public class WorldManager : MonoBehaviour
     {
-        [SerializeField] Vaus vaus;
-        [SerializeField] Ball ball;
-        [SerializeField] PowerUp powerUp;
-        List<Brick> bricks = new List<Brick>();
-        PlayerManager playerManager;
+        [SerializeField] private Vaus vaus;
+        [SerializeField] private Ball ball;
+        [SerializeField] private PowerUp powerUp;
+        private List<Brick> bricks = new List<Brick>();
+        private PlayerManager playerManager;
 
         public void Awake()
         {
@@ -38,18 +37,6 @@ namespace Script.Game
             }
         }
 
-        private void SetupBricks()
-        {
-            bricks = new List<Brick>();
-            GameObject[] brickGOs = GameObject.FindGameObjectsWithTag("Brick");
-            foreach (var brickGO in brickGOs)
-            {
-                Brick brick = brickGO.GetComponent<Brick>();
-                brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
-                bricks.Add(brick);
-            }
-        }
-
         private void OnBrickDestroyedCallback(Brick brick)
         {
             playerManager.AddScore(brick.GetScore());
@@ -63,10 +50,23 @@ namespace Script.Game
         {
             ball.Release();
         }
+
         private void OnPowerUpActivateCallBack(PowerUp powerUp)
         {
             playerManager.AddLife();
             Destroy(powerUp.gameObject);
+        }
+
+        private void SetupBricks()
+        {
+            bricks = new List<Brick>();
+            GameObject[] brickGOs = GameObject.FindGameObjectsWithTag("Brick");
+            foreach (var brickGO in brickGOs)
+            {
+                Brick brick = brickGO.GetComponent<Brick>();
+                brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
+                bricks.Add(brick);
+            }
         }
     }
 }

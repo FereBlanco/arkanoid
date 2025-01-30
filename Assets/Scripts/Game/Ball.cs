@@ -5,8 +5,8 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Ball : MonoBehaviour
     {
-        [SerializeField] Vector2 initialVelocity = 10f * Vector2.up;
-        new Rigidbody2D rigidbody;
+        [SerializeField] private Vector2 initialVelocity = 10f * Vector2.up;
+        new private Rigidbody2D rigidbody;
 
         private void Awake()
         {

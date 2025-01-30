@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 namespace Scripts.Game
@@ -15,9 +12,9 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class PowerUp : MonoBehaviour
     {
-        [SerializeField] PowerUpType powerUpType;
-        [SerializeField] float speed = 200.0f;
-        Rigidbody2D rg;
+        [SerializeField] private PowerUpType powerUpType;
+        [SerializeField] private float speed = 200.0f;
+        private Rigidbody2D rg;
 
         public event Action<PowerUp> OnPowerUpActivateEvent;
 
