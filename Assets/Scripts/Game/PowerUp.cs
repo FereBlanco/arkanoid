@@ -5,7 +5,7 @@ namespace Scripts.Game
 {
     public enum PowerUpType
     {
-        Enlarge, Catch, Laser, Disruption, Player, Break, Slow
+        None, Laser, Enlarge, Catch, Slow, Break, Disruption, Player
     }
 
     [RequireComponent(typeof(Collider2D))]
