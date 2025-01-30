@@ -1,5 +1,15 @@
 namespace Scripts.Game
 {
+    public enum PowerUpType
+    {
+        None = -1, Break = 0, Catch = 1, Disruption = 2, Enlarge = 3, Laser = 4, Player = 5, Slow = 6
+    }
+
+    public enum VausState
+    {
+        Normal, Enlarged, Catch, Laser, Destroyed
+    }
+
     public static class Constants
     {
         public static string HORIZONTAL_AXIS = "Horizontal";
@@ -14,8 +24,4 @@ namespace Scripts.Game
 
     }
 
-    public enum PowerUpType
-    {
-        None = -1, Break = 0, Catch = 1, Disruption = 2, Enlarge = 3, Laser = 4, Player = 5, Slow = 6
-    }        
 }

@@ -220,4 +220,10 @@ Después destruimos el Brick
 
 Como ahora necesitamos establecer y recuperar el PowerUpType, lo convertimos en una propiedad (simple, no hacemos ningún tratamiento)
 
+[VAUS ANIMATOR]
+Creamos un Animator Controller para la Vaus, con los estados Normal, ToEnlarged y Enlarged (de momento)
+Creamos las animaciones correspondientes a cada estados
+Creamos las transiciones entre estados: de Normal a ToEnlarged será HasExitTime (se ejecutará una vez) y pasará directamente a Enlarged
+Podemos hacer la transición inversa duplicando el estado ToEnlarged y poniéndole speed = -1
 
+Creamos en Constants un enum con los estados de la Vaus: Normal, Enlarged, Laser...

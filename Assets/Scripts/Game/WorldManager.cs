@@ -76,8 +76,10 @@ namespace Script.Game
                 case PowerUpType.Disruption:
                     break;
                 case PowerUpType.Enlarge:
+                    vaus.VausState = VausState.Enlarged;
                     break;
                 case PowerUpType.Laser:
+                    vaus.VausState = VausState.Normal;
                     break;
                 case PowerUpType.Player:
                     playerManager.AddLife();

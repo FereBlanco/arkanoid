@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Scripts.Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Animator))]
     public class Vaus : MonoBehaviour
     {
         // Public Fields
@@ -13,8 +14,27 @@ namespace Scripts.Game
         [SerializeField, Range(10.0f, 30.0f)] private float speed = 20.0f;
         [SerializeField] private Ball ball;
         new private Rigidbody2D rigidbody;
-        private bool isFiredPressed = false;
-        private bool isBallReleased = false;
+        private Animator animator;
+        private bool isFiredPressed;
+        private bool isBallReleased;
+
+        // Properties
+        private VausState vausState;
+        public VausState VausState
+        {
+            get
+            {
+                return vausState;
+            }
+            set
+            {
+                if (value != vausState)
+                {
+                    vausState = value;
+                    animator.SetTrigger(vausState.ToString());
+                }
+            }
+        }
 
         // Events / Delegates
         public event Action OnBallReleaseEvent;
@@ -23,6 +43,11 @@ namespace Scripts.Game
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
+
+            isFiredPressed = false;
+            isBallReleased = false;
+            VausState = VausState.Normal;
         }
 
         private void Update()
