@@ -11,5 +11,11 @@ namespace Scripts.Game
         public static string TAG_VAUS = "Vaus";
         public static string TAG_BALL = "Ball";
         public static string TAG_BRICK = "Brick";
+
     }
+
+    public enum PowerUpType
+    {
+        None = -1, Break = 0, Catch = 1, Disruption = 2, Enlarge = 3, Laser = 4, Player = 5, Slow = 6
+    }        
 }

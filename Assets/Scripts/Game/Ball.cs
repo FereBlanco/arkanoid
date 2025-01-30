@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Scripts.Game
@@ -6,6 +7,7 @@ namespace Scripts.Game
     public class Ball : MonoBehaviour
     {
         [SerializeField] private Vector2 initialVelocity = 10f * Vector2.up;
+        [SerializeField] private float slowSpeed = 5f;
         new private Rigidbody2D rigidbody;
 
         private void Awake()
@@ -18,6 +20,11 @@ namespace Scripts.Game
             rigidbody.isKinematic = false;
             // rigidbody.bodyType = RigidbodyType2D.Dynamic; // other way to do this, specific for 2D
             rigidbody.velocity = initialVelocity;
+        }
+
+        public void SetSlowSpeed()
+        {
+            rigidbody.velocity = slowSpeed * Vector3.Normalize(rigidbody.velocity);
         }
     }
 }

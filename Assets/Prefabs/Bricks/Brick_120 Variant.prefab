@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 331523896, guid: 11faaff3e0f0fa844b99978ba266e5a2, type: 3}
+    - target: {fileID: 1471398556955401660, guid: 13763b05660c0db4e983e1bb261c8988, type: 3}
+      propertyPath: powerType
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2454838560792276140, guid: 13763b05660c0db4e983e1bb261c8988, type: 3}
       propertyPath: m_Name
       value: Brick_120 Variant

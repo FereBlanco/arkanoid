@@ -9,7 +9,7 @@ namespace Script.Game
     {
         [SerializeField] private Vaus vaus;
         [SerializeField] private Ball ball;
-        [SerializeField] private PowerUp powerUp;
+        [SerializeField] private PowerUp[] powerUpPrefabs;
         private List<Brick> bricks = new List<Brick>();
         private PlayerManager playerManager;
 
@@ -19,7 +19,6 @@ namespace Script.Game
             Assert.IsNotNull(ball, "ERROR: ball is empty");
 
             vaus.OnBallReleaseEvent += OnBallReleaseCallback;
-            powerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             SetupBricks();
         }
 
@@ -30,9 +29,16 @@ namespace Script.Game
 
         private void Update()
         {
+            // Only to test purposes
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                ball.transform.position = new Vector2(-14.0f, 7.0f);
+                ball.transform.position = new Vector2(-20.0f, -10.0f);
+                ball.GetComponent<Rigidbody2D>().velocity = new Vector2(-20.0f, 15.0f);
+            }
+            // Only to test purposes
+            if (Input.GetKeyDown(KeyCode.RightControl))
+            {
+                ball.transform.position = new Vector2(8.0f, -10.0f);
                 ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
             }
         }
@@ -42,6 +48,14 @@ namespace Script.Game
             playerManager.AddScore(brick.GetScore());
             bricks.Remove(brick);
             brick.OnBrickDestroyedEvent -= OnBrickDestroyedCallback;
+
+            if (brick.HasPowerUp())
+            {
+                PowerUpType powerUpType = brick.GetPowerUpType();
+                PowerUp newPowerUp = Instantiate(powerUpPrefabs[(int)powerUpType], brick.transform.position, Quaternion.identity);
+                newPowerUp.PowerUpType = powerUpType;
+                newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
+            }
             Destroy(brick.gameObject);
             // if (bricks.Count == 0) we reach next level
         }
@@ -53,7 +67,25 @@ namespace Script.Game
 
         private void OnPowerUpActivateCallBack(PowerUp powerUp)
         {
-            playerManager.AddLife();
+            switch (powerUp.PowerUpType)
+            {
+                case PowerUpType.Break:
+                    break;
+                case PowerUpType.Catch:
+                    break;
+                case PowerUpType.Disruption:
+                    break;
+                case PowerUpType.Enlarge:
+                    break;
+                case PowerUpType.Laser:
+                    break;
+                case PowerUpType.Player:
+                    playerManager.AddLife();
+                    break;
+                case PowerUpType.Slow:
+                    ball.SetSlowSpeed();
+                    break;
+            }
             Destroy(powerUp.gameObject);
         }
 

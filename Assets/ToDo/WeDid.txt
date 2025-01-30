@@ -203,3 +203,22 @@ Añadimos un CapsuleCollider2D y un Rigibody2D al Prefab padre (es decir, a todo
 Creamos el script PowerUp.cs
 Distinguiremos entre los diferentes PowerUps mediante un enum. Cada uno generará su propio evento, que escuchará el WorldManager y lo gestionará
 Si trabajáramos con Interfaces sería mejor separar el código de cada PowerUp en su propio archivo
+
+Añadimos la opción None al enum PowerUpType. Ese será el valor por defecto.
+Añadimos a los Bricks el campo powerType, que será el que si tienen un PowerUp, y en caso afirmativo de qué tipo es.
+Asignamos en el enum PowerUpType los valores que nos convengan al instanciar el PowerUp
+
+En WorldManager creo un array con los prefabs de los PowerUps
+Cuando la Ball impacta con un Brick, el WorldManager le pregunta si tiene un PowerUp asociado, y en caso afirmativo :
+  - instanciamos el prefab correpondiente
+  - le asignamos la posición del Brick
+  - le asignamos una rotación nula (Quaternion.identity)
+  - le asignamos el PowerUpType que indicaba el Brick
+  - le añadimos el callback del evento para cuando la Vaus lo recoja:
+      newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
+Después destruimos el Brick
+
+Como ahora necesitamos establecer y recuperar el PowerUpType, lo convertimos en una propiedad (simple, porque no hacemos ningún tratamiento):
+   public PowerUpType PowerUpType { get; set; }
+
+

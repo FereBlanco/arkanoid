@@ -1,0 +1,2 @@
+Manejar el tipo de PowerUp con un Dictionary y no con un enum
+

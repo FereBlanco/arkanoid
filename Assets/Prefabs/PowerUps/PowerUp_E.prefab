@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2000472949689899153, guid: 5c7706237d10d6e43a89c61779913df8, type: 3}
       propertyPath: powerUpType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3724764855337302007, guid: 5c7706237d10d6e43a89c61779913df8, type: 3}
       propertyPath: m_Name
