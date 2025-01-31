@@ -227,3 +227,26 @@ Creamos las transiciones entre estados: de Normal a ToEnlarged será HasExitTime
 Podemos hacer la transición inversa duplicando el estado ToEnlarged y poniéndole speed = -1
 
 Creamos en Constants un enum con los estados de la Vaus: Normal, Enlarged, Laser...
+
+[TRIGGERS]
+Con los triggers suele ser muy recomendable asignarles el valor CUANDO REALMENTE CAMBIAN, para evitar saltos no deseados en la máquina de estados
+      if (value != vausState)
+      {
+          vausState = value;
+          animator.SetTrigger(vausState.ToString());
+      }
+
+[DATOS EXTERNOS]
+Es buena práctica sacar todos los textos o valores fijos a un archivo de constantes.
+Los guardamos en una clase estática y con variables estáticas, de forma que puedo acceder a ellos desde todo el proyecto.
+
+Si además quiero almacenar algunos valores en un lugar donde pueda modificarlos sin tener que compilar de nuevo, puedo utilizar:
+- ScriptableObjects >> archivos de Unity que se leen en tiempo de ejecución
+- archivos externos >> .json, .xml, .csv o similares
+
+[SUBMÁQUINA DE ESTADOS]
+Dentro de una máquina de estados podemos crear una submáquina de estados:
+  MLC > Create Sub-State Machine
+La trataremos como un estado más, solo que dentro tendrá más complejidad
+También puedo seleccionar un conjunto de estados y transiciones y arrastrarlos dentro de una submáquina
+Dentro de una submáquina puedo crear otra, y luego otra >> recuerda a los blueprints de Unreal o el Shader Graph de Unity

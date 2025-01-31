@@ -348,8 +348,8 @@ TextureImporter:
         y: 92
         width: 32
         height: 8
-      alignment: 9
-      pivot: {x: 0.52275944, y: 0.50000095}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -600,8 +600,8 @@ TextureImporter:
         y: 92
         width: 32
         height: 8
-      alignment: 9
-      pivot: {x: 0.52275944, y: 0.50000095}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -621,8 +621,8 @@ TextureImporter:
         y: 84
         width: 32
         height: 8
-      alignment: 9
-      pivot: {x: 0.52275944, y: 0.50000095}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -642,8 +642,8 @@ TextureImporter:
         y: 76
         width: 32
         height: 8
-      alignment: 9
-      pivot: {x: 0.52275944, y: 0.50000095}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -865,6 +865,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Vaus_destroy_04
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 8
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 777587dc2323b424caddd0ebe54348e9
+      internalID: 1917283179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vaus_destroy_05
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 8
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b9459096f9d964b818e0b7eed62af8
+      internalID: -498766595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vaus_destroy_06
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 21
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5a9fae512feffe46800aa2c6fbc693a
+      internalID: 329872623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -885,6 +948,9 @@ TextureImporter:
       Vaus_destroy_01: -269580767
       Vaus_destroy_02: -1696369356
       Vaus_destroy_03: -914948106
+      Vaus_destroy_04: 1917283179
+      Vaus_destroy_05: -498766595
+      Vaus_destroy_06: 329872623
       Vaus_large_01: -1529667787
       Vaus_large_02: -601639304
       Vaus_large_03: 112455515

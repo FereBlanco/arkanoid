@@ -30,8 +30,29 @@ namespace Scripts.Game
             {
                 if (value != vausState)
                 {
+                    if (!vausState.Equals(VausState.Normal))
+                    {
+                        animator.SetTrigger(Constants.PARAMETER_NORMAL);
+                    }
+
                     vausState = value;
-                    animator.SetTrigger(vausState.ToString());
+
+                    switch (vausState)
+                    {
+                        case VausState.Normal:
+                            // animator.SetTrigger(Constants.PARAMETER_NORMAL);
+                            break;
+                        case VausState.Enlarged:
+                            animator.SetTrigger(Constants.PARAMETER_ENLARGED);
+                            break;
+                        case VausState.Laser:
+                            animator.SetTrigger(Constants.PARAMETER_LASER);
+                            break;
+                        case VausState.Destroyed:
+                            Debug.Log("DESTROYED!!!");
+                            animator.SetTrigger(Constants.PARAMETER_DESTROYED);
+                            break;
+                    }                    
                 }
             }
         }
@@ -54,8 +75,8 @@ namespace Scripts.Game
         {
             // Unity recommends taking all inputs into the Update function, BUT also recommends NOT MIXING Update and FixedUpdate in the same script
             // Possible solution: manage all entries in a specific script, not here in the Vaus script
-            horizontalInput = Input.GetAxis(Constants.HORIZONTAL_AXIS);
-            isFiredPressed = Input.GetAxis(Constants.FIRE_AXIS) != 0;
+            horizontalInput = Input.GetAxis(Constants.AXIS_HORIZONTAL);
+            isFiredPressed = Input.GetAxis(Constants.AXIS_FIRE) != 0;
         }
 
         private void FixedUpdate()

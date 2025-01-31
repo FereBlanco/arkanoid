@@ -12,8 +12,8 @@ namespace Scripts.Game
 
     public static class Constants
     {
-        public static string HORIZONTAL_AXIS = "Horizontal";
-        public static string FIRE_AXIS = "Jump";
+        public static string AXIS_HORIZONTAL = "Horizontal";
+        public static string AXIS_FIRE = "Jump";
 
         public static int MAX_LIVES = 10;
         public static int[] EXTRA_LIFE_COSTS = {20000, 40000, 60000};
@@ -21,6 +21,12 @@ namespace Scripts.Game
         public static string TAG_VAUS = "Vaus";
         public static string TAG_BALL = "Ball";
         public static string TAG_BRICK = "Brick";
+
+        public static string PARAMETER_NORMAL = "Normal";
+        public static string PARAMETER_ENLARGED = "Enlarged";
+        public static string PARAMETER_CATCH = "Catch";
+        public static string PARAMETER_LASER = "Laser";
+        public static string PARAMETER_DESTROYED = "Destroyed";
 
     }
 

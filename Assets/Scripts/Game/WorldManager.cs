@@ -41,6 +41,12 @@ namespace Script.Game
                 ball.transform.position = new Vector2(8.0f, -10.0f);
                 ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
             }
+            // Only to test purposes
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("K key");
+                vaus.VausState = VausState.Destroyed;
+            }
         }
 
         private void OnBrickDestroyedCallback(Brick brick)
@@ -72,6 +78,7 @@ namespace Script.Game
                 case PowerUpType.Break:
                     break;
                 case PowerUpType.Catch:
+                    vaus.VausState = VausState.Normal;
                     break;
                 case PowerUpType.Disruption:
                     break;
@@ -79,7 +86,7 @@ namespace Script.Game
                     vaus.VausState = VausState.Enlarged;
                     break;
                 case PowerUpType.Laser:
-                    vaus.VausState = VausState.Normal;
+                    vaus.VausState = VausState.Laser;
                     break;
                 case PowerUpType.Player:
                     playerManager.AddLife();
