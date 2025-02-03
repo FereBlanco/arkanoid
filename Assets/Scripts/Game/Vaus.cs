@@ -74,7 +74,7 @@ namespace Scripts.Game
         private void Update()
         {
             // Unity recommends taking all inputs into the Update function, BUT also recommends NOT MIXING Update and FixedUpdate in the same script
-            // Possible solution: manage all entries in a specific script, not here in the Vaus script
+            // Best solution: manage all entries in a specific script (VausInput) and all movements/actions in other script (VausMovement/VausFire)
             horizontalInput = Input.GetAxis(Constants.AXIS_HORIZONTAL);
             isFiredPressed = Input.GetAxis(Constants.AXIS_FIRE) != 0;
         }

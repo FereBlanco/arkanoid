@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
@@ -9,17 +10,20 @@ namespace Script.Game
     {
         [SerializeField] private Vaus vaus;
         [SerializeField] private Ball ball;
+        [SerializeField] private DeadZone deadZone;
         [SerializeField] private PowerUp[] powerUpPrefabs;
         private List<Brick> bricks = new List<Brick>();
         private PlayerManager playerManager;
 
         public void Awake()
         {
-            Assert.IsNotNull(vaus, "ERROR: vaus is empty");
-            Assert.IsNotNull(ball, "ERROR: ball is empty");
+            Assert.IsNotNull(vaus, "ERROR: vaus not assigned in WorldManager.cs");
+            Assert.IsNotNull(ball, "ERROR: ball not assigned in WorldManager.cs");
+            Assert.IsNotNull(deadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
-            vaus.OnBallReleaseEvent += OnBallReleaseCallback;
             SetupBricks();
+            vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+            deadZone.OnBallExitDeadZoneEvent += OnBallExitDeadZoneCallback;
         }
 
         public void Start()
@@ -96,6 +100,12 @@ namespace Script.Game
                     break;
             }
             Destroy(powerUp.gameObject);
+        }
+
+        private void OnBallExitDeadZoneCallback(GameObject go)
+        {
+            vaus.VausState = VausState.Destroyed;
+            playerManager.Lives--;
         }
 
         private void SetupBricks()
