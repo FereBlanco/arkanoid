@@ -17,6 +17,7 @@ namespace Scripts.Game
         private Animator animator;
         private bool isFiredPressed;
         private bool isBallReleased;
+        private Vector2 initialPosition;
 
         // Properties
         private VausState vausState;
@@ -49,7 +50,6 @@ namespace Scripts.Game
                             animator.SetTrigger(Constants.PARAMETER_LASER);
                             break;
                         case VausState.Destroyed:
-                            Debug.Log("DESTROYED!!!");
                             animator.SetTrigger(Constants.PARAMETER_DESTROYED);
                             break;
                     }                    
@@ -66,9 +66,12 @@ namespace Scripts.Game
             rigidbody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
 
-            isFiredPressed = false;
-            isBallReleased = false;
-            VausState = VausState.Normal;
+            initialPosition = transform.position;
+        }
+
+        private void Start()
+        {
+            Reset();
         }
 
         private void Update()
@@ -91,6 +94,13 @@ namespace Scripts.Game
         }
 
         // Public Methods
+        internal void Reset()
+        {
+            transform.position = initialPosition;
+            isFiredPressed = false;
+            isBallReleased = false;
+            VausState = VausState.Normal;
+        }        
 
         // Private Methods
     }

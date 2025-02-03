@@ -15,6 +15,7 @@ namespace Scripts.Game
         public static string AXIS_HORIZONTAL = "Horizontal";
         public static string AXIS_FIRE = "Jump";
 
+        public static int INITIAL_LIVES = 2;
         public static int MAX_LIVES = 10;
         public static int[] EXTRA_LIFE_COSTS = {20000, 40000, 60000};
 

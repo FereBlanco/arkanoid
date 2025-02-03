@@ -250,3 +250,26 @@ Dentro de una máquina de estados podemos crear una submáquina de estados:
 La trataremos como un estado más, solo que dentro tendrá más complejidad
 También puedo seleccionar un conjunto de estados y transiciones y arrastrarlos dentro de una submáquina
 Dentro de una submáquina puedo crear otra, y luego otra >> recuerda a los blueprints de Unreal o el Shader Graph de Unity
+
+[DEAD ZONE]
+Creamos una DeadZone en la parte inferior de la pantalla con un Collider2D
+Controlaremos con un evento (OnBallExitDeadZoneEvent) cuándo la bola alcanza y sale de esa zona, y restaremos una vida
+También cambiaremos el estado de la Vaus (vaus.VausState = VausState.Destroyed;) >> la máquina de estados de la animación lanzará la ani correspondientes
+
+[WORLD OBJECTS VS MANAGERS]
+Los World Objetcts (todo tipo de objetos que hay dentro del mundo del juego) tienden a cambiar a menudo y a relacionarse mucho unos con otros.
+Si hago que se comuniquen entre ellos mediante métodos tendría clases muy acopladas entre ellas, muy dependientes unas de otras.
+Por esa razón intento que la comunicación sea siempre mediante eventos.
+De esta forma cada uno se responsabiliza de lo suyo y solo tiene que reaccionar a cada evento puntual.
+
+Los Manager son más estables, tienden a cambiar poco.
+Suelen ser Singleton, lo cual implica que solo habrá uno de cada tipo y que podrán ser accesibles desde cualquier parte.
+Además "los mánagers hablan entre ellos". Es muy habitual que se pasen mucha información entre ellos.
+Por esta razón, y aunque también podríamos hacer que se comunicaran mediante eventos (y sería también correcto), en este caso es habitual utilizar métodos.
+
+[AWAKE VS START]
+Hay que tener mucho cuidado con el orden en que inicializamos las cosas.
+Todos los Awake se ejecutarán SIEMPRE antes que todos los START.
+TAmbién hay que prestar especial atención a las Propiedades porque a veces además de asignar valores estamos ejecutando comportamientos,
+y al hacer esto quizá estemos accediendo a valores que todavía no han sido inicializador.
+Ejemplo típico: función Reset() que tienen muchas clases, y que suelen ser llamadas por los manager >> Importa el orden!!! 

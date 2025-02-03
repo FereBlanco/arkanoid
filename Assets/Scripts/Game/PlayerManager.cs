@@ -1,10 +1,13 @@
 using System;
+using Script.Game;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] WorldManager worldManager;
 
         private HUDManager hUDManager;
         private int extraLifeScoresIndex;
@@ -34,7 +37,21 @@ namespace Scripts.Game
             }
             set
             {
-                lives = Math.Min(value, Constants.MAX_LIVES);
+                int newValue = Math.Min(value, Constants.MAX_LIVES);
+
+                if (0 >= newValue)
+                {
+                    Debug.Log("Game Over");
+                }
+                else
+                {
+                    if (newValue < lives)
+                    {
+                        worldManager.Reset();
+                    }
+                }
+
+                lives = newValue;
                 Debug.Log($"Lives: {lives}");
             }
         }
@@ -47,6 +64,8 @@ namespace Scripts.Game
 
         private void Awake()
         {
+            Assert.IsNotNull(worldManager, "ERROR: worldManager not assigned in PlayerManager.cs");
+
             // Singleton pattern
             if (null == instance)
             {
@@ -54,7 +73,6 @@ namespace Scripts.Game
             }
             else
             {
-                Debug.Log("PlayerManager Singleton has more than one instance: this one will be destroyed");
                 Destroy(gameObject);
             }
 
@@ -66,8 +84,8 @@ namespace Scripts.Game
         {
             hUDManager = HUDManager.GetInstance();
 
+            Lives = Constants.INITIAL_LIVES;
             Score = 0;
-            Lives = 3;
         }
 
         internal void AddScore(int scoreToAdd)

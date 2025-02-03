@@ -119,5 +119,11 @@ namespace Script.Game
                 bricks.Add(brick);
             }
         }
+
+        public void Reset()
+        {
+            vaus.Reset();
+            ball.Reset();
+        }
     }
 }
