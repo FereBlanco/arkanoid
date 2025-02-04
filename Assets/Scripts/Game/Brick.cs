@@ -6,9 +6,9 @@ namespace Script.Game
 {
     public class Brick : MonoBehaviour
     {
-        [SerializeField, Min(50)] private int score = 50;
-        [SerializeField, Min(1)] private int resistance = 1;
-        [SerializeField] private PowerUpType powerUpType;
+        [SerializeField, Min(50)] private int m_Score = 50;
+        [SerializeField, Min(1)] private int m_Resistance = 1;
+        [SerializeField] private PowerUpType m_PowerUpType;
 
         public event Action<Brick> OnBrickDestroyedEvent;
 
@@ -16,8 +16,8 @@ namespace Script.Game
         {
             if (other.gameObject.CompareTag(Constants.TAG_BALL))
             {
-                resistance--;
-                if (resistance == 0)
+                m_Resistance--;
+                if (m_Resistance == 0)
                 {
                     OnBrickDestroyedEvent?.Invoke(this);
                 }
@@ -26,16 +26,16 @@ namespace Script.Game
 
         internal int GetScore()
         {
-            return score;
+            return m_Score;
         }
 
         internal bool HasPowerUp()
         {
-            return powerUpType != PowerUpType.None;
+            return m_PowerUpType != PowerUpType.None;
         }
         internal PowerUpType GetPowerUpType()
         {
-            return powerUpType;
+            return m_PowerUpType;
         }
     }
 }

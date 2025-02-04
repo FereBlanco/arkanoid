@@ -8,27 +8,27 @@ namespace Script.Game
 {
     public class WorldManager : MonoBehaviour
     {
-        [SerializeField] private Vaus vaus;
-        [SerializeField] private Ball ball;
-        [SerializeField] private DeadZone deadZone;
-        [SerializeField] private PowerUp[] powerUpPrefabs;
-        private List<Brick> bricks = new List<Brick>();
-        private PlayerManager playerManager;
+        [SerializeField] private Vaus m_Vaus;
+        [SerializeField] private Ball m_Ball;
+        [SerializeField] private DeadZone m_DeadZone;
+        [SerializeField] private PowerUp[] m_PowerUpPrefabs;
+        private List<Brick> m_Bricks = new List<Brick>();
+        private PlayerManager m_PlayerManager;
 
         public void Awake()
         {
-            Assert.IsNotNull(vaus, "ERROR: vaus not assigned in WorldManager.cs");
-            Assert.IsNotNull(ball, "ERROR: ball not assigned in WorldManager.cs");
-            Assert.IsNotNull(deadZone, "ERROR: deadZone not assigned in WorldManager.cs");
+            Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in WorldManager.cs");
+            Assert.IsNotNull(m_Ball, "ERROR: ball not assigned in WorldManager.cs");
+            Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
             SetupBricks();
-            vaus.OnBallReleaseEvent += OnBallReleaseCallback;
-            deadZone.OnBallExitDeadZoneEvent += OnBallExitDeadZoneCallback;
+            m_Vaus.OnBallReleaseEvent += OnBallReleaseCallback;
+            m_DeadZone.OnBallExitDeadZoneEvent += OnBallExitDeadZoneCallback;
         }
 
         public void Start()
         {
-            playerManager = PlayerManager.GetInstance().GetComponent<PlayerManager>();
+            m_PlayerManager = PlayerManager.GetInstance().GetComponent<PlayerManager>();
         }
 
         private void Update()
@@ -36,33 +36,33 @@ namespace Script.Game
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                ball.transform.position = new Vector2(-20.0f, -10.0f);
-                ball.GetComponent<Rigidbody2D>().velocity = new Vector2(-20.0f, 15.0f);
+                m_Ball.transform.position = new Vector2(-20.0f, -10.0f);
+                m_Ball.GetComponent<Rigidbody2D>().velocity = new Vector2(-20.0f, 15.0f);
             }
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.RightControl))
             {
-                ball.transform.position = new Vector2(8.0f, -10.0f);
-                ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
+                m_Ball.transform.position = new Vector2(8.0f, -10.0f);
+                m_Ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
             }
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.K))
             {
                 Debug.Log("K key");
-                vaus.VausState = VausState.Destroyed;
+                m_Vaus.VausState = VausState.Destroyed;
             }
         }
 
         private void OnBrickDestroyedCallback(Brick brick)
         {
-            playerManager.AddScore(brick.GetScore());
-            bricks.Remove(brick);
+            m_PlayerManager.AddScore(brick.GetScore());
+            m_Bricks.Remove(brick);
             brick.OnBrickDestroyedEvent -= OnBrickDestroyedCallback;
 
             if (brick.HasPowerUp())
             {
                 PowerUpType powerUpType = brick.GetPowerUpType();
-                PowerUp newPowerUp = Instantiate(powerUpPrefabs[(int)powerUpType], brick.transform.position, Quaternion.identity);
+                PowerUp newPowerUp = Instantiate(m_PowerUpPrefabs[(int)powerUpType], brick.transform.position, Quaternion.identity);
                 newPowerUp.PowerUpType = powerUpType;
                 newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             }
@@ -72,7 +72,7 @@ namespace Script.Game
 
         private void OnBallReleaseCallback()
         {
-            ball.Release();
+            m_Ball.Release();
         }
 
         private void OnPowerUpActivateCallBack(PowerUp powerUp)
@@ -82,21 +82,21 @@ namespace Script.Game
                 case PowerUpType.Break:
                     break;
                 case PowerUpType.Catch:
-                    vaus.VausState = VausState.Normal;
+                    m_Vaus.VausState = VausState.Normal;
                     break;
                 case PowerUpType.Disruption:
                     break;
                 case PowerUpType.Enlarge:
-                    vaus.VausState = VausState.Enlarged;
+                    m_Vaus.VausState = VausState.Enlarged;
                     break;
                 case PowerUpType.Laser:
-                    vaus.VausState = VausState.Laser;
+                    m_Vaus.VausState = VausState.Laser;
                     break;
                 case PowerUpType.Player:
-                    playerManager.AddLife();
+                    m_PlayerManager.AddLife();
                     break;
                 case PowerUpType.Slow:
-                    ball.SetSlowSpeed();
+                    m_Ball.SetSlowSpeed();
                     break;
             }
             Destroy(powerUp.gameObject);
@@ -104,26 +104,26 @@ namespace Script.Game
 
         private void OnBallExitDeadZoneCallback(GameObject go)
         {
-            vaus.VausState = VausState.Destroyed;
-            playerManager.Lives--;
+            m_Vaus.VausState = VausState.Destroyed;
+            m_PlayerManager.Lives--;
         }
 
         private void SetupBricks()
         {
-            bricks = new List<Brick>();
+            m_Bricks = new List<Brick>();
             GameObject[] brickGOs = GameObject.FindGameObjectsWithTag("Brick");
             foreach (var brickGO in brickGOs)
             {
                 Brick brick = brickGO.GetComponent<Brick>();
                 brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
-                bricks.Add(brick);
+                m_Bricks.Add(brick);
             }
         }
 
         public void Reset()
         {
-            vaus.Reset();
-            ball.Reset();
+            m_Vaus.Reset();
+            m_Ball.Reset();
         }
     }
 }

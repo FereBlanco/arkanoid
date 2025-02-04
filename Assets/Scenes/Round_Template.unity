@@ -2041,6 +2041,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899312e1b2d592a48865edda32b98f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialLives: 3
+  maxLives: 10
+  extraLifeCosts: 204e0000409c000060ea0000
   worldManager: {fileID: 430909368}
 --- !u!4 &626260489 stripped
 Transform:
@@ -5093,7 +5096,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.4
+  m_fontSize: 42.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

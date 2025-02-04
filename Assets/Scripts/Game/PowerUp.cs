@@ -7,18 +7,18 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class PowerUp : MonoBehaviour
     {
-        [SerializeField] private float speed = 200.0f;
-        private Rigidbody2D rg;
+        [SerializeField] private float m_Speed = 200.0f;
+        private Rigidbody2D m_RigidBody;
 
-        [SerializeField] private PowerUpType powerUpType;
+        [SerializeField] private PowerUpType m_PowerUpType;
         public PowerUpType PowerUpType {
             get
             {
-                return powerUpType;
+                return m_PowerUpType;
             }
             set
             {
-                powerUpType = value;
+                m_PowerUpType = value;
             }
         }
 
@@ -26,10 +26,10 @@ namespace Scripts.Game
 
         private void Awake()
         {
-            rg = GetComponent<Rigidbody2D>();
-            rg.velocity = speed * Time.deltaTime * Vector2.down;
+            m_RigidBody = GetComponent<Rigidbody2D>();
+            m_RigidBody.velocity = m_Speed * Time.deltaTime * Vector2.down;
 
-            powerUpType = PowerUpType.None;
+            m_PowerUpType = PowerUpType.None;
         }
 
         private void OnTriggerEnter2D(Collider2D other)

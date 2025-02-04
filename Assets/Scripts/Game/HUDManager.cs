@@ -7,21 +7,21 @@ namespace Scripts.Game
     public class HUDManager : MonoBehaviour
     {
 
-        [SerializeField] private TMP_Text scoreTMP;
-        [SerializeField] private TMP_Text highscoreTMP;
+        [SerializeField] private TMP_Text m_ScoreTMP;
+        [SerializeField] private TMP_Text m_HighscoreTMP;
 
-        private static HUDManager instance;
+        private static HUDManager m_Instance;
         public static HUDManager GetInstance()
         {
-            return instance;
+            return m_Instance;
         }
 
         private void Awake()
         {
             // Singleton pattern
-            if (null == instance)
+            if (null == m_Instance)
             {
-                instance = this; 
+                m_Instance = this; 
             }
             else
             {
@@ -29,13 +29,13 @@ namespace Scripts.Game
                 Destroy(gameObject); 
             }
 
-            Assert.IsNotNull(scoreTMP, "ERROR: scoreTMP is empty");
-            Assert.IsNotNull(highscoreTMP, "ERROR: highscoreTMP is empty");
+            Assert.IsNotNull(m_ScoreTMP, "ERROR: scoreTMP is empty");
+            Assert.IsNotNull(m_HighscoreTMP, "ERROR: highscoreTMP is empty");
         }
 
         internal void UpdateScore(int currentScore)
         {
-            scoreTMP.text = currentScore.ToString();
+            m_ScoreTMP.text = currentScore.ToString();
         }
     }
 }

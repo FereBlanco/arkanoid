@@ -6,16 +6,16 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Ball : MonoBehaviour
     {
-        [SerializeField] private Vector2 initialVelocity = 10f * Vector2.up;
-        [SerializeField] private float slowSpeed = 5f;
-        new private Rigidbody2D rigidbody;
-        private Vector2 initialPosition;
+        [SerializeField] private Vector2 m_InitialVelocity = 10f * Vector2.up;
+        [SerializeField] private float m_SlowSpeed = 5f;
+        private Rigidbody2D m_Rigidbody;
+        private Vector2 m_InitialPosition;
 
         private void Awake()
         {
-            rigidbody = GetComponent<Rigidbody2D>();
+            m_Rigidbody = GetComponent<Rigidbody2D>();
 
-            initialPosition = transform.position;
+            m_InitialPosition = transform.position;
         }
 
         private void Start()
@@ -25,21 +25,21 @@ namespace Scripts.Game
 
         public void Release()
         {
-            rigidbody.isKinematic = false;
+            m_Rigidbody.isKinematic = false;
             // rigidbody.bodyType = RigidbodyType2D.Dynamic; // other way to do this, specific for 2D
-            rigidbody.velocity = initialVelocity;
+            m_Rigidbody.velocity = m_InitialVelocity;
         }
 
         public void SetSlowSpeed()
         {
-            rigidbody.velocity = slowSpeed * Vector3.Normalize(rigidbody.velocity);
+            m_Rigidbody.velocity = m_SlowSpeed * Vector3.Normalize(m_Rigidbody.velocity);
         }
 
         public void Reset()
         {
-            rigidbody.isKinematic = true;
-            rigidbody.velocity = Vector2.zero;
-            transform.position = initialPosition;
+            m_Rigidbody.isKinematic = true;
+            m_Rigidbody.velocity = Vector2.zero;
+            transform.position = m_InitialPosition;
         }
     }
 }

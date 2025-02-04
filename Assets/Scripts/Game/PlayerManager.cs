@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Script.Game;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,37 +8,62 @@ namespace Scripts.Game
 {
     public class PlayerManager : MonoBehaviour
     {
-        [SerializeField] WorldManager worldManager;
+        [Header("Managers")]
 
-        private HUDManager hUDManager;
-        private int extraLifeScoresIndex;
-        private int nextExtraLifeScore;
+        [Tooltip("World Manager that manages all the game")]  
+        [SerializeField] WorldManager m_WorldManager;
 
-        private int score;
+        [Tooltip("HUD Manager that manages the Head-Up Display")]  
+        [SerializeField] private HUDManager m_HUDManager;
+
+        [Header("Player LIVES")]
+
+        [Tooltip("Initial lives number")]
+        [SerializeField] int m_InitialLives;
+
+        [Tooltip("Maximum lives number")]
+        [SerializeField] int m_MaxLives;
+
+        [Tooltip("Extra lives points costs")]
+        [SerializeField] int[] m_ExtraLifeCosts;
+
+        private int m_ExtraLifeScoresIndex;
+        private int m_NextExtraLifeScore;
+        
+        
+
+        private int m_Score;
         public int Score
         {
             get
             {
-                return score;
+                return m_Score;
             }
             set
             {
-                score = value;
-                hUDManager.UpdateScore(score);
+                m_Score = value;
+                m_HUDManager.UpdateScore(m_Score);
                 CalculateExtraLifeByPoints();
             }
         }
 
-        private int lives;
+        private int m_Lives;
         public int Lives
         {
             get
             {
-                return lives;
+                return m_Lives;
             }
             set
             {
-                int newValue = Math.Min(value, Constants.MAX_LIVES);
+                IEnumerator WorldReset()
+                {
+                    // Each "yield return null;" makes the game waits for 1 frame
+                    yield return null;
+                    m_WorldManager.Reset();
+                }
+
+                int newValue = Math.Min(value, m_MaxLives);
 
                 if (0 >= newValue)
                 {
@@ -45,46 +71,46 @@ namespace Scripts.Game
                 }
                 else
                 {
-                    if (newValue < lives)
+                    if (newValue < m_Lives)
                     {
-                        worldManager.Reset();
+                        StartCoroutine(WorldReset());
                     }
                 }
 
-                lives = newValue;
-                Debug.Log($"Lives: {lives}");
+                m_Lives = newValue;
+                Debug.Log($"Lives: {m_Lives}");
             }
         }
 
-        private static PlayerManager instance;
+        private static PlayerManager m_Instance;
         public static PlayerManager GetInstance()
         {
-            return instance;
+            return m_Instance;
         }
 
         private void Awake()
         {
-            Assert.IsNotNull(worldManager, "ERROR: worldManager not assigned in PlayerManager.cs");
+            Assert.IsNotNull(m_WorldManager, "ERROR: worldManager not assigned in PlayerManager.cs");
 
             // Singleton pattern
-            if (null == instance)
+            if (null == m_Instance)
             {
-                instance = this;
+                m_Instance = this;
             }
             else
             {
                 Destroy(gameObject);
             }
 
-            extraLifeScoresIndex = 0;
-            nextExtraLifeScore = Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
+            m_ExtraLifeScoresIndex = 0;
+            m_NextExtraLifeScore = m_ExtraLifeCosts[m_ExtraLifeScoresIndex];
         }
 
         private void Start()
         {
-            hUDManager = HUDManager.GetInstance();
+            m_HUDManager = HUDManager.GetInstance();
 
-            Lives = Constants.INITIAL_LIVES;
+            Lives = m_InitialLives;
             Score = 0;
         }
 
@@ -100,13 +126,13 @@ namespace Scripts.Game
 
         private void CalculateExtraLifeByPoints()
         {
-            if (Score >= nextExtraLifeScore)
+            if (Score >= m_NextExtraLifeScore)
             {
                 AddLife();
                 
                 // Next extra life score is based on the constant extra life cost array
-                extraLifeScoresIndex = Math.Min(extraLifeScoresIndex + 1, Constants.EXTRA_LIFE_COSTS.Length - 1);
-                nextExtraLifeScore += Constants.EXTRA_LIFE_COSTS[extraLifeScoresIndex];
+                m_ExtraLifeScoresIndex = Math.Min(m_ExtraLifeScoresIndex + 1, m_ExtraLifeCosts.Length - 1);
+                m_NextExtraLifeScore += m_ExtraLifeCosts[m_ExtraLifeScoresIndex];
             }
         }
     }

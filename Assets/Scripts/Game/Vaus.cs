@@ -8,49 +8,49 @@ namespace Scripts.Game
     public class Vaus : MonoBehaviour
     {
         // Public Fields
-        public float horizontalInput;
+        public float m_HorizontalInput;
 
         // Private Fields
-        [SerializeField, Range(10.0f, 30.0f)] private float speed = 20.0f;
-        [SerializeField] private Ball ball;
-        new private Rigidbody2D rigidbody;
-        private Animator animator;
-        private bool isFiredPressed;
-        private bool isBallReleased;
-        private Vector2 initialPosition;
+        [SerializeField, Range(10.0f, 30.0f)] private float m_Speed = 20.0f;
+        [SerializeField] private Ball m_Ball;
+        private Rigidbody2D m_Rigidbody;
+        private Animator m_Animator;
+        private bool m_IsFiredPressed;
+        private bool m_IsBallReleased;
+        private Vector2 m_InitialPosition;
 
         // Properties
-        private VausState vausState;
+        private VausState m_VausState;
         public VausState VausState
         {
             get
             {
-                return vausState;
+                return m_VausState;
             }
             set
             {
-                if (value != vausState)
+                if (value != m_VausState)
                 {
-                    if (!vausState.Equals(VausState.Normal))
+                    if (!m_VausState.Equals(VausState.Normal))
                     {
-                        animator.SetTrigger(Constants.PARAMETER_NORMAL);
+                        m_Animator.SetTrigger(Constants.PARAMETER_NORMAL);
                     }
 
-                    vausState = value;
+                    m_VausState = value;
 
-                    switch (vausState)
+                    switch (m_VausState)
                     {
                         case VausState.Normal:
                             // animator.SetTrigger(Constants.PARAMETER_NORMAL);
                             break;
                         case VausState.Enlarged:
-                            animator.SetTrigger(Constants.PARAMETER_ENLARGED);
+                            m_Animator.SetTrigger(Constants.PARAMETER_ENLARGED);
                             break;
                         case VausState.Laser:
-                            animator.SetTrigger(Constants.PARAMETER_LASER);
+                            m_Animator.SetTrigger(Constants.PARAMETER_LASER);
                             break;
                         case VausState.Destroyed:
-                            animator.SetTrigger(Constants.PARAMETER_DESTROYED);
+                            m_Animator.SetTrigger(Constants.PARAMETER_DESTROYED);
                             break;
                     }                    
                 }
@@ -63,10 +63,10 @@ namespace Scripts.Game
         // Monobehaviour Methods
         private void Awake()
         {
-            rigidbody = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
+            m_Rigidbody = GetComponent<Rigidbody2D>();
+            m_Animator = GetComponent<Animator>();
 
-            initialPosition = transform.position;
+            m_InitialPosition = transform.position;
         }
 
         private void Start()
@@ -78,27 +78,27 @@ namespace Scripts.Game
         {
             // Unity recommends taking all inputs into the Update function, BUT also recommends NOT MIXING Update and FixedUpdate in the same script
             // Best solution: manage all entries in a specific script (VausInput) and all movements/actions in other script (VausMovement/VausFire)
-            horizontalInput = Input.GetAxis(Constants.AXIS_HORIZONTAL);
-            isFiredPressed = Input.GetAxis(Constants.AXIS_FIRE) != 0;
+            m_HorizontalInput = Input.GetAxis(Constants.AXIS_HORIZONTAL);
+            m_IsFiredPressed = Input.GetAxis(Constants.AXIS_FIRE) != 0;
         }
 
         private void FixedUpdate()
         {
-            rigidbody.velocity = horizontalInput * speed * Vector2.right;
+            m_Rigidbody.velocity = m_HorizontalInput * m_Speed * Vector2.right;
 
-            if (isFiredPressed && !isBallReleased)
+            if (m_IsFiredPressed && !m_IsBallReleased)
             {
                 OnBallReleaseEvent?.Invoke();
-                isBallReleased = true;
+                m_IsBallReleased = true;
             }
         }
 
         // Public Methods
         internal void Reset()
         {
-            transform.position = initialPosition;
-            isFiredPressed = false;
-            isBallReleased = false;
+            transform.position = m_InitialPosition;
+            m_IsFiredPressed = false;
+            m_IsBallReleased = false;
             VausState = VausState.Normal;
         }        
 
