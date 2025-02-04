@@ -29,8 +29,6 @@ namespace Scripts.Game
 
         private int m_ExtraLifeScoresIndex;
         private int m_NextExtraLifeScore;
-        
-        
 
         private int m_Score;
         public int Score

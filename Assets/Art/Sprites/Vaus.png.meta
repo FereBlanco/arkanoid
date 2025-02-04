@@ -928,6 +928,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Vaus_Bullet
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 43
+        width: 3
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa732123ff776c46be96f4555b54f4b
+      internalID: -1715613882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -940,6 +961,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Ball: 1331869025
+      Vaus_Bullet: -1715613882
       Vaus_Create_01: -1972561803
       Vaus_Create_02: 590220078
       Vaus_Create_03: 936824413

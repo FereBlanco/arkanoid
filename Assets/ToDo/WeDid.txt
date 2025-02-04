@@ -272,4 +272,37 @@ Hay que tener mucho cuidado con el orden en que inicializamos las cosas.
 Todos los Awake se ejecutarán SIEMPRE antes que todos los START.
 TAmbién hay que prestar especial atención a las Propiedades porque a veces además de asignar valores estamos ejecutando comportamientos,
 y al hacer esto quizá estemos accediendo a valores que todavía no han sido inicializador.
-Ejemplo típico: función Reset() que tienen muchas clases, y que suelen ser llamadas por los manager >> Importa el orden!!! 
+Ejemplo típico: función Reset() que tienen muchas clases, y que suelen ser llamadas por los manager >> Importa el orden!!!
+
+[PROBLEMA CON LOS FRAMES Y LOS ANIMATOR]
+Para que la máquina de estados del Animator cambie de estados necesita que pase al menos 1 frame
+Problema MUY HABITUAL en la programación de videojuegos: la máquina recibe más de un Trigger en el mismo frame ¡y se queda solo con el último!
+
+Una de las formas de arreglarlo es obligar a los métodos a que esperen al menos 1 frame (es lo que haremos en el Reset de nuestro PlayerManager):
+      IEnumerator WorldReset()
+      {
+          // Each "yield return null;" makes the game waits for 1 frame
+          yield return null;
+          m_WorldManager.Reset();
+      }
+      ...
+      y la llamada a la función Reset será:
+      StartCoroutine(WorldReset());
+
+Muchas veces la gestión de tiempos entre unos estados y otros dependerán de las animaciones y/o los sonidos
+(las acciones siguientes se lanzarán al recibir eventos de OnComplete, o transiciones de estados entre animaciones).
+Para debuguear puedo utilizar Time.frameCount, que me devuleve el número de frames que han transcurrido desde que pulsamos al Play
+
+[DISPAROS LASER]
+Creamos un prefab con el sprite de la bala. Tendrá Rigidbody y CapsuleCollider2D.
+Ceramos 2 gameobjects hijos de la Vaus que serán los shooters: LeftShooter y RightShooter
+
+Añadimos a la Vaus el script para disparar: Shooter.cs
+Tendrá 2 [SerielizedField] Gameobject con los shooters.
+Creará Bullets en las posiciones de los shooters.
+Para disparar usaremos la función TrySHoot() porque el hecho de que queramos disparar no nos garantiza que podamos hacerlo.
+Esa función controlará, mediante un IEnumerator, el intervalo de tiempo que obligaremos a esperar entre disparo y disparo.
+En vez de instanciar las balas sin más utilizaremos el patrón de diseño Objec Pool, que nos permite reutilizar objetos y de esta forma ahorrar memoria.
+
+Creamos tambiél el script que manejará el comportamiento de la propia bala: Bullet.cs
+Le ponemos una propiedad que nos indicará hacia dónde va la bala (las del Vaus irán hacia arriba, las del Doh final irán hacia abajo)

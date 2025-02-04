@@ -1,10 +1,10 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Scripts.Game
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(Shooter))]
     public class Vaus : MonoBehaviour
     {
         // Public Fields
@@ -15,6 +15,7 @@ namespace Scripts.Game
         [SerializeField] private Ball m_Ball;
         private Rigidbody2D m_Rigidbody;
         private Animator m_Animator;
+        private Shooter m_Shooter;
         private bool m_IsFiredPressed;
         private bool m_IsBallReleased;
         private Vector2 m_InitialPosition;
@@ -65,6 +66,7 @@ namespace Scripts.Game
         {
             m_Rigidbody = GetComponent<Rigidbody2D>();
             m_Animator = GetComponent<Animator>();
+            m_Shooter = GetComponent<Shooter>();
 
             m_InitialPosition = transform.position;
         }
@@ -86,10 +88,17 @@ namespace Scripts.Game
         {
             m_Rigidbody.velocity = m_HorizontalInput * m_Speed * Vector2.right;
 
-            if (m_IsFiredPressed && !m_IsBallReleased)
+            if (m_IsFiredPressed)
             {
-                OnBallReleaseEvent?.Invoke();
-                m_IsBallReleased = true;
+                if (!m_IsBallReleased)
+                {
+                    OnBallReleaseEvent?.Invoke();
+                    m_IsBallReleased = true;
+                }
+                else if (VausState.Equals(VausState.Laser))
+                {
+                    m_Shooter.TryShoot();
+                }
             }
         }
 
