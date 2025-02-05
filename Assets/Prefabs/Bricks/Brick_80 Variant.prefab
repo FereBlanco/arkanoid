@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: powerType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1471398556955401660, guid: 13763b05660c0db4e983e1bb261c8988, type: 3}
+      propertyPath: m_PowerUpType
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2454838560792276140, guid: 13763b05660c0db4e983e1bb261c8988, type: 3}
       propertyPath: m_Name
       value: Brick_80 Variant

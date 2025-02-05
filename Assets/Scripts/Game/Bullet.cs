@@ -31,6 +31,6 @@ namespace Scripts.Game
         public void Shoot(Vector3 position)
         {
             transform.position = position;
-        }        
+        }
     }
 }

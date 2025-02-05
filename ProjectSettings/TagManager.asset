@@ -8,6 +8,7 @@ TagManager:
   - Brick
   - Vaus
   - Bullet
+  - PowerUp
   layers:
   - Default
   - TransparentFX

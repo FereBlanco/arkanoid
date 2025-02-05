@@ -19,7 +19,11 @@ namespace Script.Game
             {
                 UpdateResistance();
             }
-            else if (other.gameObject.CompareTag(Constants.TAG_BULLET))
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag(Constants.TAG_BULLET))
             {
                 UpdateResistance();
                 other.gameObject.SetActive(false);
