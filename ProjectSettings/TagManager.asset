@@ -7,6 +7,7 @@ TagManager:
   - Ball
   - Brick
   - Vaus
+  - Bullet
   layers:
   - Default
   - TransparentFX

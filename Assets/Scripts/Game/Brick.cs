@@ -1,6 +1,7 @@
 using System;
 using Scripts.Game;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Script.Game
 {
@@ -16,11 +17,21 @@ namespace Script.Game
         {
             if (other.gameObject.CompareTag(Constants.TAG_BALL))
             {
-                m_Resistance--;
-                if (m_Resistance == 0)
-                {
-                    OnBrickDestroyedEvent?.Invoke(this);
-                }
+                UpdateResistance();
+            }
+            else if (other.gameObject.CompareTag(Constants.TAG_BULLET))
+            {
+                UpdateResistance();
+                other.gameObject.SetActive(false);
+            }
+        }
+
+        private void UpdateResistance()
+        {
+            m_Resistance--;
+            if (m_Resistance == 0)
+            {
+                OnBrickDestroyedEvent?.Invoke(this);
             }
         }
 
