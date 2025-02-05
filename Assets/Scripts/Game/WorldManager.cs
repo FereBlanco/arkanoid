@@ -136,14 +136,16 @@ namespace Script.Game
 
         private void SetupPowerUps()
         {
-            List<Brick> bricksWithoutPowerUp = new List<Brick>();
-            foreach (var brick in m_Bricks)
-            {
-                if (!brick.HasPowerUp())
-                {
-                    bricksWithoutPowerUp.Add(brick);
-                }
-            }
+            var bricksWithoutPowerUp = m_Bricks.FindAll(brick => !brick.HasPowerUp());
+            // This lambda notation is equal to:
+                // List<Brick> bricksWithoutPowerUp = new List<Brick>();
+                // foreach (var brick in m_Bricks)
+                // {
+                //     if (!brick.HasPowerUp())
+                //     {
+                //         bricksWithoutPowerUp.Add(brick);
+                //     }
+                // }
 
             int finalNumberOfPowerUpsToAdd = Mathf.Min(m_NumberOfPowerUpsToAdd, bricksWithoutPowerUp.Count);
             for (int i = 1; i <= finalNumberOfPowerUpsToAdd; i++)
