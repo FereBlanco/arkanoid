@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
@@ -12,6 +11,7 @@ namespace Script.Game
         [SerializeField] private Ball m_Ball;
         [SerializeField] private DeadZone m_DeadZone;
         [SerializeField] private PowerUp[] m_PowerUpPrefabs;
+        [SerializeField, Min(0)] private int m_NumberOfPowerUpsToAdd = 0;
         private List<Brick> m_Bricks = new List<Brick>();
         private PlayerManager m_PlayerManager;
 
@@ -22,12 +22,14 @@ namespace Script.Game
             Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
             SetupBricks();
+
             m_Vaus.OnBallReleaseEvent += OnBallReleaseCallback;
             m_DeadZone.OnBallExitDeadZoneEvent += OnBallExitDeadZoneCallback;
         }
 
         public void Start()
         {
+            SetupPowerUps();
             m_PlayerManager = PlayerManager.GetInstance().GetComponent<PlayerManager>();
         }
 
@@ -61,7 +63,7 @@ namespace Script.Game
 
             if (brick.HasPowerUp())
             {
-                PowerUpType powerUpType = brick.GetPowerUpType();
+                PowerUpType powerUpType = brick.PowerUpType;
                 PowerUp newPowerUp = Instantiate(m_PowerUpPrefabs[(int)powerUpType], brick.transform.position, Quaternion.identity);
                 newPowerUp.PowerUpType = powerUpType;
                 newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
@@ -104,6 +106,18 @@ namespace Script.Game
 
         private void OnBallExitDeadZoneCallback(GameObject go)
         {
+            GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Bullet");
+            foreach (GameObject activeBullet in activeBullets)
+            {
+                activeBullet.SetActive(false);
+            }
+
+            GameObject[] activePowerUps = GameObject.FindGameObjectsWithTag("PowerUp");
+            foreach (GameObject activePowerUp in activePowerUps)
+            {
+                Destroy(activePowerUp);
+            }
+
             m_Vaus.VausState = VausState.Destroyed;
             m_PlayerManager.Lives--;
         }
@@ -117,6 +131,29 @@ namespace Script.Game
                 Brick brick = brickGO.GetComponent<Brick>();
                 brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
                 m_Bricks.Add(brick);
+            }
+        }
+
+        private void SetupPowerUps()
+        {
+            List<Brick> bricksWithoutPowerUp = new List<Brick>();
+            foreach (var brick in m_Bricks)
+            {
+                if (!brick.HasPowerUp())
+                {
+                    bricksWithoutPowerUp.Add(brick);
+                }
+            }
+
+            int finalNumberOfPowerUpsToAdd = Mathf.Min(m_NumberOfPowerUpsToAdd, bricksWithoutPowerUp.Count);
+            for (int i = 1; i <= finalNumberOfPowerUpsToAdd; i++)
+            {
+                int randomPowerUpIndex = Random.Range(0, m_PowerUpPrefabs.Length);
+                int randomBrickIndex = Random.Range(0, bricksWithoutPowerUp.Count);
+                PowerUpType powerUpType = m_PowerUpPrefabs[randomPowerUpIndex].PowerUpType;
+                Brick brick = bricksWithoutPowerUp[randomBrickIndex];
+                brick.PowerUpType = powerUpType;
+                bricksWithoutPowerUp.Remove(brick);
             }
         }
 

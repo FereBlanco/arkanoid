@@ -304,5 +304,17 @@ Para disparar usaremos la función TrySHoot() porque el hecho de que queramos di
 Esa función controlará, mediante un IEnumerator, el intervalo de tiempo que obligaremos a esperar entre disparo y disparo.
 En vez de instanciar las balas sin más utilizaremos el patrón de diseño Objec Pool, que nos permite reutilizar objetos y de esta forma ahorrar memoria.
 
-Creamos tambiél el script que manejará el comportamiento de la propia bala: Bullet.cs
+Creamos también el script que manejará el comportamiento de la propia bala: Bullet.cs
 Le ponemos una propiedad que nos indicará hacia dónde va la bala (las del Vaus irán hacia arriba, las del Doh final irán hacia abajo)
+
+Mediante OnTriggerEnter2D los ladrillos hacen desaparecer las Bullet que golpean contra ellos.
+Además añadimos una BulletEndZone en la parte superior para eliminar las balas que salen por la parte superior de la pantalla
+NOTA 1: Alejandro lo hace de otra forma
+
+[OBJECT POOL]
+El Object Pool que implementamos va cogiendo el siguiente objeto que le corresponda, sin comprobar su está libre (active == false) o no.
+Lo suyo sería mantener un Object Pool que sí controlara eso. Al asignar un nuevo objeto se saca del pool, y al liberarlo se vuelve a meter dentro.
+
+Los PowerUps también podrían gestionarse con un Object Pool.
+
+

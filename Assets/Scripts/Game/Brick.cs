@@ -10,6 +10,7 @@ namespace Script.Game
         [SerializeField, Min(50)] private int m_Score = 50;
         [SerializeField, Min(1)] private int m_Resistance = 1;
         [SerializeField] private PowerUpType m_PowerUpType;
+        public PowerUpType PowerUpType { get => m_PowerUpType; set => m_PowerUpType = value; }
 
         public event Action<Brick> OnBrickDestroyedEvent;
 
@@ -47,10 +48,6 @@ namespace Script.Game
         internal bool HasPowerUp()
         {
             return m_PowerUpType != PowerUpType.None;
-        }
-        internal PowerUpType GetPowerUpType()
-        {
-            return m_PowerUpType;
         }
     }
 }

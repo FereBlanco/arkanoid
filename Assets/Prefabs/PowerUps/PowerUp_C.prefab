@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: powerUpType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2000472949689899153, guid: 5c7706237d10d6e43a89c61779913df8, type: 3}
+      propertyPath: m_PowerUpType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3724764855337302007, guid: 5c7706237d10d6e43a89c61779913df8, type: 3}
       propertyPath: m_Name
       value: PowerUp_C
