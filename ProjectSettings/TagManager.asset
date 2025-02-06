@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - PowerUp
   - Enemy
+  - Limit
   layers:
   - Default
   - TransparentFX

@@ -8,4 +8,6 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyBallBlueController
   m_Controller: {fileID: 9100000, guid: e3416cf2bca6af441b7b1442358a79a4, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 09b5bf9860872e34792d2ae23a4d4087, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6e39afc145320344ca97a95d0662d690, type: 2}

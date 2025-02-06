@@ -21,6 +21,7 @@ namespace Scripts.Game
         public static string TAG_BULLET = "Bullet";
         public static string TAG_POWER_UP = "PowerUp";
         public static string TAG_ENEMY = "Enemy";
+        public static string TAG_LIMIT = "Limit";
 
         public static string PARAMETER_NORMAL = "Normal";
         public static string PARAMETER_ENLARGED = "Enlarged";
