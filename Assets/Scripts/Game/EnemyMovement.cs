@@ -40,19 +40,17 @@ namespace Script.Game
         private float m_RayLength = 0.5f;
         private float m_Speed = 5f;
 
-        private Vector2 m_DownCheckVector;
         private float m_DumbTime = 2f;
         private WaitForSeconds m_DumbWaitForSeconds;
 
         private void Awake()
         {
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+            m_Collider = GetComponent<Collider2D>();
 
             State = EnemyState.Down;
 
-            m_Collider = GetComponent<Collider2D>();
             m_SizeCheckStart = m_OffsetFactor * m_Collider.bounds.extents.y;
-            m_DownCheckVector = m_RayLength * Vector2.down;
             m_DumbWaitForSeconds = new WaitForSeconds(m_DumbTime);
         }
 
@@ -122,7 +120,10 @@ namespace Script.Game
 
         private bool CheckFreePoint(Vector2 position, Vector2 direction)
         {
+            #if UNITY_EDITOR
             Debug.DrawRay(position, m_RayLength * direction, Color.red);
+            #endif
+            
             var hit = Physics2D.Raycast(position, direction, m_RayLength);
 
             if (null == hit.transform)
