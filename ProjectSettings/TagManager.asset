@@ -9,6 +9,7 @@ TagManager:
   - Vaus
   - Bullet
   - PowerUp
+  - Enemy
   layers:
   - Default
   - TransparentFX
