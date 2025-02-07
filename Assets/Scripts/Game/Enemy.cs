@@ -32,6 +32,7 @@ namespace Script.Game
                 }
             }
         }
+        private EnemyState m_NextState;
 
         private Rigidbody2D m_Rigidbody2D;
         private Collider2D m_Collider;
@@ -49,6 +50,7 @@ namespace Script.Game
             m_Collider = GetComponent<Collider2D>();
 
             State = EnemyState.Down;
+            m_NextState = EnemyState.Stopped;
 
             m_SizeCheckStart = m_OffsetFactor * m_Collider.bounds.extents.y;
             m_DumbWaitForSeconds = new WaitForSeconds(m_DumbTime);
@@ -56,6 +58,11 @@ namespace Script.Game
 
 
         public void FixedUpdate()
+        {
+            CheckDirectioAndUpdateState();
+        }
+
+        private void CheckDirectioAndUpdateState()
         {
             switch (State)
             {
@@ -68,7 +75,8 @@ namespace Script.Game
                     }
                     else if (!CheckDirection(DirectionType.Left))
                     {
-                        State = EnemyState.Right;
+                        m_NextState = EnemyState.Right;
+                        State = EnemyState.Stopped;
                     }
                     break;
                 case EnemyState.Right:
@@ -78,7 +86,8 @@ namespace Script.Game
                     }
                     else if (!CheckDirection(DirectionType.Right))
                     {
-                        State = EnemyState.Left;          
+                        m_NextState = EnemyState.Left;
+                        State = EnemyState.Stopped;
                     }
                     break;
                 case EnemyState.Down:
@@ -159,8 +168,16 @@ namespace Script.Game
         IEnumerator DumbTimeAndGoSide()
         {
             yield return m_DumbWaitForSeconds;
-            int sideRandom = Random.Range(0, 2);
-            State = (sideRandom == 0 ? EnemyState.Left : EnemyState.Right);
+            if (m_NextState != EnemyState.Stopped)
+            {
+                State = m_NextState;
+                m_NextState = EnemyState.Stopped;
+            }
+            else
+            {
+                int sideRandom = Random.Range(0, 2);
+                State = (sideRandom == 0 ? EnemyState.Left : EnemyState.Right);
+            }
         }
     }
 }
