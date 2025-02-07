@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walls_Vertical_01
+      name: Walls_Vertical_ScapeDoor_00
       rect:
         serializedVersion: 2
         x: 24
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walls_Horizontal_01
+      name: Walls_Horizontal_Trapdoor_00
       rect:
         serializedVersion: 2
         x: 56
@@ -396,13 +396,13 @@ TextureImporter:
       Walls_Corner_01: -1945556910
       Walls_Corner_02: -211621271
       Walls_Horizontal_0: 1052638223
-      Walls_Horizontal_01: 588934275
+      Walls_Horizontal_Trapdoor_00: 588934275
       Walls_Horizontal_Trapdoor_01: 2023767416
       Walls_Horizontal_Trapdoor_02: 2109903392
       Walls_Horizontal_Trapdoor_03: 1071365071
       Walls_Horizontal_Trapdoor_04: 958894412
       Walls_Horizontal_Trapdoor_05: -471325050
-      Walls_Vertical_01: -2030065591
+      Walls_Vertical_ScapeDoor_00: -2030065591
       Walls_Vertical_ScapeDoor_01: -281735959
       Walls_Vertical_ScapeDoor_02: 1656533613
       Walls_Vertical_ScapeDoor_03: -484427762

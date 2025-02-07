@@ -7,6 +7,7 @@ namespace Script.Game
 {
     public class WorldManager : MonoBehaviour
     {
+        [Header ("Game configuration")]
         [SerializeField] private Vaus m_Vaus;
         [SerializeField] private Ball m_Ball;
         [SerializeField] private DeadZone m_DeadZone;
@@ -14,6 +15,13 @@ namespace Script.Game
         [SerializeField, Min(0)] private int m_NumberOfPowerUpsToAdd = 0;
         private List<Brick> m_Bricks = new List<Brick>();
         private PlayerManager m_PlayerManager;
+
+        // [Header ("Enemies")]
+        // [SerializeField] Enemy[] m_EnemyTypes;
+        // private List<Enemy> m_Enemies;
+        // [SerializeField, Min(1)] int m_MaxNumberEnemies = 10;
+        // [SerializeField, Range(0.1f, 2f)] float m_MinTImeBetweenEnemies = 5f;
+        // [SerializeField, Range(0.5f, 6f)] float m_MaxTImeBetweenEnemies = 10f;        
 
         public void Awake()
         {

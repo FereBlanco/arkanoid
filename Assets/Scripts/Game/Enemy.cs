@@ -7,7 +7,7 @@ namespace Script.Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
-    public class EnemyMovement : MonoBehaviour
+    public class Enemy : MonoBehaviour
     {
         private enum DirectionType
         {
