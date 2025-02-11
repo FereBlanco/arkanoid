@@ -5,17 +5,12 @@ namespace Scripts.Game
     [RequireComponent(typeof(Animator))]
     public class EnemySpawner : MonoBehaviour
     {
-         [SerializeField] private Animator m_Animator;
+         [SerializeField] private Trapdoor[] m_Trapdoors;
 
         private void Awake()
         {
-            m_Animator = GetComponent<Animator>();
-            m_Animator.SetTrigger(Constants.PARAMETER_TRAPDOOR_OPEN);
-        }
-
-        private void SpawmEnemyFromAnimator()
-        {
-
+            m_Trapdoors[0].Open();
+            m_Trapdoors[1].Open();
         }
     }
 }
