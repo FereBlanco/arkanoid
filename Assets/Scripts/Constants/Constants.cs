@@ -32,6 +32,7 @@ namespace Scripts.Game
         public static string PARAMETER_TRAPDOOR_OPEN = "Open";
         public static string PARAMETER_TRAPDOOR_CLOSE = "Close";
 
+        public static string SCORE_TEXT = "Score: ";
     }
 
 }
