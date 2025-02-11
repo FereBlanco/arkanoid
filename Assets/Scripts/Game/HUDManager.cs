@@ -11,10 +11,7 @@ namespace Scripts.Game
         [SerializeField] private TMP_Text m_HighscoreTMP;
 
         private static HUDManager m_Instance;
-        public static HUDManager GetInstance()
-        {
-            return m_Instance;
-        }
+        public static HUDManager Instance { get => m_Instance; }
 
         private void Awake()
         {

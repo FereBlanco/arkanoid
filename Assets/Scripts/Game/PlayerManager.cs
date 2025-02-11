@@ -8,6 +8,9 @@ namespace Scripts.Game
 {
     public class PlayerManager : MonoBehaviour
     {
+        private static PlayerManager m_Instance;
+        public static PlayerManager Instance { get => m_Instance; }
+
         [Header("Managers")]
 
         [Tooltip("World Manager that manages all the game")]  
@@ -15,7 +18,6 @@ namespace Scripts.Game
 
         [Tooltip("HUD Manager that manages the Head-Up Display")]  
         [SerializeField] private HUDManager m_HUDManager;
-
         [Header("Player LIVES")]
 
         [Tooltip("Initial lives number")]
@@ -79,12 +81,8 @@ namespace Scripts.Game
                 Debug.Log($"Lives: {m_Lives}");
             }
         }
+        private DataPersistenceManager m_dataPersistanceManager;
 
-        private static PlayerManager m_Instance;
-        public static PlayerManager GetInstance()
-        {
-            return m_Instance;
-        }
 
         private void Awake()
         {
@@ -106,7 +104,8 @@ namespace Scripts.Game
 
         private void Start()
         {
-            m_HUDManager = HUDManager.GetInstance();
+            m_HUDManager = HUDManager.Instance;
+            m_dataPersistanceManager = DataPersistenceManager.Instance;
 
             Lives = m_InitialLives;
             Score = 0;

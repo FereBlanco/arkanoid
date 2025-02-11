@@ -38,7 +38,7 @@ namespace Script.Game
         public void Start()
         {
             SetupPowerUps();
-            m_PlayerManager = PlayerManager.GetInstance().GetComponent<PlayerManager>();
+            m_PlayerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
         }
 
         private void Update()
