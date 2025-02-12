@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Scripts.Game;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -65,6 +66,10 @@ namespace Script.Game
         {
             Ball newBall = Instantiate(m_MainBall, m_MainBall.transform.position + offset, Quaternion.identity);
             // newBall.SetDirection();
+
+            // very useful to debug
+            EditorApplication.isPaused = true; 
+
             m_Balls.Add(newBall);
         }
 
