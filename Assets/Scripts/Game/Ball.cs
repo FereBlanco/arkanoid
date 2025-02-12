@@ -30,16 +30,22 @@ namespace Scripts.Game
             m_Rigidbody.velocity = m_InitialVelocity;
         }
 
-        public void SetSlowSpeed()
-        {
-            m_Rigidbody.velocity = m_SlowSpeed * Vector3.Normalize(m_Rigidbody.velocity);
-        }
-
         public void Reset()
         {
             m_Rigidbody.isKinematic = true;
             m_Rigidbody.velocity = Vector2.zero;
             transform.position = m_InitialPosition;
         }
+
+        public void SetSlowSpeed()
+        {
+            m_Rigidbody.velocity = m_SlowSpeed * Vector3.Normalize(m_Rigidbody.velocity);
+        }
+
+        public void SetDirection(Vector2 newDirection)
+        {
+            m_Rigidbody.velocity = newDirection.normalized * m_InitialVelocity.magnitude;
+        }
+
     }
 }

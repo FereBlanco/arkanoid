@@ -95,6 +95,7 @@ namespace Script.Game
                     m_Vaus.VausState = VausState.Normal;
                     break;
                 case PowerUpType.Disruption:
+                    m_BallsManager.Disrupt();
                     break;
                 case PowerUpType.Enlarge:
                     m_Vaus.VausState = VausState.Enlarged;

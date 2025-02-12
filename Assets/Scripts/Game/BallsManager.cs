@@ -52,6 +52,22 @@ namespace Script.Game
             }
         }
 
+        internal void Disrupt()
+        {
+            if (m_Balls.Count == 1)
+            {
+                SetNewball(Vector3.up);
+                // SetNewball();
+            }
+        }
+
+        private void SetNewball(Vector3 offset)
+        {
+            Ball newBall = Instantiate(m_MainBall, m_MainBall.transform.position + offset, Quaternion.identity);
+            // newBall.SetDirection();
+            m_Balls.Add(newBall);
+        }
+
         internal void ResetBallLeft()
         {
             m_MainBall.transform.position = new Vector2(-20.0f, -10.0f);
