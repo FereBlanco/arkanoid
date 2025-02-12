@@ -1,2 +1,8 @@
-Manejar el tipo de PowerUp con un Dictionary y no con un enum
 
+ToDo Fere:
+[ ] EnemiesSpawner (enemy list/reset/close...)
+[ ] Bricks with Object Pool
+[ ] PowerUps with Dictionary
+[ ] ResetPowerUps();
+[ ] ResetBullets();
+[ ] ResetEnemies();

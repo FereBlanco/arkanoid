@@ -29,6 +29,9 @@ namespace Scripts.Game
         [Tooltip("Extra lives points costs")]
         [SerializeField] int[] m_ExtraLifeCosts;
 
+        [Header("Data")]
+        [SerializeField] private DataPersistenceManager m_dataPersistanceManager;
+
         private int m_ExtraLifeScoresIndex;
         private int m_NextExtraLifeScore;
 
@@ -42,7 +45,8 @@ namespace Scripts.Game
             set
             {
                 m_Score = value;
-                m_HUDManager.UpdateScore(m_Score);
+                m_HUDManager.ShowScore(m_Score);
+                m_dataPersistanceManager.UpdateHighscore(m_Score);
                 CalculateExtraLifeByPoints();
             }
         }
@@ -63,25 +67,26 @@ namespace Scripts.Game
                     m_WorldManager.Reset();
                 }
 
-                int newValue = Math.Min(value, m_MaxLives);
-
-                if (0 >= newValue)
+                if (value <= m_MaxLives)
                 {
-                    Debug.Log("Game Over");
-                }
-                else
-                {
-                    if (newValue < m_Lives)
+                    if (value <= 0)
                     {
-                        StartCoroutine(WorldReset());
+                        Debug.Log("Game Over");
+                        m_dataPersistanceManager.UpdateHighscore(m_Score);
+                    }
+                    else
+                    {
+                        if (value < m_Lives)
+                        {
+                            StartCoroutine(WorldReset());
+                        }
+                        m_Lives = value;
+                        // Automatizo la actualización visual
+                        Debug.Log($"Actualizaste lives: {m_Lives}");
                     }
                 }
-
-                m_Lives = newValue;
-                Debug.Log($"Lives: {m_Lives}");
             }
         }
-        private DataPersistenceManager m_dataPersistanceManager;
 
 
         private void Awake()

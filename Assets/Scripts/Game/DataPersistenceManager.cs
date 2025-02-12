@@ -1,24 +1,35 @@
 using System;
+using System.IO;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 namespace Scripts.Game
 {
-    // 
     public class DataPersistenceManager : MonoBehaviour
     {
         private static DataPersistenceManager m_Instance;
-        private int highscore;
+
+        private int m_Highscore = 0;
+        public int Highscore
+        {
+            get => m_Highscore;
+            set
+            {
+                m_Highscore = value;
+                HUDManager.Instance.ShowHighscore(m_Highscore);
+            }
+        }
 
         public static DataPersistenceManager Instance { get => m_Instance; }
 
         [Serializable]
         class PlayerData
         {
-            int highscore;
+            public int m_PlayerHighscore;
 
             public PlayerData(int highscore)
             {
-                this.highscore= highscore;
+                this.m_PlayerHighscore= highscore;
             }
         }
 
@@ -37,14 +48,44 @@ namespace Scripts.Game
             }
         }
 
-        internal void UpdateScore(int score)
+        private void Start()
         {
-            if (score > highscore)
+            LoadHighscore();
+        }
+
+        private void LoadHighscore()
+        {
+            var path = Path.Combine(Application.dataPath, FILENAME);
+            if (File.Exists(path))
             {
-                highscore = score;
-                // store in JSON
+                var json = File.ReadAllText(path);
+                var data = JsonUtility.FromJson<PlayerData>(json);
+                Highscore = data.m_PlayerHighscore;
+            }
+            else
+            {
+                Highscore = 0;
             }
         }
+
+        internal void UpdateHighscore(int score)
+        {
+            if (score > Highscore)
+            {
+                Highscore = score;
+                SaveHighscore();
+            }
+        }
+
+        private void SaveHighscore()
+        {
+            var data = new PlayerData(Highscore);
+            var json = JsonUtility.ToJson(data);
+            Debug.Log(json);
+            var path = Path.Combine(Application.dataPath, FILENAME);
+            File.WriteAllText(path, json);
+        }
+
 
         public static DataPersistenceManager GetInstance()
         {

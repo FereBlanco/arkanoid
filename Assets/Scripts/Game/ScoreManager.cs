@@ -18,7 +18,7 @@ namespace Scripts.Game
             set
             {
                 m_Score = value;
-                ShowScore();
+                HUDManager.Instance.ShowScore(m_Score);
             }
         }
 
@@ -36,18 +36,13 @@ namespace Scripts.Game
                 Destroy(gameObject);
             }
 
-            ShowScore();
+            Score = 0;
             DontDestroyOnLoad(gameObject);
         }
 
         public void AddScore(int scoreToAdd)
         {
             Score += scoreToAdd;
-        }
-
-        public void ShowScore()
-        {
-            m_ScoreText.text = Constants.SCORE_TEXT + m_Score;
         }
 
         public static ScoreManager GetInstance()

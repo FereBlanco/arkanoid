@@ -30,9 +30,14 @@ namespace Scripts.Game
             Assert.IsNotNull(m_HighscoreTMP, "ERROR: highscoreTMP is empty");
         }
 
-        internal void UpdateScore(int currentScore)
+        internal void ShowScore(int currentScore)
         {
             m_ScoreTMP.text = currentScore.ToString();
+        }
+
+        internal void ShowHighscore(int currentHighcore)
+        {
+            m_HighscoreTMP.text = currentHighcore.ToString();
         }
     }
 }

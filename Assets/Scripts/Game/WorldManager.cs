@@ -9,7 +9,7 @@ namespace Script.Game
     {
         [Header ("Game configuration")]
         [SerializeField] private Vaus m_Vaus;
-        [SerializeField] private Ball m_Ball;
+        [SerializeField] private BallsManager m_BallsManager;
         [SerializeField] private DeadZone m_DeadZone;
         [SerializeField] private PowerUp[] m_PowerUpPrefabs;
         [SerializeField, Min(0)] private int m_NumberOfPowerUpsToAdd = 0;
@@ -25,8 +25,10 @@ namespace Script.Game
 
         public void Awake()
         {
-            Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in WorldManager.cs");
-            Assert.IsNotNull(m_Ball, "ERROR: ball not assigned in WorldManager.cs");
+            m_BallsManager = GetComponentInChildren<BallsManager>();
+
+            Assert.IsNotNull(m_BallsManager, "ERROR: m_BallsManager not assigned in class WorldManager children");
+            Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in class WorldManager");
             Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
             SetupBricks();
@@ -46,14 +48,12 @@ namespace Script.Game
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                m_Ball.transform.position = new Vector2(-20.0f, -10.0f);
-                m_Ball.GetComponent<Rigidbody2D>().velocity = new Vector2(-20.0f, 15.0f);
+                m_BallsManager.ResetBallLeft();
             }
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.RightControl))
             {
-                m_Ball.transform.position = new Vector2(8.0f, -10.0f);
-                m_Ball.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
+                m_BallsManager.ResetBallRight();
             }
             // Only to test purposes
             if (Input.GetKeyDown(KeyCode.K))
@@ -82,7 +82,7 @@ namespace Script.Game
 
         private void OnBallReleaseCallback()
         {
-            m_Ball.Release();
+            m_BallsManager.Release();
         }
 
         private void OnPowerUpActivateCallBack(PowerUp powerUp)
@@ -106,7 +106,7 @@ namespace Script.Game
                     m_PlayerManager.AddLife();
                     break;
                 case PowerUpType.Slow:
-                    m_Ball.SetSlowSpeed();
+                    m_BallsManager.SetSlowSpeed();
                     break;
             }
             Destroy(powerUp.gameObject);
@@ -169,8 +169,39 @@ namespace Script.Game
 
         public void Reset()
         {
+            ResetPowerUps();
+            ResetBullets();
+            ResetEnemies();
+
             m_Vaus.Reset();
-            m_Ball.Reset();
+            m_BallsManager.Reset();
+        }
+
+        private void ResetPowerUps()
+        {
+            // var powerUps = GameObject.FindGameObjectsWithTag(Constants.POWERUP_TAG);
+            // foreach (var powerUp in powerUps)
+            // {
+            //     Destroy(powerUp.gameObject);
+            // }
+        }
+
+        private void ResetBullets()
+        {
+            // var bullets = GameObject.FindGameObjectsWithTag(Constants.BULLET_TAG);
+            // foreach (var bullet in bullets)
+            // {
+            //     // Las balas usan un Object Pool
+            //     bullet.SetActive(false);
+            // }
+        }
+
+        private static void ResetEnemies()
+        {
+            // foreach (var enemySpawner in enemySpawners)
+            // {
+            //     enemySpawner.Reset();
+            // }
         }
     }
 }
