@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEditor;
@@ -58,18 +57,19 @@ namespace Script.Game
             if (m_Balls.Count == 1)
             {
                 SetNewball(Vector3.up);
+                SetNewball(Vector3.up);
                 // SetNewball();
+                EditorApplication.isPaused = true;
             }
         }
 
         private void SetNewball(Vector3 offset)
         {
             Ball newBall = Instantiate(m_MainBall, m_MainBall.transform.position + offset, Quaternion.identity);
-            // newBall.SetDirection();
-
-            // very useful to debug
-            EditorApplication.isPaused = true; 
-
+            float spriteExtentsX = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
+            Vector3 randomDeltaPosition = Random.insideUnitCircle * spriteExtentsX;
+            newBall.transform.position = m_MainBall.transform.position + randomDeltaPosition;
+            newBall.SetDirection(Random.insideUnitCircle);
             m_Balls.Add(newBall);
         }
 

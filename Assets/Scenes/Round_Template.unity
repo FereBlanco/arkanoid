@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 247587563}
   m_Layer: 0
   m_Name: Walls Right
-  m_TagString: Untagged
+  m_TagString: Limit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1798,6 +1798,92 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &499498545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499498546}
+  - component: {fileID: 499498548}
+  - component: {fileID: 499498547}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &499498546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499498545}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 983924047}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499498547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499498545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2398bb6c23362544cb9209e3f0ee6c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trapdoors:
+  - {fileID: 1763174956}
+  - {fileID: 1504620475}
+  m_MaxEnemies: 10
+  m_TimeBetweenEnemies: 5
+  m_EnemyPrefabs:
+  - {fileID: 4601755863576213614, guid: 2527a8f01fda3db4a80abd7048a342e0, type: 3}
+  - {fileID: 6158598507601606963, guid: 6cb15a331f29e3c4a89c47fb43462fe1, type: 3}
+  - {fileID: 7234661954776588065, guid: 780690f6e5add2e41a0a6c25f7b732d3, type: 3}
+  - {fileID: 1740763694984490377, guid: e68becf1ef5aaba41b6b0605307b3ef7, type: 3}
+  - {fileID: 3566155894863381851, guid: 4f3e6acb30f2a0c44812b0daadb6f84b, type: 3}
+  - {fileID: 2326909788859424422, guid: 85445b437920e804eb58ac554bbd5207, type: 3}
+  - {fileID: 3185357567382189306, guid: c6a0d6c2ce88ac64896c239a67213242, type: 3}
+  - {fileID: 5323544719211462743, guid: f7c7f84a59611ac41b66dde0061ab208, type: 3}
+  - {fileID: 686789354951152907, guid: 7a116725291ca354198b9c79136be389, type: 3}
+  - {fileID: 7762814253070143922, guid: 22a51321ec286fb43bfcaea7a9f62233, type: 3}
+  - {fileID: 2460134009073970311, guid: a6e9b40accdccd141bb0fe1c7d935d9e, type: 3}
+  - {fileID: 2858171463435224473, guid: 2fc97dc3fa575774fbc0d12768b0d180, type: 3}
+  - {fileID: 4190647172354220734, guid: 29f826bd8089d434abb09045423564bf, type: 3}
+  - {fileID: 5459004016713995038, guid: 39046fff4260e0b44a3a8b19ce36cb6f, type: 3}
+--- !u!95 &499498548
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499498545}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &505914359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,6 +2928,7 @@ Transform:
   m_Children:
   - {fileID: 430909369}
   - {fileID: 618144242}
+  - {fileID: 499498546}
   - {fileID: 1117918191}
   - {fileID: 638124624}
   m_Father: {fileID: 0}
@@ -3224,6 +3311,10 @@ PrefabInstance:
     - target: {fileID: 798940087605819212, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
       propertyPath: m_Name
       value: Trapdoor Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446712647706660730, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8940162288579877538, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3857,6 +3948,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96ee61a41a8eb1b4f93860dc76d7745b, type: 3}
+--- !u!114 &1504620475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5044325557777608669, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
+  m_PrefabInstance: {fileID: 1252382947}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281be8cf6ab008444b38c51c3ff3abfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1512925314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4093,7 +4195,7 @@ GameObject:
   - component: {fileID: 1611648602}
   m_Layer: 0
   m_Name: Walls Left
-  m_TagString: Untagged
+  m_TagString: Limit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4703,6 +4805,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8940162288579877538, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
   m_PrefabInstance: {fileID: 6822531988406767234}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1763174956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5044325557777608669, guid: 8c59c0188560200469dc40e91523bae4, type: 3}
+  m_PrefabInstance: {fileID: 6822531988406767234}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281be8cf6ab008444b38c51c3ff3abfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1764061491
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 282107166, guid: 05c9e41a968f2d448bb66ac0fba19ee1, type: 3}
+    - target: {fileID: 4447754318516343725, guid: 077f6aa109a071041ad6576fa91c94fe, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6481307237853944725, guid: 077f6aa109a071041ad6576fa91c94fe, type: 3}
       propertyPath: m_Name
       value: EnemyPlanet Variant

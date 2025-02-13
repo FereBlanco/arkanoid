@@ -10,7 +10,6 @@ namespace Scripts.Game
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
-            Open();
         }
 
         public void Open()

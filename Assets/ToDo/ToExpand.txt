@@ -6,3 +6,7 @@ ToDo Fere:
 [ ] ResetPowerUps();
 [ ] ResetBullets();
 [ ] ResetEnemies();
+[ ] LoadHighscore/SaveHighscore as an Interface
+    Adapter Pattern
+    Develop two different ways: JSON and PlayerPrefs
+    (and it could be a third one saving data in a server)
