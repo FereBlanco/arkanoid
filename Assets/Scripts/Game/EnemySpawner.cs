@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Script.Game;
+using UnityEditor;
 using UnityEngine;
 
 namespace Scripts.Game
@@ -14,6 +15,7 @@ namespace Scripts.Game
          [SerializeField] Enemy[] m_EnemyPrefabs;
          private List<Enemy> m_CurrentEnemies;
          private WaitForSeconds m_WaitBetweenEnemies;
+         private bool m_IsCreatingEnemies = false;
 
         private void Awake()
         {
@@ -21,14 +23,25 @@ namespace Scripts.Game
 
             m_WaitBetweenEnemies = new WaitForSeconds(m_TimeBetweenEnemies);
 
+        }
+
+        public void StartCreateEnemies()
+        {
+            m_IsCreatingEnemies = true;
             StartCoroutine(CreateEnemies());
+        }
+
+        public void StopCreateEnemies()
+        {
+            m_IsCreatingEnemies = false;
+            StopCoroutine(CreateEnemies());
         }
 
         IEnumerator CreateEnemies()
         {
             yield return m_WaitBetweenEnemies;
 
-            if (m_CurrentEnemies.Count < m_MaxEnemies)
+            if (m_IsCreatingEnemies && m_CurrentEnemies.Count < m_MaxEnemies)
             {
                 int numberTrapdoor = Random.Range(0, 2);
                 int numberEnemy = Random.Range(0, m_EnemyPrefabs.Length);
@@ -41,6 +54,15 @@ namespace Scripts.Game
             }
 
             StartCoroutine(CreateEnemies());
+        }
+
+        internal void Reset()
+        {
+            foreach (var enemy in m_CurrentEnemies)
+            {
+                Destroy(enemy.gameObject);
+            }   
+            m_CurrentEnemies.Clear();
         }
     }
 

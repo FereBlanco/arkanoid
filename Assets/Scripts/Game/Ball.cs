@@ -10,17 +10,17 @@ namespace Scripts.Game
         [SerializeField] private float m_SlowSpeed = 5f;
         private Rigidbody2D m_Rigidbody;
         private Vector2 m_InitialPosition;
+        public Vector2 InitialPosition
+        {
+            get => m_InitialPosition;
+            set => m_InitialPosition = value;
+        }
 
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody2D>();
 
             m_InitialPosition = transform.position;
-        }
-
-        private void Start()
-        {
-            Reset();
         }
 
         public void Release()
@@ -42,9 +42,9 @@ namespace Scripts.Game
             m_Rigidbody.velocity = m_SlowSpeed * Vector3.Normalize(m_Rigidbody.velocity);
         }
 
-        public void SetDirection(Vector2 newDirection)
+        public void SetVelocity(Vector2 newVelocity)
         {
-            m_Rigidbody.velocity = newDirection.normalized * m_InitialVelocity.magnitude;
+            m_Rigidbody.velocity = newVelocity;
         }
 
     }

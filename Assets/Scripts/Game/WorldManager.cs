@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEngine;
@@ -9,25 +10,21 @@ namespace Script.Game
     {
         [Header ("Game configuration")]
         [SerializeField] private Vaus m_Vaus;
-        [SerializeField] private BallsManager m_BallsManager;
         [SerializeField] private DeadZone m_DeadZone;
         [SerializeField] private PowerUp[] m_PowerUpPrefabs;
         [SerializeField, Min(0)] private int m_NumberOfPowerUpsToAdd = 0;
         private List<Brick> m_Bricks = new List<Brick>();
         private PlayerManager m_PlayerManager;
-
-        // [Header ("Enemies")]
-        // [SerializeField] Enemy[] m_EnemyTypes;
-        // private List<Enemy> m_Enemies;
-        // [SerializeField, Min(1)] int m_MaxNumberEnemies = 10;
-        // [SerializeField, Range(0.1f, 2f)] float m_MinTImeBetweenEnemies = 5f;
-        // [SerializeField, Range(0.5f, 6f)] float m_MaxTImeBetweenEnemies = 10f;        
+        private BallsManager m_BallsManager;
+        private EnemySpawner m_EnemySpawner;
 
         public void Awake()
         {
             m_BallsManager = GetComponentInChildren<BallsManager>();
+            m_EnemySpawner = GetComponentInChildren<EnemySpawner>();
 
-            Assert.IsNotNull(m_BallsManager, "ERROR: m_BallsManager not assigned in class WorldManager children");
+            Assert.IsNotNull(m_BallsManager, "ERROR: m_BallsManager not found in class WorldManager children");
+            Assert.IsNotNull(m_EnemySpawner, "ERROR: m_EnemySpawner not found in class WorldManager children");
             Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in class WorldManager");
             Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
@@ -115,20 +112,15 @@ namespace Script.Game
 
         private void OnBallExitDeadZoneCallback(GameObject go)
         {
-            GameObject[] activeBullets = GameObject.FindGameObjectsWithTag("Bullet");
-            foreach (GameObject activeBullet in activeBullets)
+            Debug.Log("OnBallExitDeadZoneCallback OUT");
+            if (m_BallsManager.DestroyBall(go.GetComponent<Ball>()))
             {
-                activeBullet.SetActive(false);
-            }
+                Debug.Log("OnBallExitDeadZoneCallback IN");
+                m_Vaus.VausState = VausState.Destroyed;
+                m_PlayerManager.Lives--;
 
-            GameObject[] activePowerUps = GameObject.FindGameObjectsWithTag("PowerUp");
-            foreach (GameObject activePowerUp in activePowerUps)
-            {
-                Destroy(activePowerUp);
+                Reset();
             }
-
-            m_Vaus.VausState = VausState.Destroyed;
-            m_PlayerManager.Lives--;
         }
 
         private void SetupBricks()
@@ -172,37 +164,34 @@ namespace Script.Game
         {
             ResetPowerUps();
             ResetBullets();
-            ResetEnemies();
+            m_EnemySpawner.Reset();
+            StartCoroutine(VausRestore());
+        }
 
+        IEnumerator VausRestore()
+        {
+            yield return new WaitForSeconds(1f);
             m_Vaus.Reset();
             m_BallsManager.Reset();
         }
 
         private void ResetPowerUps()
         {
-            // var powerUps = GameObject.FindGameObjectsWithTag(Constants.POWERUP_TAG);
-            // foreach (var powerUp in powerUps)
-            // {
-            //     Destroy(powerUp.gameObject);
-            // }
+            var powerUps = GameObject.FindGameObjectsWithTag(Constants.TAG_POWER_UP);
+            foreach (var powerUp in powerUps)
+            {
+                Destroy(powerUp.gameObject);
+            }
         }
 
         private void ResetBullets()
         {
-            // var bullets = GameObject.FindGameObjectsWithTag(Constants.BULLET_TAG);
-            // foreach (var bullet in bullets)
-            // {
-            //     // Las balas usan un Object Pool
-            //     bullet.SetActive(false);
-            // }
-        }
-
-        private static void ResetEnemies()
-        {
-            // foreach (var enemySpawner in enemySpawners)
-            // {
-            //     enemySpawner.Reset();
-            // }
+            var bullets = GameObject.FindGameObjectsWithTag(Constants.TAG_BULLET);
+            foreach (var bullet in bullets)
+            {
+                // Las balas usan un Object Pool
+                bullet.SetActive(false);
+            }
         }
     }
 }

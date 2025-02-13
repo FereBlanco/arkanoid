@@ -10,3 +10,4 @@ ToDo Fere:
     Adapter Pattern
     Develop two different ways: JSON and PlayerPrefs
     (and it could be a third one saving data in a server)
+[ ] Review the losing life code: remove enemies/bullets/power-ups through their controllers instead of just destroying them

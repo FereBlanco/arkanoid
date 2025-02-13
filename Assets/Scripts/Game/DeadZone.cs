@@ -1,6 +1,5 @@
 using System;
 using Scripts.Game;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Script.Game

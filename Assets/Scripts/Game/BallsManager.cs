@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Scripts.Game;
 using UnityEditor;
@@ -10,7 +11,7 @@ namespace Script.Game
     {
         [SerializeField] private Ball m_MainBall;
         List<Ball> m_Balls;
-
+        
         private void Awake()
         {
             Assert.IsNotNull(m_MainBall, "ERROR: m_MainBall not assigned in class BallsManager");
@@ -30,18 +31,9 @@ namespace Script.Game
 
         internal void Reset()
         {
-            Debug.Log("Reset");
             m_Balls.Clear();
             m_Balls.Add(m_MainBall);
             m_MainBall.Reset();
-        }
-
-        internal void UpdateMainBall()
-        {
-            if (m_Balls.Count > 0)
-            {
-                m_MainBall = m_Balls[0];
-            }
         }
 
         internal void SetSlowSpeed()
@@ -56,20 +48,24 @@ namespace Script.Game
         {
             if (m_Balls.Count == 1)
             {
-                SetNewball(Vector3.up);
-                SetNewball(Vector3.up);
-                // SetNewball();
-                EditorApplication.isPaused = true;
+                CreateNewball(1f * Vector2.up);
+                CreateNewball(1f * Vector2.down);
             }
         }
 
-        private void SetNewball(Vector3 offset)
+        private void CreateNewball(Vector2 offset)
         {
-            Ball newBall = Instantiate(m_MainBall, m_MainBall.transform.position + offset, Quaternion.identity);
-            float spriteExtentsX = GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
-            Vector3 randomDeltaPosition = Random.insideUnitCircle * spriteExtentsX;
-            newBall.transform.position = m_MainBall.transform.position + randomDeltaPosition;
-            newBall.SetDirection(Random.insideUnitCircle);
+            Ball newBall = Instantiate(m_MainBall, m_MainBall.transform.position + (Vector3)offset, Quaternion.identity);
+            // ToDo: 2 positions, up & downw, and change only direction (Profesor uses Random position)
+
+            // PROFESOR
+            // float spriteExtentsX = m_MainBall.GetComponent<SpriteRenderer>().sprite.bounds.extents.x;
+            // Vector3 randomDeltaPosition = UnityEngine.Random.insideUnitCircle * spriteExtentsX;
+            // newBall.transform.position = m_MainBall.transform.position + randomDeltaPosition;
+            // newBall.SetDirection(UnityEngine.Random.insideUnitCircle);
+
+            // newBall.transform.SetParent(m_MainBall.transform.parent);
+            newBall.SetVelocity(m_MainBall.GetComponent<Rigidbody2D>().velocity + offset);
             m_Balls.Add(newBall);
         }
 
@@ -83,6 +79,21 @@ namespace Script.Game
         {
             m_MainBall.transform.position = new Vector2(8.0f, -10.0f);
             m_MainBall.GetComponent<Rigidbody2D>().velocity = new Vector2(20.0f, 15.0f);
+        }
+
+        internal bool DestroyBall(Ball ball)
+        {
+            if (m_Balls.Count == 1)
+            {
+                return true;
+            }
+            else
+            {
+                m_Balls.Remove(ball);
+                Destroy(ball.gameObject);
+                m_MainBall = m_Balls[0];
+                return false;
+            }
         }
     }
 }
