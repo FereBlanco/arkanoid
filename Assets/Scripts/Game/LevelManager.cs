@@ -1,6 +1,5 @@
-using System.Collections;
+using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Scripts.Game
@@ -8,10 +7,7 @@ namespace Scripts.Game
     public class LevelManager : MonoBehaviour
     {
         private static LevelManager m_Instance;
-
-        public Button[] m_LevelButtons;
-
-        private bool m_FirstLoad = true;
+        public static LevelManager Instance { get => m_Instance; }
 
         private void Awake()
         {
@@ -25,19 +21,20 @@ namespace Scripts.Game
                 Destroy(gameObject);
             }
 
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
 
-        public void Start()
+        private void Update()
         {
-            ChangeScene(1);
-            m_FirstLoad = false;
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                Exit();
+            }   
         }
 
-        public void ChangeScene(int sceneID)
+        internal void RoundClear()
         {
-            if (true != m_FirstLoad) ScoreManager.GetInstance().AddScore(5);
-            StartCoroutine(LoadScene("Scene0" + sceneID));
+            Debug.Log("ROUND CLEAR");
         }
 
         public void Exit()
@@ -49,34 +46,17 @@ namespace Scripts.Game
             #endif
         }
 
-        IEnumerator LoadScene(string sceneName)
-        {
-            // yield return null;
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-            while (!asyncOperation.isDone)
-            {
-                yield return null;
-            }
+        // IEnumerator LoadScene(string sceneName)
+        // {
+        //     // yield return null;
+        //     AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        //     while (!asyncOperation.isDone)
+        //     {
+        //         yield return null;
+        //     }
 
-            UpdateButtons();
-        }
-
-        private void UpdateButtons()
-        {
-            for (int i = 0; i < m_LevelButtons.Length; i++)
-            {
-                string nameScene = SceneManager.GetActiveScene().name;
-                string numberSceneString = nameScene[nameScene.Length - 1].ToString();
-                int numberScene = int.Parse(numberSceneString);
-                int buttonScene = int.Parse(m_LevelButtons[i].name[m_LevelButtons[i].name.Length - 1].ToString());
-                m_LevelButtons[i].gameObject.SetActive(buttonScene != numberScene);
-            }
-        }
-
-        public static LevelManager GetInstance()
-        {
-            return m_Instance;
-        }        
+        //     UpdateButtons();
+        // }
     }
 }
     

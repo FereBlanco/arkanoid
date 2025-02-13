@@ -20,9 +20,8 @@ namespace Scripts.Game
         private void Awake()
         {
             m_CurrentEnemies = new List<Enemy>();
-
             m_WaitBetweenEnemies = new WaitForSeconds(m_TimeBetweenEnemies);
-
+            StartCreateEnemies();
         }
 
         public void StartCreateEnemies()

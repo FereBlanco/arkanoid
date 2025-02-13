@@ -11,6 +11,7 @@ namespace Script.Game
         [Header ("Game configuration")]
         [SerializeField] private Vaus m_Vaus;
         [SerializeField] private DeadZone m_DeadZone;
+        [SerializeField] private Breakdoor m_Breakdoor;
         [SerializeField] private PowerUp[] m_PowerUpPrefabs;
         [SerializeField, Min(0)] private int m_NumberOfPowerUpsToAdd = 0;
         private List<Brick> m_Bricks = new List<Brick>();
@@ -25,6 +26,7 @@ namespace Script.Game
 
             Assert.IsNotNull(m_BallsManager, "ERROR: m_BallsManager not found in class WorldManager children");
             Assert.IsNotNull(m_EnemySpawner, "ERROR: m_EnemySpawner not found in class WorldManager children");
+            Assert.IsNotNull(m_Breakdoor, "ERROR: m_Breakdoor not found in class WorldManager children");
             Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in class WorldManager");
             Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
 
@@ -32,7 +34,9 @@ namespace Script.Game
 
             m_Vaus.OnBallReleaseEvent += OnBallReleaseCallback;
             m_DeadZone.OnBallExitDeadZoneEvent += OnBallExitDeadZoneCallback;
+            m_Breakdoor.OnVausEnterBreakdoorEvent += OnVausEnterBreakdoorCallback;
         }
+
 
         public void Start()
         {
@@ -51,12 +55,6 @@ namespace Script.Game
             if (Input.GetKeyDown(KeyCode.RightControl))
             {
                 m_BallsManager.ResetBallRight();
-            }
-            // Only to test purposes
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                Debug.Log("K key");
-                m_Vaus.VausState = VausState.Destroyed;
             }
         }
 
@@ -87,6 +85,8 @@ namespace Script.Game
             switch (powerUp.PowerUpType)
             {
                 case PowerUpType.Break:
+                    Debug.Log("TAKE POWER UP BREAK");
+                    m_Breakdoor.Open();
                     break;
                 case PowerUpType.Catch:
                     m_Vaus.VausState = VausState.Normal;
@@ -112,15 +112,19 @@ namespace Script.Game
 
         private void OnBallExitDeadZoneCallback(GameObject go)
         {
-            Debug.Log("OnBallExitDeadZoneCallback OUT");
             if (m_BallsManager.DestroyBall(go.GetComponent<Ball>()))
             {
-                Debug.Log("OnBallExitDeadZoneCallback IN");
                 m_Vaus.VausState = VausState.Destroyed;
                 m_PlayerManager.Lives--;
 
                 Reset();
             }
+        }
+
+        private void OnVausEnterBreakdoorCallback()
+        {
+            m_PlayerManager.AddScore(1000);
+            LevelManager.Instance.RoundClear();
         }
 
         private void SetupBricks()
@@ -165,6 +169,7 @@ namespace Script.Game
             ResetPowerUps();
             ResetBullets();
             m_EnemySpawner.Reset();
+            m_Breakdoor.Close();
             StartCoroutine(VausRestore());
         }
 

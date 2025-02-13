@@ -29,8 +29,7 @@ namespace Scripts.Game
         public static string PARAMETER_LASER = "Laser";
         public static string PARAMETER_DESTROYED = "Destroyed";
 
-        public static string PARAMETER_TRAPDOOR_OPEN = "Open";
-        public static string PARAMETER_TRAPDOOR_CLOSE = "Close";
+        public static string BOOL_DOOR_STATE = "isOpened";
     }
 
 }

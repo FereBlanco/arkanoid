@@ -46,6 +46,7 @@ namespace Scripts.Game
             {
                 m_Score = value;
                 m_HUDManager.ShowScore(m_Score);
+                // HUDManager.Instance.ShowScore(m_Score);
                 m_dataPersistanceManager.UpdateHighscore(m_Score);
                 CalculateExtraLifeByPoints();
             }
@@ -62,7 +63,7 @@ namespace Scripts.Game
             {
                 IEnumerator WorldReset()
                 {
-                    // Each "yield return null;" makes the game waits for 1 frame
+                    // each "yield return null;" makes the game waits for 1 frame
                     yield return null;
                     m_WorldManager.Reset();
                 }
@@ -81,8 +82,6 @@ namespace Scripts.Game
                             StartCoroutine(WorldReset());
                         }
                         m_Lives = value;
-                        // Automatizo la actualización visual
-                        Debug.Log($"Actualizaste lives: {m_Lives}");
                     }
                 }
             }
@@ -102,6 +101,7 @@ namespace Scripts.Game
             {
                 Destroy(gameObject);
             }
+
 
             m_ExtraLifeScoresIndex = 0;
             m_NextExtraLifeScore = m_ExtraLifeCosts[m_ExtraLifeScoresIndex];

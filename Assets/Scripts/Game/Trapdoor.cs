@@ -6,20 +6,24 @@ namespace Scripts.Game
     public class Trapdoor : MonoBehaviour
     {
         Animator m_Animator;
+        private bool isOpened = false;
 
         private void Awake()
         {
             m_Animator = GetComponent<Animator>();
+            isOpened = false;
         }
 
         public void Open()
         {
-            m_Animator.SetTrigger(Constants.PARAMETER_TRAPDOOR_OPEN);
+            isOpened = true;
+            m_Animator.SetBool(Constants.BOOL_DOOR_STATE, isOpened);
         }
 
         public void Close()
         {
-            m_Animator.SetTrigger(Constants.PARAMETER_TRAPDOOR_CLOSE);
+            isOpened = false;
+            m_Animator.SetBool(Constants.BOOL_DOOR_STATE, isOpened);
         }
     }
 }
