@@ -317,4 +317,18 @@ Lo suyo sería mantener un Object Pool que sí controlara eso. Al asignar un nue
 
 Los PowerUps también podrían gestionarse con un Object Pool.
 
+[ENEMIES / ENEMY SPAWNER]
+Creamos dos puertas en la parte superior. Periódicamente se abren y dejan pasar un enemigo que creamos justo encima.
+Los enemigos siguen este algoritmo:
+- En todo momento si pueden bajar, bajan
+- Si no pueden bajar paran durante un momento y se van aleatoriamente hacia un lado
+- Si chocan contra una pared paran durante un momento y se van hacia el otro lado
+Para controlar los choques contra cosas cada enemigo usa varios Raycast: 3 hacia abajo y 3 a cada lado
 
+[BALLS MANAGER]
+Con el PowerUp Disruption aparecen tres Balls en la pantalla.
+Solo perderemos vidas cuando perdamos la última de ellas.
+El PowerUp Disruption solo tendrá efecto de nuevo cuando volvamos a tener una sola Ball.
+Por gestionar esto programamos un BallsManager.
+Siempre habrá una MainBall. Cuando esta se pierda otra pasará a ser la Main.
+De inicio tendremos solo una, que obviamente marcaremos como Main.
