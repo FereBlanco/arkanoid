@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Script.Game;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
@@ -12,13 +13,16 @@ namespace Scripts.Game
          [SerializeField] private Trapdoor[] m_Trapdoors;
          [SerializeField] private int m_MaxEnemies;
          [SerializeField] float m_TimeBetweenEnemies;
-         [SerializeField] Enemy[] m_EnemyPrefabs;
+         EnemyPool m_PoolEnemies;
          private List<Enemy> m_CurrentEnemies;
          private WaitForSeconds m_WaitBetweenEnemies;
          private bool m_IsCreatingEnemies = false;
 
         private void Awake()
         {
+            m_PoolEnemies = GetComponentInChildren<EnemyPool>();
+            Assert.IsNotNull(m_PoolEnemies, "ERROR: m_PoolEnemies not found in class WorldManager children");
+
             m_CurrentEnemies = new List<Enemy>();
             m_WaitBetweenEnemies = new WaitForSeconds(m_TimeBetweenEnemies);
             StartCreateEnemies();
@@ -43,10 +47,13 @@ namespace Scripts.Game
             if (m_IsCreatingEnemies && m_CurrentEnemies.Count < m_MaxEnemies)
             {
                 int numberTrapdoor = Random.Range(0, 2);
-                int numberEnemy = Random.Range(0, m_EnemyPrefabs.Length);
 
                 m_Trapdoors[numberTrapdoor].Open();
-                Enemy newEnemy = Instantiate(m_EnemyPrefabs[numberEnemy], m_Trapdoors[numberTrapdoor].transform.position + 4f * Vector3.up, Quaternion.identity);
+                
+                Enemy newEnemy = m_PoolEnemies.GetEnemy();
+                newEnemy.transform.position = m_Trapdoors[numberTrapdoor].transform.position + 3f * Vector3.up;
+                newEnemy.transform.rotation = Quaternion.identity;
+                newEnemy.Activate();
                 m_CurrentEnemies.Add(newEnemy);
                 yield return new WaitForSeconds(4f);
                 m_Trapdoors[numberTrapdoor].Close();
@@ -59,7 +66,7 @@ namespace Scripts.Game
         {
             foreach (var enemy in m_CurrentEnemies)
             {
-                Destroy(enemy.gameObject);
+                enemy.Release();
             }   
             m_CurrentEnemies.Clear();
         }

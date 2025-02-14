@@ -1,9 +1,8 @@
 using System.Collections;
-using Scripts.Game;
-using Unity.Burst.CompilerServices;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 
-namespace Script.Game
+namespace Scripts.Game
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
@@ -33,6 +32,8 @@ namespace Script.Game
             }
         }
         private EnemyState m_NextState;
+        private EnemyPool m_Pool;
+        public EnemyPool Pool { get => m_Pool; set => m_Pool = value; }
 
         private Rigidbody2D m_Rigidbody2D;
         private Collider2D m_Collider;
@@ -49,13 +50,9 @@ namespace Script.Game
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_Collider = GetComponent<Collider2D>();
 
-            State = EnemyState.Down;
-            m_NextState = EnemyState.Stopped;
-
             m_SizeCheckStart = m_OffsetFactor * m_Collider.bounds.extents.y;
             m_DumbWaitForSeconds = new WaitForSeconds(m_DumbTime);
         }
-
 
         public void FixedUpdate()
         {
@@ -178,6 +175,18 @@ namespace Script.Game
                 int sideRandom = Random.Range(0, 2);
                 State = (sideRandom == 0 ? EnemyState.Left : EnemyState.Right);
             }
+        }
+
+        public void Activate()
+        {
+            State = EnemyState.Down;
+            m_NextState = EnemyState.Stopped;
+        }
+
+        public void Release()
+        {
+            State = EnemyState.Stopped;
+            Pool.ReturnToPool(this);
         }
     }
 }

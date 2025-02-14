@@ -72,7 +72,7 @@ namespace Script.Game
                 newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             }
             Destroy(brick.gameObject);
-            // if (bricks.Count == 0) we reach next level
+            // When (bricks.Count == 0) we reach next level
         }
 
         private void OnBallReleaseCallback()
@@ -123,6 +123,7 @@ namespace Script.Game
 
         private void OnVausEnterBreakdoorCallback()
         {
+            m_Breakdoor.OnVausEnterBreakdoorEvent -= OnVausEnterBreakdoorCallback;
             m_PlayerManager.AddScore(1000);
             LevelManager.Instance.RoundClear();
         }
@@ -169,7 +170,12 @@ namespace Script.Game
             ResetPowerUps();
             ResetBullets();
             m_EnemySpawner.Reset();
+
             m_Breakdoor.Close();
+            // I should probably differentiate between "Initializing" screens and "Ending" screens
+            // (they may not always be the same)
+            m_Breakdoor.OnVausEnterBreakdoorEvent += OnVausEnterBreakdoorCallback;
+
             StartCoroutine(VausRestore());
         }
 
@@ -194,7 +200,7 @@ namespace Script.Game
             var bullets = GameObject.FindGameObjectsWithTag(Constants.TAG_BULLET);
             foreach (var bullet in bullets)
             {
-                // Las balas usan un Object Pool
+                // Bullets use Object Pool
                 bullet.SetActive(false);
             }
         }

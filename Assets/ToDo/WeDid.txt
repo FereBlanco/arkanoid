@@ -334,7 +334,7 @@ Siempre habrá una MainBall. Cuando esta se pierda otra pasará a ser la Main.
 De inicio tendremos solo una, que obviamente marcaremos como Main.
 
 [SINGLETON GENERICO]
-Como vamos a utilizar varios Singleto, podemos programar un template MonoSingleton<T>
+Como vamos a utilizar varios Singleton, podemos programar un template MonoSingleton<T>
 Cada avez que necesitemos uno podemos crear una instancia con la clase que queramos:
     LevelManager m_LevelManager = new MonoSingleton<LevelManager>
 
@@ -356,6 +356,7 @@ Aquí jugamos con el Collider:
       El WorldManager recibirá ese evento que permitirá pasar al siguiente Round:
           private void OnVausEnterBreakdoorCallback()
           {
+              m_Breakdoor.OnVausEnterBreakdoorEvent -= OnVausEnterBreakdoorCallback;
               m_PlayerManager.AddScore(1000);
               LevelManager.Instance.RoundClear();
           }
