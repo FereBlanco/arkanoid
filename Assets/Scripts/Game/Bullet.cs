@@ -18,25 +18,16 @@ namespace Scripts.Game
             gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            m_Rigidbody.velocity = m_Direction;
-        }
-
-        private void OnDisable()
-        {
-            m_Rigidbody.velocity = Vector2.zero;
-        }
-
         public void Shoot(Vector3 position)
         {
             transform.position = position;
+            m_Rigidbody.velocity = m_Direction;
         }
 
         public void Shoot(Vector3 position, Vector3 direction)
         {
+            m_Direction = 1f * direction;
             Shoot(position);
-            m_Direction = 5f * direction;
         }
     }
 }

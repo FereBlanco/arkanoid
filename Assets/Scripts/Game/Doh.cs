@@ -17,7 +17,7 @@ namespace Scripts.Game
         {
             Assert.IsTrue(m_MaxRandomTime > m_MinRandomTime, "ERROR: m_MinRandomTime has to be smaller than m_MaxRandomTime");
             m_Animator = GetComponent<Animator>();
-            m_Shooter = GetComponent<Shooter>();
+            m_Shooter = GetComponent<ShooterWithTarget>();
             StartCoroutine(Shoot());
         }
 
