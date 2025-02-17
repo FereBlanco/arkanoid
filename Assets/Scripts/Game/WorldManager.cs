@@ -18,14 +18,15 @@ namespace Script.Game
         private PlayerManager m_PlayerManager;
         private BallsManager m_BallsManager;
         private EnemySpawner m_EnemySpawner;
+        private bool m_RoundDoh = true;
 
         public void Awake()
         {
             m_BallsManager = GetComponentInChildren<BallsManager>();
-            m_EnemySpawner = GetComponentInChildren<EnemySpawner>();
+            if (!m_RoundDoh) m_EnemySpawner = GetComponentInChildren<EnemySpawner>();
 
             Assert.IsNotNull(m_BallsManager, "ERROR: m_BallsManager not found in class WorldManager children");
-            Assert.IsNotNull(m_EnemySpawner, "ERROR: m_EnemySpawner not found in class WorldManager children");
+            if (!m_RoundDoh) Assert.IsNotNull(m_EnemySpawner, "ERROR: m_EnemySpawner not found in class WorldManager children");
             Assert.IsNotNull(m_Breakdoor, "ERROR: m_Breakdoor not found in class WorldManager children");
             Assert.IsNotNull(m_Vaus, "ERROR: vaus not assigned in class WorldManager");
             Assert.IsNotNull(m_DeadZone, "ERROR: deadZone not assigned in WorldManager.cs");
@@ -169,7 +170,7 @@ namespace Script.Game
         {
             ResetPowerUps();
             ResetBullets();
-            m_EnemySpawner.Reset();
+            if (!m_RoundDoh) m_EnemySpawner.Reset();
 
             m_Breakdoor.Close();
             // I should probably differentiate between "Initializing" screens and "Ending" screens

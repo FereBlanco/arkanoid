@@ -28,6 +28,8 @@ namespace Scripts.Game
         public static string PARAMETER_CATCH = "Catch";
         public static string PARAMETER_LASER = "Laser";
         public static string PARAMETER_DESTROYED = "Destroyed";
+        public static string PARAMETER_ATTACK = "Attack";
+        public static string PARAMETER_HURT = "Hurt";
 
         public static string BOOL_DOOR_STATE = "isOpened";
     }

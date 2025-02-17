@@ -5,7 +5,7 @@ namespace Scripts.Game
     [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] Vector2 m_Direction = Vector2.up * 10f;
+        [SerializeField] Vector2 m_Direction = 10f * Vector2.up;
         private Rigidbody2D m_Rigidbody;
 
         private void Awake()
@@ -31,6 +31,12 @@ namespace Scripts.Game
         public void Shoot(Vector3 position)
         {
             transform.position = position;
+        }
+
+        public void Shoot(Vector3 position, Vector3 direction)
+        {
+            Shoot(position);
+            m_Direction = 5f * direction;
         }
     }
 }

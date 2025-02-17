@@ -17,7 +17,7 @@ namespace Scripts.Game
         [SerializeReference, Min(0.1f)] float m_CoolDownTime = 0.25f;
         private bool m_CanShoot;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Assert.IsNotNull(m_BulletPool, "ERROR: m_BulletPool not defined in Shooter.cs");
             Assert.IsNotNull(m_ShootPoints, "ERROR: m_ShootPoints not defined in Shooter.cs");
@@ -30,7 +30,7 @@ namespace Scripts.Game
             m_CanShoot = true;
         }
 
-        public void TryShoot()
+        public virtual void TryShoot()
         {
             if (m_CanShoot)
             {
@@ -38,10 +38,15 @@ namespace Scripts.Game
                 foreach (var shootPoint in m_ShootPoints)
                 {
                     Bullet bullet = m_BulletPool.GetBullet();
-                    bullet.Shoot(shootPoint.position);
+                    Shoot(bullet, shootPoint.position);
                 }
                 StartCoroutine(CoolDownCoroutine());
             }
+        }
+
+        protected virtual void Shoot(Bullet bullet, Vector3 origin)
+        {
+            bullet.Shoot(origin);
         }
 
         IEnumerator CoolDownCoroutine()
