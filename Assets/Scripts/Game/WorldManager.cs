@@ -59,20 +59,21 @@ namespace Script.Game
             }
         }
 
-        private void OnBrickDestroyedCallback(Brick brick)
+        private void OnBrickDestroyedCallback(Damage damage)
         {
-            m_PlayerManager.AddScore(brick.GetScore());
+            m_PlayerManager.AddScore(damage.GetScore());
+            var brick = damage.GetComponent<Brick>();
             m_Bricks.Remove(brick);
-            brick.OnBrickDestroyedEvent -= OnBrickDestroyedCallback;
+            damage.OnDestroyedEvent -= OnBrickDestroyedCallback;
 
             if (brick.HasPowerUp())
             {
                 PowerUpType powerUpType = brick.PowerUpType;
-                PowerUp newPowerUp = Instantiate(m_PowerUpPrefabs[(int)powerUpType], brick.transform.position, Quaternion.identity);
+                PowerUp newPowerUp = Instantiate(m_PowerUpPrefabs[(int)powerUpType], damage.transform.position, Quaternion.identity);
                 newPowerUp.PowerUpType = powerUpType;
                 newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             }
-            Destroy(brick.gameObject);
+            Destroy(damage.gameObject);
             // When (bricks.Count == 0) we reach next level
         }
 
@@ -136,7 +137,7 @@ namespace Script.Game
             foreach (var brickGO in brickGOs)
             {
                 Brick brick = brickGO.GetComponent<Brick>();
-                brick.OnBrickDestroyedEvent += OnBrickDestroyedCallback;
+                brick.GetComponent<Damage>().OnDestroyedEvent += OnBrickDestroyedCallback;
                 m_Bricks.Add(brick);
             }
         }

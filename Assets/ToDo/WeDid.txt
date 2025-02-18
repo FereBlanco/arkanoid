@@ -364,6 +364,31 @@ Aquí jugamos con el Collider:
 [DOH]
 Al ser muy diferente de los demás Rounds el Doh (el Boss final) tiene su propia Scene template
 En este round no habrá PowerUps ni Enemies
+Doh disparará periódicamente Bullets (usaremos para ello una de las animaciones de Enemies, la del cubo rojo)
+Tiene una animación en la que habre la boca y dispara
+Utilizaremos la mismas clases Shooter y Bullet que ya teníamos para el PowerUp Laser, pero separaremos la 
+función Shoot y le aplicaremos POLIMORFISMO: tendremos dos versiónes de la función
+    - La primera es la que usará la Vaus cuando tenga el PowerUp Laser.
+      Recibe un solo parámetro, que es la posición desde la que se dispara.
+      Creará un nuevo Bullet y cogerá por defecto la dirección vertical.
+    - La segunda es la que usará Doh al disparar contra la Vaus.
+      Recibe dos parámetro, posición y dirección.
+      La posición será la boca de Doh, desde donde parten los proyectiles.
+      La dirección será hacia la Vaus
+      (el Vector se calcula restando el vector de posición del proyectil del vector de posición de la Vaus)
+
+Doh tiene varios estados que corresponden al movimiento de la boca cuando lanza proyecties.
+En cada uno de estos estados puede ser herido, y por eso creamos una máquina de estados "circular", donde
+Doh va pasando por todos los estados cuando dispara pero desde cada uno de ellos hay una transición hacia
+su estado Hurt correspondiente.
+
+También tiene más estados (en este caso visuales) correspondientes al nivel de daño global que ha recibido.
+
+Finalmente tendrá otros nuevos estados correspondientes a la animación final, cuando haya sido destruido.
+
+Para el round del Doh usaremos un WorldManager específico. Crearemos una clase WorldManager abstracta y de ahí
+heredará la clase WorldManager específica de los niveles con ladrillos y la clase WorldManager específica para
+la round final con Doh.
 
 
 [TIMELINE & SIGNALS]

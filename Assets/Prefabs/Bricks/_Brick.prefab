@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 828177262198180378}
   - component: {fileID: 6457299700043931297}
   - component: {fileID: 1471398556955401660}
+  - component: {fileID: -5165713608206972769}
   m_Layer: 0
   m_Name: _Brick
   m_TagString: Brick
@@ -146,3 +147,15 @@ MonoBehaviour:
   m_Score: 50
   m_Resistance: 1
   m_PowerUpType: -1
+--- !u!114 &-5165713608206972769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2454838560792276140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d958a9de9ee23ac48a917fce1c148278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
