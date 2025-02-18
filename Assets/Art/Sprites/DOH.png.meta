@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DOH_00
+      name: Doh_00_25_Idle
       rect:
         serializedVersion: 2
         x: 0
@@ -131,7 +131,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_01
+      name: Doh_00_25_Attack01
       rect:
         serializedVersion: 2
         x: 65
@@ -152,7 +152,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_02
+      name: Doh_00_25_Attack02
       rect:
         serializedVersion: 2
         x: 129
@@ -173,7 +173,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_03
+      name: Doh_00_25_Attack03
       rect:
         serializedVersion: 2
         x: 193
@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_04
+      name: Doh_Hurt_00
       rect:
         serializedVersion: 2
         x: 0
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_05
+      name: Doh_Hurt_01
       rect:
         serializedVersion: 2
         x: 65
@@ -236,7 +236,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_06
+      name: Doh_Hurt_02
       rect:
         serializedVersion: 2
         x: 129
@@ -257,7 +257,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_07
+      name: Doh_Hurt_03
       rect:
         serializedVersion: 2
         x: 193
@@ -278,7 +278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_08
+      name: Doh_25_50_Idle
       rect:
         serializedVersion: 2
         x: 0
@@ -299,7 +299,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_09
+      name: Doh_25_50_Attack01
       rect:
         serializedVersion: 2
         x: 65
@@ -320,7 +320,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_10
+      name: Doh_25_50_Attack02
       rect:
         serializedVersion: 2
         x: 129
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_11
+      name: Doh_25_50_Attack03
       rect:
         serializedVersion: 2
         x: 193
@@ -362,7 +362,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_12
+      name: Doh_50_75_Idle
       rect:
         serializedVersion: 2
         x: 0
@@ -383,7 +383,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_13
+      name: Doh_50_75_Attack01
       rect:
         serializedVersion: 2
         x: 65
@@ -404,10 +404,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_14
+      name: Doh_50_75_Attack02
       rect:
         serializedVersion: 2
-        x: 129
+        x: 130
         y: 384
         width: 62
         height: 96
@@ -425,7 +425,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_15
+      name: Doh_50_75_Attack03
       rect:
         serializedVersion: 2
         x: 193
@@ -446,11 +446,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_16
+      name: Doh_75_100_Idle
       rect:
         serializedVersion: 2
         x: 0
-        y: 288
+        y: 289
         width: 62
         height: 96
       alignment: 0
@@ -467,7 +467,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_17
+      name: Doh_75_100_Attack01
       rect:
         serializedVersion: 2
         x: 65
@@ -488,7 +488,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_18
+      name: Doh_75_100_Attack02
       rect:
         serializedVersion: 2
         x: 129
@@ -509,11 +509,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_19
+      name: Doh_75_100_Attack03
       rect:
         serializedVersion: 2
         x: 193
-        y: 288
+        y: 287
         width: 62
         height: 96
       alignment: 0
@@ -530,11 +530,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_20
+      name: Doh_Destroy_00
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 193
         width: 62
         height: 96
       alignment: 0
@@ -551,7 +551,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_21
+      name: Doh_Destroy_01
       rect:
         serializedVersion: 2
         x: 65
@@ -572,7 +572,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_22
+      name: Doh_Destroy_02
       rect:
         serializedVersion: 2
         x: 128
@@ -593,7 +593,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_23
+      name: Doh_Destroy_03
       rect:
         serializedVersion: 2
         x: 193
@@ -614,7 +614,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_24
+      name: Doh_Destroy_04
       rect:
         serializedVersion: 2
         x: 0
@@ -635,7 +635,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_25
+      name: Doh_Destroy_05
       rect:
         serializedVersion: 2
         x: 65
@@ -656,7 +656,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_26
+      name: Doh_Destroy_06
       rect:
         serializedVersion: 2
         x: 128
@@ -677,7 +677,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_27
+      name: Doh_Destroy_07
       rect:
         serializedVersion: 2
         x: 193
@@ -698,7 +698,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_28
+      name: Doh_Destroy_08
       rect:
         serializedVersion: 2
         x: 0
@@ -719,7 +719,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DOH_29
+      name: Doh_Destroy_09
       rect:
         serializedVersion: 2
         x: 65
@@ -771,37 +771,37 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DOH_00: -745613025
-      DOH_01: -490822014
-      DOH_02: -1804026593
-      DOH_03: -1747203695
-      DOH_04: -1913676156
-      DOH_05: 1771403455
-      DOH_06: 1610742072
-      DOH_07: 1653641089
-      DOH_08: -1671582838
-      DOH_09: -525999652
-      DOH_10: 1639038784
-      DOH_11: -1719263032
-      DOH_12: 423504503
-      DOH_13: 322460284
-      DOH_14: -348644510
-      DOH_15: -924508154
-      DOH_16: -476430088
-      DOH_17: 883431113
-      DOH_18: -1463129311
-      DOH_19: -1978252984
-      DOH_20: 2101452699
-      DOH_21: -1461861021
-      DOH_22: -1358265720
-      DOH_23: 1133065047
-      DOH_24: -1056023380
-      DOH_25: -2019847169
-      DOH_26: -1015318077
-      DOH_27: 823349289
-      DOH_28: 199305312
-      DOH_29: -913918385
       DOH_Frame: -895890751
+      Doh_00_25_Attack01: -490822014
+      Doh_00_25_Attack02: -1804026593
+      Doh_00_25_Attack03: -1747203695
+      Doh_00_25_Idle: -745613025
+      Doh_25_50_Attack01: -525999652
+      Doh_25_50_Attack02: 1639038784
+      Doh_25_50_Attack03: -1719263032
+      Doh_25_50_Idle: -1671582838
+      Doh_50_75_Attack01: 322460284
+      Doh_50_75_Attack02: -348644510
+      Doh_50_75_Attack03: -924508154
+      Doh_50_75_Idle: 423504503
+      Doh_75_100_Attack01: 883431113
+      Doh_75_100_Attack02: -1463129311
+      Doh_75_100_Attack03: -1978252984
+      Doh_75_100_Idle: -476430088
+      Doh_Destroy_00: 2101452699
+      Doh_Destroy_01: -1461861021
+      Doh_Destroy_02: -1358265720
+      Doh_Destroy_03: 1133065047
+      Doh_Destroy_04: -1056023380
+      Doh_Destroy_05: -2019847169
+      Doh_Destroy_06: -1015318077
+      Doh_Destroy_07: 823349289
+      Doh_Destroy_08: 199305312
+      Doh_Destroy_09: -913918385
+      Doh_Hurt_00: -1913676156
+      Doh_Hurt_01: 1771403455
+      Doh_Hurt_02: 1610742072
+      Doh_Hurt_03: 1653641089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
-    public partial class WorldManager : MonoBehaviour
+    public abstract class WorldManager : MonoBehaviour
     {
         [Header ("Game configuration")]
         [SerializeField] protected Vaus m_Vaus;
@@ -53,7 +53,6 @@ namespace Scripts.Game
             {
                 m_Vaus.VausState = VausState.Destroyed;
                 m_PlayerManager.Lives--;
-                Reset();
             }
         }
 

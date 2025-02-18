@@ -14,7 +14,10 @@ ToDo Fere:
     through their controllers instead of just destroying them
 [ ] Vaus trembles if it approaches the edges
 [ ] Create a generic method/template for Singleton pattern >> doesn't work fine with Properties in Awakes
+[ ] Enemies die when a Bullet touches them
+[ ] Enemies die when the Ball touches them
 [ ] Completar WeDid con todo lo del Doh
+[ ] Arreglar todos los extados del Doh
 
 [ ] Build scene template from Professor's one
 [ ] Export to WebGL

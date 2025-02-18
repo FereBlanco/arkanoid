@@ -4,14 +4,14 @@ using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
-    [RequireComponent(typeof(Animator), typeof(Shooter))]
+    [RequireComponent(typeof(Animator), typeof(Shooter), typeof(Damage))]
 
     public class Doh : MonoBehaviour
     {
-        Animator m_Animator;
         [SerializeField] float m_MinRandomTime = 2f;
         [SerializeField] float m_MaxRandomTime = 5f;
         private Shooter m_Shooter;
+        private Animator m_Animator;
 
         void Awake()
         {
