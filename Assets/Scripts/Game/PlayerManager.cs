@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Script.Game;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -38,10 +37,7 @@ namespace Scripts.Game
         private int m_Score;
         public int Score
         {
-            get
-            {
-                return m_Score;
-            }
+            get => m_Score;
             set
             {
                 m_Score = value;
@@ -55,10 +51,7 @@ namespace Scripts.Game
         private int m_Lives;
         public int Lives
         {
-            get
-            {
-                return m_Lives;
-            }
+            get => m_Lives;
             set
             {
                 IEnumerator WorldReset()
@@ -87,10 +80,9 @@ namespace Scripts.Game
             }
         }
 
-
         private void Awake()
         {
-            Assert.IsNotNull(m_WorldManager, "ERROR: worldManager not assigned in PlayerManager.cs");
+            Assert.IsNotNull(m_WorldManager, "ERROR: m_WorldManager not assigned in class PlayerManager");
 
             // Singleton pattern
             if (null == m_Instance)
@@ -101,7 +93,6 @@ namespace Scripts.Game
             {
                 Destroy(gameObject);
             }
-
 
             m_ExtraLifeScoresIndex = 0;
             m_NextExtraLifeScore = m_ExtraLifeCosts[m_ExtraLifeScoresIndex];

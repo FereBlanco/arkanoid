@@ -31,7 +31,6 @@ namespace Scripts.Game
 
         private void ShootFromEditor()
         {
-            Debug.Log("Doh shoots!");
             m_Shooter.TryShoot();
         }
     }

@@ -1477,7 +1477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430909369}
-  - component: {fileID: 430909368}
+  - component: {fileID: 430909370}
   m_Layer: 0
   m_Name: WorldManager
   m_TagString: Untagged
@@ -1485,30 +1485,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &430909368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 430909367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65732fd9a7e18f5499b640e00c6bf6e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Vaus: {fileID: 466415335}
-  m_DeadZone: {fileID: 505914361}
-  m_Breakdoor: {fileID: 6401810382714235084}
-  m_PowerUpPrefabs:
-  - {fileID: 3538122336304649922, guid: 6a290cc71f468d3489ae16318120f78c, type: 3}
-  - {fileID: 5454088954695748388, guid: 0ac070e781d1a0d4c9ef41d162e81e8d, type: 3}
-  - {fileID: 4199390526386119482, guid: cbc29e83f17d8af42994d2e8eb69a604, type: 3}
-  - {fileID: 4094075645581453478, guid: 18a05071f7f7f1e469cb39276e046c3c, type: 3}
-  - {fileID: 5922488277327720628, guid: ed2dd047765a36a4ab0c14618e2ccaba, type: 3}
-  - {fileID: 8175483335783489364, guid: daa2291f64ec4904ab77c189c915a18d, type: 3}
-  - {fileID: 8028147753677213478, guid: 4937a8e0dc2152148971813c70c5c83b, type: 3}
-  m_NumberOfPowerUpsToAdd: 20
 --- !u!4 &430909369
 Transform:
   m_ObjectHideFlags: 0
@@ -1527,6 +1503,20 @@ Transform:
   - {fileID: 2030034737}
   m_Father: {fileID: 983924047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &430909370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430909367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861dd58317cfcc149ae8948109f3f6d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Vaus: {fileID: 466415335}
+  m_DeadZone: {fileID: 505914361}
 --- !u!4 &446694113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6724894363566836893, guid: 775a60a186e71524abd2f1af155ca42a, type: 3}
@@ -2315,8 +2305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899312e1b2d592a48865edda32b98f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WorldManager: {fileID: 430909368}
-  m_HUDManager: {fileID: 0}
+  m_WorldManager: {fileID: 430909370}
+  m_HUDManager: {fileID: 1117918192}
   m_InitialLives: 2
   m_MaxLives: 10
   m_ExtraLifeCosts: 204e0000409c000060ea0000
@@ -5600,7 +5590,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.5
+  m_fontSize: 35.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7238,17 +7228,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4991085749245908689, guid: 077bf9fc4fffd1140807236838b87c8b, type: 3}
   m_PrefabInstance: {fileID: 6401810382714235082}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6401810382714235084 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3684401751167863957, guid: 077bf9fc4fffd1140807236838b87c8b, type: 3}
-  m_PrefabInstance: {fileID: 6401810382714235082}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 047aa308d38ede54d99d3eaeebf021b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6755466212107718116
 PrefabInstance:
   m_ObjectHideFlags: 0

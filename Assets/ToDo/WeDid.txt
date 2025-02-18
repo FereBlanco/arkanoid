@@ -386,10 +386,6 @@ También tiene más estados (en este caso visuales) correspondientes al nivel de
 
 Finalmente tendrá otros nuevos estados correspondientes a la animación final, cuando haya sido destruido.
 
-Para el round del Doh usaremos un WorldManager específico. Crearemos una clase WorldManager abstracta y de ahí
-heredará la clase WorldManager específica de los niveles con ladrillos y la clase WorldManager específica para
-la round final con Doh.
-
 
 [TIMELINE & SIGNALS]
 El componente Animator nos permite controlar un GameObject y sus hijos, pero no puede controlar otros GameObjects
@@ -404,3 +400,8 @@ Sincronizando los elementos de estas capas junto con las Signals correspondiente
 
 Podemos arrastrar animaciones ya hechas a una capa y también podemos grabar directamente nuevas animaciones, que 
 quedarán almacenadas en nuestro objeto Timeline con el nombre de Recorded
+
+[WORLDMANAGER BRICKS & DOH]
+Para el round del Doh usaremos un WorldManager específico. Crearemos una clase WorldManager abstracta y de ahí
+heredará la clase WorldManager específica de los niveles con ladrillos y la clase WorldManager específica para
+la round final con Doh.

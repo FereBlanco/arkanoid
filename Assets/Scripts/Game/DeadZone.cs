@@ -1,8 +1,7 @@
 using System;
-using Scripts.Game;
 using UnityEngine;
 
-namespace Script.Game
+namespace Scripts.Game
 {
     [RequireComponent(typeof(Collider2D))]
     public class DeadZone : MonoBehaviour

@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Script.Game;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
-    [RequireComponent(typeof(Animator))]
     public class EnemySpawner : MonoBehaviour
     {
          [SerializeField] private Trapdoor[] m_Trapdoors;

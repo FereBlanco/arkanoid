@@ -1,11 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Scripts.Game;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Script.Game
+namespace Scripts.Game
 {
     public class BallsManager : MonoBehaviour
     {
@@ -22,7 +19,6 @@ namespace Script.Game
 
         internal void Release()
         {
-            Debug.Log("Release");
             foreach (var ball in m_Balls)
             {
                 ball.Release();

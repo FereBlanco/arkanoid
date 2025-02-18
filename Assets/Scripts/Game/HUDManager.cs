@@ -22,7 +22,6 @@ namespace Scripts.Game
             }
             else
             {
-                Debug.Log("HUDManager Singleton has more than one instance: this one will be destroyed");
                 Destroy(gameObject); 
             }
 
