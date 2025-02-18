@@ -13,4 +13,13 @@ ToDo Fere:
 [ ] Review the losing life code: remove enemies/bullets/power-ups
     through their controllers instead of just destroying them
 [ ] Vaus trembles if it approaches the edges
-[ ] Creata e generic method/template for Singleton pattern
+[ ] Create a generic method/template for Singleton pattern >> doesn't work fine with Properties in Awakes
+[ ] Completar WeDid con todo lo del Doh
+
+[ ] Build scene template from Professor's one
+[ ] Export to WebGL
+[ ] Vaus's Bullets and Doh's Bullets as Object Pool (with Rigibody2D as Dynamic for independient movement)
+[ ] Right dimensions
+[ ] LoadRound (for Bricks rounds)
+
+[ ] Complete and clean

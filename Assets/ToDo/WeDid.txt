@@ -361,3 +361,21 @@ Aquí jugamos con el Collider:
               LevelManager.Instance.RoundClear();
           }
 
+[DOH]
+Al ser muy diferente de los demás Rounds el Doh (el Boss final) tiene su propia Scene template
+En este round no habrá PowerUps ni Enemies
+
+
+[TIMELINE & SIGNALS]
+El componente Animator nos permite controlar un GameObject y sus hijos, pero no puede controlar otros GameObjects
+Timeline sí que puede controlar diferentes GameObjects
+Funciona parecido a los timelines de los programas de edición de vídeo (Premiere, Flash...)
+Al Timeline podré arrastrar animaciones, sonidos...
+También podré crear Signals, que funcionan igual que eventos pero siempre asociados a un Timeline
+Para gestionar las Signals tenemos que añadir al Timeline el componente SignalReceiver
+
+En el Timeline se trabaja con Tracks (capas) de distintos tipos: Activación / Animación / Audio...
+Sincronizando los elementos de estas capas junto con las Signals correspondientes podemos ir construyendo animaciones muy complejas.
+
+Podemos arrastrar animaciones ya hechas a una capa y también podemos grabar directamente nuevas animaciones, que 
+quedarán almacenadas en nuestro objeto Timeline con el nombre de Recorded
