@@ -720,18 +720,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DohStates:
-  - DelayBetweenBurstsTime: 4
-    DelayBetweenBulletsTime: 0.5
-    NumberOfBullets: 3
-    m_AnimatorOverrideController: {fileID: 0}
-  - DelayBetweenBurstsTime: 0
-    DelayBetweenBulletsTime: 0
-    NumberOfBullets: 0
-    m_AnimatorOverrideController: {fileID: 0}
-  - DelayBetweenBurstsTime: 0
-    DelayBetweenBulletsTime: 0
-    NumberOfBullets: 0
-    m_AnimatorOverrideController: {fileID: 0}
+  - m_DelayBetweenBurstsTime: 6
+    m_DelayBetweenBulletsTime: 0.6
+    m_NumberOfBullets: 3
+    m_AnimatorOverrideController: {fileID: 22100000, guid: 065d60ff125602b4abbe9b97c6534275, type: 2}
+  - m_DelayBetweenBurstsTime: 5
+    m_DelayBetweenBulletsTime: 0.5
+    m_NumberOfBullets: 4
+    m_AnimatorOverrideController: {fileID: 22100000, guid: 5bc1b571c2d192a4bae7a5c852c46d2d, type: 2}
+  - m_DelayBetweenBurstsTime: 4
+    m_DelayBetweenBulletsTime: 0.4
+    m_NumberOfBullets: 5
+    m_AnimatorOverrideController: {fileID: 22100000, guid: 64b1d98645a31514a8cf7eadfda4099f, type: 2}
+  - m_DelayBetweenBurstsTime: 3
+    m_DelayBetweenBulletsTime: 0.3
+    m_NumberOfBullets: 6
+    m_AnimatorOverrideController: {fileID: 22100000, guid: 1b34889d94b90964598cdafb9e15b64c, type: 2}
 --- !u!114 &345537411
 MonoBehaviour:
   m_ObjectHideFlags: 0

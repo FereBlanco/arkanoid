@@ -7,18 +7,22 @@ namespace Scripts.Game
 {
     [RequireComponent(typeof(Animator), typeof(Shooter), typeof(Damage))]
 
-
     public class Doh : MonoBehaviour
     {
         [Serializable]
         class DohState
         {
-            public float DelayBetweenBurstsTime;
-            public float DelayBetweenBulletsTime;
-            public int NumberOfBullets;
-            public AnimatorOverrideController m_AnimatorOverrideController;
+            [SerializeField] private float m_DelayBetweenBurstsTime;
+            public float DelayBetweenBurstsTime { get => m_DelayBetweenBurstsTime; }
+            [SerializeField] private float m_DelayBetweenBulletsTime;
+            public float DelayBetweenBulletsTime { get => m_DelayBetweenBulletsTime; }
+            [SerializeField] private int m_NumberOfBullets;
+            public int NumberOfBullets { get => m_NumberOfBullets; }
+            [SerializeField] private AnimatorOverrideController m_AnimatorOverrideController;
+            public AnimatorOverrideController mAnimatorOverrideController { get => m_AnimatorOverrideController; }
         }
         [SerializeField] private DohState[] m_DohStates;
+        private int m_CurrentDohState = 0;
 
         private WaitForSeconds m_DelayBetweenBursts;
         private WaitForSeconds m_DelayBetweenBullets;
@@ -29,8 +33,6 @@ namespace Scripts.Game
 
         public event Action OnRoundClearEvent;
 
-
-
         void Awake()
         {
             // Assert.IsTrue(m_MaxRandomTime > m_MinRandomTime, "ERROR: m_MinRandomTime has to be smaller than m_MaxRandomTime");
@@ -39,11 +41,12 @@ namespace Scripts.Game
             m_Damage = GetComponent<Damage>();
             m_Damage.OnDestroyedEvent += OnDohDestroyedCallback;
 
-            SetValues(0);
+            SetValues(m_CurrentDohState);
         }
 
         private void SetValues(int stateNumber)
         {
+            Debug.Log($"State: {stateNumber}");
             m_DelayBetweenBursts = new WaitForSeconds(m_DohStates[stateNumber].DelayBetweenBurstsTime);
             m_DelayBetweenBullets = new WaitForSeconds(m_DohStates[stateNumber].DelayBetweenBulletsTime);
             m_NumberOfBullets = m_DohStates[stateNumber].NumberOfBullets;
@@ -68,7 +71,14 @@ namespace Scripts.Game
         {
             yield return m_DelayBetweenBursts;
             m_Animator.SetTrigger(Constants.PARAMETER_ATTACK);
+
             StartCoroutine(RandomShootRoutine());
+
+            if (m_CurrentDohState < m_DohStates.Length - 1)
+            {
+                m_CurrentDohState++;
+                SetValues(m_CurrentDohState);
+            }
         }
 
         public void ShootFromAnimation()
