@@ -4,7 +4,6 @@ using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
-    [RequireComponent(typeof(Doh), typeof(Damage))]
     public class WorldManagerWithDoh : WorldManager
     {
         private Doh m_Doh;
@@ -16,12 +15,24 @@ namespace Scripts.Game
 
             m_Doh = GetComponentInChildren<Doh>();
             m_DohDamage = GetComponentInChildren<Damage>();
-            Assert.IsNotNull(m_DohDamage, "ERROR: m_DohDamage not assiged in class Doh");
+            Assert.IsNotNull(m_Doh, "ERROR: m_Doh not assigned in class WorldManagerWithDoh children");
+            Assert.IsNotNull(m_DohDamage, "ERROR: m_DohDamage not assigned in class WorldManagerWithDoh children");
 
             m_DohDamage.OnDestroyedEvent += OnDohDestroyedCallback;
+            m_DohDamage.OnDamageReceivedEvent += OnDamageReceivedCallback;
             m_Doh.OnRoundClearEvent += OnRoundClearCallback;
         }
 
+        private void OnDamageReceivedCallback(Damage damage)
+        {
+            Debug.Log("Damage received");
+            UpdateDamage();
+        }
+
+        private void UpdateDamage()
+        {
+            Debug.Log("Update damage");
+        }
 
         private void OnDohDestroyedCallback(Damage damage)
         {

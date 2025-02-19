@@ -98,9 +98,9 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.75
-    functionName: OnRoundClearCallback
+    functionName: DestroyedFromAnimation
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: a004a7040dd6a5a49a0ff425b1242bc2, type: 3}
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

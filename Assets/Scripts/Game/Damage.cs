@@ -9,6 +9,7 @@ namespace Scripts.Game
         [SerializeField, Min(1)] private int m_Resistance = 1;
         
         public event Action<Damage> OnDestroyedEvent;
+        public event Action<Damage> OnDamageReceivedEvent;
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -33,6 +34,10 @@ namespace Scripts.Game
             if (m_Resistance == 0)
             {
                 OnDestroyedEvent?.Invoke(this);
+            }
+            else
+            {
+                OnDamageReceivedEvent?.Invoke(this);
             }
         }
 

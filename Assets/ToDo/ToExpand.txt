@@ -16,8 +16,9 @@ ToDo Fere:
 [ ] Create a generic method/template for Singleton pattern >> doesn't work fine with Properties in Awakes
 [ ] Enemies die when a Bullet touches them
 [ ] Enemies die when the Ball touches them
-[ ] Completar WeDid con todo lo del Doh
-[ ] Arreglar todos los extados del Doh
+[ ] Complete WeDid with all Doh actions
+[ ] Arreglar todos los extados del Doh >> tengo arregladas las animaciones y las copias de los animators,
+    pero no tengo los Override
 
 [ ] Build scene template from Professor's one
 [ ] Export to WebGL

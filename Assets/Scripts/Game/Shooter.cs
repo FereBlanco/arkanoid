@@ -14,7 +14,8 @@ namespace Scripts.Game
         [SerializeField] private BulletPool m_BulletPool;
 
         [Tooltip("Time between shoots")]
-        [SerializeReference, Min(0.1f)] float m_CoolDownTime = 0.25f;
+        [SerializeReference, Min(0.1f)] private float m_CoolDownTime = 0.25f;
+
         private bool m_CanShoot;
 
         protected virtual void Awake()
