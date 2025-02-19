@@ -44,7 +44,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 093931353788128468d84f869c1f2aec, type: 2}
+  m_Motion: {fileID: 7400000, guid: 022a2d0691e1aa344a6380ae87f2a867, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -275,7 +275,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DohAnimator
+  m_Name: DohAnimator-State-75-100
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack
@@ -364,7 +364,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5815008649b80314d97803b6b3ad20fa, type: 2}
+  m_Motion: {fileID: 7400000, guid: 58e4309e22417544593e43fcf9ed9233, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -393,7 +393,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0279f20ec605634a936074ec27b43fb, type: 2}
+  m_Motion: {fileID: 7400000, guid: da913b2fdd0d95c40b570450a8b721e5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -637,7 +637,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7c26b61e9186da14eab3f47a22c3266d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4fcb4a4dd77240b448c2087cd81a29c3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

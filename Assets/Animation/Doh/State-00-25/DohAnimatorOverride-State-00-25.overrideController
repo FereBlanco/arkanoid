@@ -6,6 +6,6 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DohAnimator-State-25-50
+  m_Name: DohAnimatorOverride-State-00-25
   m_Controller: {fileID: 9100000, guid: 29133e728c0090f40b6fa6ab991731a9, type: 2}
   m_Clips: []

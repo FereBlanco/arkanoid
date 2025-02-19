@@ -407,7 +407,7 @@ TextureImporter:
       name: Doh_50_75_Attack02
       rect:
         serializedVersion: 2
-        x: 130
+        x: 129
         y: 384
         width: 62
         height: 96
@@ -450,7 +450,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 289
+        y: 288
         width: 62
         height: 96
       alignment: 0
@@ -513,7 +513,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 193
-        y: 287
+        y: 288
         width: 62
         height: 96
       alignment: 0
@@ -534,7 +534,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 193
+        y: 192
         width: 62
         height: 96
       alignment: 0
