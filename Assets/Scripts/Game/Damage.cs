@@ -41,6 +41,11 @@ namespace Scripts.Game
             }
         }
 
+        internal int GetRersistance()
+        {
+            return m_Resistance;
+        }
+
         internal int GetScore()
         {
             return m_Score;

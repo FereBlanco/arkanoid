@@ -5,8 +5,6 @@ using UnityEngine.Assertions;
 
 namespace Scripts.Game
 {
-    [RequireComponent(typeof(Animator), typeof(Shooter), typeof(Damage))]
-
     public class Doh : MonoBehaviour
     {
         [Serializable]
@@ -35,10 +33,15 @@ namespace Scripts.Game
 
         void Awake()
         {
-            // Assert.IsTrue(m_MaxRandomTime > m_MinRandomTime, "ERROR: m_MinRandomTime has to be smaller than m_MaxRandomTime");
             m_Animator = GetComponent<Animator>();
+            Assert.IsNotNull(m_Animator, "ERROR: m_Animator not set in Doh class");
+
             m_Shooter = GetComponent<ShooterWithTarget>();
+            Assert.IsNotNull(m_Shooter, "ERROR: m_Shooter not set in Doh class");
+
             m_Damage = GetComponent<Damage>();
+            Assert.IsNotNull(m_Damage, "ERROR: m_Damage not set in Doh class");
+
             m_Damage.OnDestroyedEvent += OnDohDestroyedCallback;
 
             SetValues(m_CurrentDohState);
@@ -55,6 +58,20 @@ namespace Scripts.Game
         private void Start()
         {
             StartCoroutine(RandomShootRoutine());
+        }
+
+        private void OnDamageReceivedCallback()
+        {
+            int resistance = m_Damage.GetRersistance();
+            UpdateState(resistance);
+        }
+
+        private void UpdateState(int resistance)
+        {
+        //     if (resistance <= m_DohStates[m_CurrentDohState].minStateValue)
+        //     {
+        //         m_CurrentDohState++;
+        //     }
         }
 
         private void OnDohDestroyedCallback(Damage damage)
@@ -74,11 +91,11 @@ namespace Scripts.Game
 
             StartCoroutine(RandomShootRoutine());
 
-            if (m_CurrentDohState < m_DohStates.Length - 1)
-            {
-                m_CurrentDohState++;
-                SetValues(m_CurrentDohState);
-            }
+            // if (m_CurrentDohState < m_DohStates.Length - 1)
+            // {
+            //     m_CurrentDohState++;
+            //     SetValues(m_CurrentDohState);
+            // }
         }
 
         public void ShootFromAnimation()

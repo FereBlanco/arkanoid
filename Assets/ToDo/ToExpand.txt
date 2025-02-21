@@ -25,5 +25,14 @@ ToDo Fere:
 [ ] Vaus's Bullets and Doh's Bullets as Object Pool (with Rigibody2D as Dynamic for independient movement)
 [ ] Right dimensions
 [ ] LoadRound (for Bricks rounds)
+[ ] If you die in the middle of a Doh's burst, game destroy only the bullets that already were in the screen,
+    but Doh continues shooting and last bullets are not destroyed
+
+---
+SNIPPET
+[ ] One only round
+[ ] Visual lives (little vaus at the bottom)
+[ ] Title/Score/Highscore? on the top of the screen
+[ ] Mouse control on the bottom of the screen
 
 [ ] Complete and clean

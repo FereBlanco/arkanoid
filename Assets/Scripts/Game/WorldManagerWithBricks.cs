@@ -89,10 +89,11 @@ namespace Scripts.Game
 
         private void ResetBullets()
         {
-            var bullets = GameObject.FindGameObjectsWithTag(Constants.TAG_BULLET);
-            foreach (var bullet in bullets)
+            var bulletGOs = GameObject.FindGameObjectsWithTag(Constants.TAG_BULLET);
+            foreach (var bulletGO in bulletGOs)
             {
-                bullet.SetActive(false);
+                Bullet bullet = bulletGO.GetComponent<Bullet>();
+                bullet.SetInactive();
             }
         }
 

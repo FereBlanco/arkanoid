@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -21,6 +20,7 @@ namespace Scripts.Game
             m_DohDamage.OnDestroyedEvent += OnDohDestroyedCallback;
             m_DohDamage.OnDamageReceivedEvent += OnDamageReceivedCallback;
             m_Doh.OnRoundClearEvent += OnRoundClearCallback;
+            m_Vaus.OnVausDestroyedEvent += OnVausDestroyedCallback;
         }
 
         private void OnDamageReceivedCallback(Damage damage)
@@ -43,6 +43,29 @@ namespace Scripts.Game
         {
             Debug.Log("GAME FINISHED");
             LevelManager.Instance.RoundClear();
+        }
+
+        private void OnVausDestroyedCallback()
+        {
+            SubstractLife();
+            Reset();
+        }
+
+        internal override void Reset()
+        {
+            ResetDohBullets();
+
+            base.Reset();
+        }
+
+        private void ResetDohBullets()
+        {
+            var dohBulletGOs = GameObject.FindGameObjectsWithTag(Constants.TAG_DOH_BULLET);
+            foreach (var dohBulletGO in dohBulletGOs)
+            {
+                Bullet dohBullet = dohBulletGO.GetComponent<Bullet>();
+                dohBullet.SetInactive();
+            }
         }
     }
 }

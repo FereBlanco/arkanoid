@@ -63,6 +63,8 @@ namespace Scripts.Game
         // Events / Delegates
         public event Action OnBallReleaseEvent;
 
+        public event Action OnVausDestroyedEvent;
+
         // Monobehaviour Methods
         private void Awake()
         {
@@ -102,6 +104,14 @@ namespace Scripts.Game
                 {
                     m_Shooter.TryShoot();
                 }
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag(Constants.TAG_DOH_BULLET))
+            {
+                OnVausDestroyedEvent?.Invoke();
             }
         }
 

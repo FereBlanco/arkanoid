@@ -51,9 +51,14 @@ namespace Scripts.Game
         {
             if (m_BallsManager.DestroyBall(go.GetComponent<Ball>()))
             {
-                m_Vaus.VausState = VausState.Destroyed;
-                m_PlayerManager.Lives--;
+                SubstractLife();
             }
+        }
+        
+        protected void SubstractLife()
+        {
+            m_Vaus.VausState = VausState.Destroyed;
+            m_PlayerManager.Lives--;
         }
 
         internal virtual void Reset()

@@ -36,6 +36,7 @@ namespace Scripts.Game
         public Bullet GetBullet()
         {
             Bullet bullet = m_Bullets[m_CurrentIndex];
+            bullet.SetActive();
             bullet.gameObject.SetActive(true);
 
             m_CurrentIndex++;
