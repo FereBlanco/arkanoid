@@ -11,6 +11,7 @@ namespace Scripts.Game
         [SerializeField] private Breakdoor m_Breakdoor;
         private List<Brick> m_Bricks = new List<Brick>();
         private EnemySpawner m_EnemySpawner;
+        private Dictionary<PowerUpType, PowerUp> m_FromTypeToPowerUp;
 
         protected override void Awake()
         {
@@ -44,6 +45,13 @@ namespace Scripts.Game
 
         private void SetupPowerUps()
         {
+            m_FromTypeToPowerUp = new Dictionary<PowerUpType, PowerUp>();
+
+            foreach (var powerUpPrefab in m_PowerUpPrefabs)
+            {
+                m_FromTypeToPowerUp.Add(powerUpPrefab.PowerUpType, powerUpPrefab);
+            }
+
             var bricksWithoutPowerUp = m_Bricks.FindAll(brick => !brick.HasPowerUp());
             // This lambda notation is equal to:
                 // List<Brick> bricksWithoutPowerUp = new List<Brick>();
@@ -136,7 +144,11 @@ namespace Scripts.Game
             if (brick.HasPowerUp())
             {
                 PowerUpType powerUpType = brick.PowerUpType;
-                PowerUp newPowerUp = Instantiate(m_PowerUpPrefabs[(int)powerUpType], damage.transform.position, Quaternion.identity);
+                PowerUp newPowerUp = Instantiate(
+                    m_FromTypeToPowerUp[powerUpType],
+                    // m_PowerUpPrefabs[(int)powerUpType],
+                    damage.transform.position,
+                    Quaternion.identity);
                 newPowerUp.PowerUpType = powerUpType;
                 newPowerUp.OnPowerUpActivateEvent += OnPowerUpActivateCallBack;
             }
